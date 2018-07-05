@@ -1,6 +1,6 @@
 'use strict';
 
-const asyncMiddleware = require('../middleware/asyncMiddleware.server.middleware');
+const asyncHandler = require('express-async-handler');
 
 const express = require('express');
 const router = express.Router();
@@ -10,15 +10,15 @@ module.exports = function (app) {
 
     app.use('/admin', router);
 
-    router.get('/', admin.adminIndex);
+    router.get('/', asyncHandler(admin.adminIndex));
 
-    router.get('/category', admin.category);
+    router.get('/category', asyncHandler(admin.category));
 
-    router.get('/category/add', admin.renderCategoryAdd)
-        .post('/category/add', admin.categoryAdd);
+    router.get('/category/add', asyncHandler(admin.renderCategoryAdd))
+        .post('/category/add', asyncHandler(admin.categoryAdd));
 
-    router.get('/category/edit', admin.renderCategoryEdit)
-        .post('/category/edit', admin.categoryEdit);
+    router.get('/category/edit', asyncHandler(admin.renderCategoryEdit))
+        .post('/category/edit', asyncHandler(admin.categoryEdit));
 
-    router.get('/category/delete', admin.categoryDelete);
+    router.get('/category/delete', asyncHandler(admin.categoryDelete));
 };

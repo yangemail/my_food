@@ -1,0 +1,41 @@
+{
+  "name": "my_food",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangemail/my_food.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yangemail/my_food/issues"
+  },
+  "homepage": "https://github.com/yangemail/my_food#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "connect-ensure-login": "^0.1.1",
+    "connect-flash": "^0.1.1",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.2.0",
+    "mongoose": "^5.1.7",
+    "morgan": "^1.9.0",
+    "multer": "^1.3.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "redis": "^2.8.0",
+    "serve-favicon": "^2.5.0",
+    "shortid": "^2.2.8",
+    "swig-templates": "^2.0.2",
+    "winston": "^2.4.2",
+    "winston-mongodb": "^4.0.0-rc1"
+  }
+}

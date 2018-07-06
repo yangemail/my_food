@@ -13,6 +13,9 @@
     <div class="panel-heading">
         <h3 class="panel-title">错误提示</h3>
     </div>
+    <div>
+        {{errors | json}}
+    </div>
     <div class="panel-body">{{message}}</div>
     <div class="panel-footer">
         {% if url %}

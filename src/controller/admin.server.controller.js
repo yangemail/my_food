@@ -5,6 +5,8 @@ const Category = require('../model/category.server.model');
 const Book = require('../model/book.server.model');
 const Chapter = require('../model/chapter.server.model');
 
+let ObjectId = require('mongoose').Types.ObjectId;
+
 exports.adminIndex = function (req, res, next) {
     res.render('admin/index_index', {});
 };
@@ -28,6 +30,7 @@ exports.category = async function (req, res, next) {
     let categories = await Category.find().sort({sequence: 1}).limit(limit).skip(skip);
     res.render('admin/category_index', {
         categories: categories,
+
         count: count,
         pages: pages,
         limit: limit,
@@ -98,45 +101,59 @@ exports.renderCategoryEdit = async function (req, res, next) {
 };
 
 exports.categoryEdit = async function (req, res, next) {
-    let id = req.query.id || '';
+    let id = req.body.id || '';
     let name = req.body.name || '';
+    let sequence = req.body.sequence || 1;
     let subcategory = req.body.subcategory || '';
+    let subcategoryArr = subcategory.split(',');
+
+    console.log('from request :::::: ' + subcategoryArr);
 
     let category = await Category.findOne({_id: id})
     if (!category) {
         res.render('admin/error', {
             message: '分类信息不存在'
         });
-    } else {
-        //当用户没有做任何的修改提交的时候
-        if (name === category.name) {
+    }
+    // else if(name === category.name) {
+    //     //当用户没有做任何的修改提交的时候
+    //     res.render('admin/success', {
+    //         message: '修改成功',
+    //         url: '/admin/category'
+    //     });
+    // }
+    else {
+        //要修改的分类名称是否已经在数据库中存在
+        let sameCategory = await Category.findOne({
+            _id: {$ne: id},
+            name: name
+        });
+        if (sameCategory) {
+            res.render('admin/error', {
+                userInfo: req.userInfo,
+                message: '数据库中已经存在同名分类'
+            });
+        } else {
+            let objectIds = [];
+            subcategoryArr.forEach(function (item) {
+                var objectId = new ObjectId(item);
+                objectIds.push(objectId);
+            });
+
+            console.log("objectId :::::: " + objectIds);
+
+            await Category.update({
+                _id: id
+            }, {
+                name: name,
+                sequence: sequence,
+                categories: objectIds,
+            });
+
             res.render('admin/success', {
                 message: '修改成功',
                 url: '/admin/category'
             });
-        } else {
-            //要修改的分类名称是否已经在数据库中存在
-            let sameCategory = await Category.findOne({
-                _id: {$ne: id},
-                name: name
-            });
-            if (sameCategory) {
-                res.render('admin/error', {
-                    userInfo: req.userInfo,
-                    message: '数据库中已经存在同名分类'
-                });
-            }
         }
     }
-
-    await Category.update({
-        _id: id
-    }, {
-        name: name
-    });
-
-    res.render('admin/success', {
-        message: '修改成功',
-        url: '/admin/category'
-    });
 };

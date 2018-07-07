@@ -1,7 +1,7 @@
 'use strict';
 
 const winston = require('winston');
-const dbPath = require('../config/config').database;
+const dbPath = require('../config/config.server.config').database;
 const os = require('os');
 require('winston-mongodb').MongoDB;
 

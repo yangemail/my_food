@@ -1,22 +1,26 @@
 'use strict';
 
-let ObjectId = require('mongoose').Types.ObjectId;
+const mongoose = require('mongoose')
+    , Schema = mongoose.Schema;
 
-const mongoose = require('mongoose');
-
-const CategorySchema = new mongoose.Schema({
-    name: String,
-    categories: [mongoose.Schema.Types.ObjectId],
+const CategorySchema = new Schema({
+    title: String,
+    author: ObjectId,
+    body: String,
     level: Number,
     sequence: Number,
+    comments: [{body: String, date: Date}],
+    date: {type: Date, default: Date.now},
+    hidden: Boolean,
+    meta: {
+        votes: Number,
+        favs: Number
+    }
 });
 
-CategorySchema.virtual('categories2').get(function () {
-    let outcome = [];
-    this.categories.forEach(function (objectId) {
-        let category = this.find({'_id': 111}).limit(1);
-        outcome.push(category);
-    });
+
+CategorySchema.pre('update', function () {
+    this.update({}, {$set: {updatedAt: new Date()}});
 });
 
 module.exports = mongoose.model('Category', CategorySchema);

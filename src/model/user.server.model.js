@@ -8,15 +8,16 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     register_date: Date,
-    read_status: [{
-        book: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
-        chapter: {type: mongoose.Schema.Types.ObjectId, ref: 'Chapter'},
-        bookmark_date: Date
-    }],
     is_blocked: {
         type: Boolean,
         default: false
-    }
+    },
+    hidden: {
+        type: Boolean,
+        default: false
+    },
+    friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
 });
 
 module.exports = mongoose.model('User', userSchema);

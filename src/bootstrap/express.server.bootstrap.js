@@ -1,8 +1,8 @@
 'use strict';
 
-const config = require('../config/config');
+const config = require('../config/config.server.config');
 
-const express = require('express');
+const expressServerBootstrap = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 
@@ -25,7 +25,7 @@ const swig = require('swig-templates');
 const api = require('../controller/api.server.controller');
 
 module.exports = function () {
-    const app = express();
+    const app = expressServerBootstrap();
 
     // ------ view engine setup ------
     app.engine('html', swig.renderFile);
@@ -60,7 +60,7 @@ module.exports = function () {
         saveUninitialized: true
     }));
 
-    app.use(express.static(path.join('./www')));
+    app.use(expressServerBootstrap.static(path.join('./www')));
 
     app.use(flash());
     // app.use(passport.initialize());

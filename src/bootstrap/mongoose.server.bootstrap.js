@@ -9,7 +9,7 @@ module.exports = function () {
     // use custom mongodb url or localhost
 
     const options = {
-        useMongoClient: true,
+        useNewUrlParser: true,
         // autoIndex: false, // Don't build indexes
         reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
         reconnectInterval: 500, // Reconnect every 500ms
@@ -37,7 +37,7 @@ module.exports = function () {
     });
 
     // Models
-    require('../model/category.server.model');
+    // require('../model/category.server.model');
     // require('../model/book.server.model');
     // require('../model/chapter.server.model');
     // require('../model/user.server.model');

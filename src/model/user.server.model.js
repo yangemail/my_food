@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -16,8 +18,8 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
-    recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
+    // friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    // recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
 });
 
 module.exports = mongoose.model('User', userSchema);

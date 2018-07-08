@@ -7,14 +7,20 @@ const mongoose = require('mongoose')
 
 const commentSchema = new Schema({
     post: {
-        body: String,
-        score: Number,
         author: Schema.Types.ObjectId,
+        type: {
+            type: String,
+            require: true,
+            enum: ['随意说说','问题求解']
+        },
+        body: String,
         date: Date,
+        completed_sample_image_path: [String]
     },
     reply: {
-        body: String,
         author: Schema.Types.ObjectId,
+        body: String,
         date: Date,
-    }
+    },
+    stars: Number
 })

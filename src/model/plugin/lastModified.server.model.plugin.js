@@ -10,5 +10,6 @@ module.exports = exports = function lastModifiedPlugin(schema, options) {
 
     if (options && options.index) {
         schema.path('lastModified').index(options.index);
+        // this.update({}, {$set: {updatedAt: new Date()}});
     }
 };

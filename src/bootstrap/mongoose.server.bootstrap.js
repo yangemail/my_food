@@ -7,22 +7,7 @@ const mongooseServerBootstrap = require('mongoose');
 
 module.exports = function () {
     // use custom mongodb url or localhost
-
-    const options = {
-        useNewUrlParser: true,
-        // autoIndex: false, // Don't build indexes
-        // reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-        // reconnectInterval: 500, // Reconnect every 500ms
-        // poolSize: 10, // Maintain up to 10 socket connections
-        // If not connected, return errors immediately rather than waiting for reconnect
-        // bufferMaxEntries: 0
-    };
-
-    // Development
-    mongooseServerBootstrap.connect(config.database, options);
-
-    // Production
-    // mongoose.connect(config.database, {autoIndex: false});
+    mongooseServerBootstrap.connect(config.mongodb.url, config.mongodb.options);
 
     const db = mongooseServerBootstrap.connection;
 

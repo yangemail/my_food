@@ -37,10 +37,10 @@ module.exports = function () {
     });
 
     // Models
-    // require('../model/category.server.model');
+    require('../model/recipe.server.model');
+    require('../model/user.server.model');
     // require('../model/book.server.model');
     // require('../model/chapter.server.model');
-    // require('../model/user.server.model');
 
     return db;
 }

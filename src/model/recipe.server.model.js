@@ -15,7 +15,7 @@ const recipeSchema = new Schema({
     // 主图片
     title_image_path: {
         type: String,
-        require: true,
+        default: ''
     },
     // 作者
     author: {
@@ -39,8 +39,14 @@ const recipeSchema = new Schema({
     },
 
     // 星级 - 仿Amazon
-    stars: Number,
-    hidden: Boolean,
+    stars: {
+        type: Number,
+        default: 5
+    },
+    hidden: {
+        type: Boolean,
+        default: false
+    },
     meta: {
         votes: Number,
         favs: Number

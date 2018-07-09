@@ -24,7 +24,8 @@ const userSchema = new Schema({
     // 管理员
     isAdmin: {
         type: Boolean,
-        default: false
+        default: false,
+        require: true
     },
     // 注册日期
     register_date: Date,

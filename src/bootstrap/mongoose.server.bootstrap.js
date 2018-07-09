@@ -11,11 +11,11 @@ module.exports = function () {
     const options = {
         useNewUrlParser: true,
         // autoIndex: false, // Don't build indexes
-        reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
-        reconnectInterval: 500, // Reconnect every 500ms
-        poolSize: 10, // Maintain up to 10 socket connections
+        // reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+        // reconnectInterval: 500, // Reconnect every 500ms
+        // poolSize: 10, // Maintain up to 10 socket connections
         // If not connected, return errors immediately rather than waiting for reconnect
-        bufferMaxEntries: 0
+        // bufferMaxEntries: 0
     };
 
     // Development
@@ -37,10 +37,11 @@ module.exports = function () {
     });
 
     // Models
+    require('../model/comment.server.model');
+    require('../model/cookinfo.server.model');
     require('../model/recipe.server.model');
+    require('../model/stepdetail.server.model');
     require('../model/user.server.model');
-    // require('../model/book.server.model');
-    // require('../model/chapter.server.model');
 
     return db;
-}
+};

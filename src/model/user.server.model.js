@@ -28,7 +28,10 @@ const userSchema = new Schema({
         require: true
     },
     // 注册日期
-    register_date: Date,
+    register_date: {
+        type: Date,
+        default: Date.now()
+    },
     // 禁用
     is_blocked: {
         type: Boolean,
@@ -38,6 +41,16 @@ const userSchema = new Schema({
     hidden: {
         type: Boolean,
         default: false
+    },
+    // 创建日期: createdAt
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    // 更新日期: updatedAt
+    updatedAt: {
+        type: Date,
+        default: Date.now()
     },
     // 菜谱
     recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],

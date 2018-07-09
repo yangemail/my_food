@@ -37,10 +37,10 @@ module.exports = function () {
     });
 
     // Models
-    require('../model/comment.server.model');
-    require('../model/cookinfo.server.model');
+    // require('../model/comment.server.model');
+    // require('../model/cookinfo.server.model');
     require('../model/recipe.server.model');
-    require('../model/stepdetail.server.model');
+    // require('../model/stepdetail.server.model');
     require('../model/user.server.model');
 
     return db;

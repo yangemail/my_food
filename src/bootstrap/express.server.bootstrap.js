@@ -2,7 +2,7 @@
 
 const config = require('../config/config.server.config');
 
-const expressServerBootstrap = require('express');
+const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 
@@ -21,51 +21,30 @@ const flash = require('connect-flash');
 
 const swig = require('swig-templates');
 
-// Controller
-const api = require('../controller/api.server.controller');
+var connect = require('connect')
+var errorhandler = require('errorhandler')
+
 
 module.exports = function () {
-    const app = expressServerBootstrap();
+    const app = express();
 
     // ------ view engine setup ------
     app.engine('html', swig.renderFile);
     app.set('views', path.join('./view'));
     app.set('view engine', 'html');
-
     app.use(favicon(path.join('./www', 'favicon.ico')));
-
-    if (process.env.NODE_ENV === 'development') {
-        app.use(morgan('dev'));
-        // 在开发过程中，需要取消模板缓存
-        swig.setDefaults({cache: false});
-        swig.invalidateCache();
-    } else if (process.env.NODE_ENV === 'production') {
-        app.use(compress());
-    }
-
+    app.use(session({
+        secret: config.sessionSecret, cookie: {maxAge: 24 * 60 * 60 * 1000},
+        resave: true, saveUninitialized: true
+    }));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
         extended: false
     }));
-    // app.use(cookieParser());
-    // i18n init parses req for language headers, cookies, etc.
-    // app.use(i18n.init);
-    // app.use(methodOverride());
-    app.use(session({
-        secret: config.sessionSecret,
-        cookie: {
-            maxAge: 24 * 60 * 60 * 1000
-        },
-        resave: true,
-        saveUninitialized: true
-    }));
-
-    app.use(expressServerBootstrap.static(path.join('./www')));
-
-    app.use(flash());
+    app.use(express.static(path.join('./www')));
+    // app.use(flash());
     // app.use(passport.initialize());
     // app.use(passport.session());
-
 
     // **** Routes ****
     require('../router/api.server.router')(app);
@@ -73,6 +52,17 @@ module.exports = function () {
     // require('../app/routes/locale.server.routes')(app);
     // require('../app/routes/auth.server.routes')(app);
     // require('../app/routes/ue.server.routes')(app);
+
+    if (process.env.NODE_ENV === 'development') {
+        app.use(morgan('dev'));
+        // 在开发过程中，需要取消模板缓存
+        swig.setDefaults({cache: false});
+        swig.invalidateCache();
+        // only use in development
+        app.use(errorhandler())
+    } else if (process.env.NODE_ENV === 'production') {
+        app.use(compress());
+    }
 
     // catch 404 and forward to error handler
     app.use(function (req, res, next) {

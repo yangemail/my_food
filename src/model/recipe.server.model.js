@@ -11,11 +11,11 @@ const recipeSchema = new Schema({
         type: String,
         require: true,
         trim: true,
+        index: true,
     },
     // 主图片
     title_image_path: {
         type: String,
-        default: ''
     },
     // 作者
     author: {
@@ -32,12 +32,12 @@ const recipeSchema = new Schema({
         // 工艺
         craftwork: {
             type: String,
-            enum: ['煎', '蒸', '煮', '炖', '红烧', '炸', '卤', '干锅', '火锅', '泡', '烤', '免考', '炒']
+            enum: ['煎', '蒸', '煮', '炖', '红烧', '炸', '卤', '干锅', '火锅', '泡', '烤', '免考', '炒'],
         },
         // 口味
         flavor: {
             type: String,
-            enum: ['咸鲜味', '甜味', '酱香味', '奶香味', '甜味', '家常味']
+            enum: ['咸鲜味', '甜味', '酱香味', '奶香味', '甜味', '家常味'],
         },
         // 难度
         difficulty: {
@@ -75,6 +75,7 @@ const recipeSchema = new Schema({
                 num: Number,
                 unit: String
             }],
+            index: true,
         },
         // 用料 （辅料）
         sub: {
@@ -84,12 +85,14 @@ const recipeSchema = new Schema({
                 num: Number,
                 unit: String
             }],
+            index: true,
         }
     },
     food_style: {
         country: {
             type: String,
-            enum: ['中国', '韩国料理', '日本料理', '西餐面点', '法国', '意大利', '德国', '美国', '东南亚菜', '墨西哥菜', '澳大利亚菜', '印度', '非洲', '其他国家']
+            enum: ['中国', '韩国料理', '日本料理', '西餐面点', '法国', '意大利', '德国', '美国', '东南亚菜', '墨西哥菜', '澳大利亚菜', '印度', '非洲', '其他国家'],
+            index: true,
         },
         // 中国
         // 家常菜谱
@@ -125,10 +128,9 @@ const recipeSchema = new Schema({
         // 上菜顺序
         foreign_food_order: {
             type: String,
-            enum: ['头盘', '汤品', '副菜', '主菜', '主食', '菜肴', '饮品甜点', '小吃']
+            enum: ['头盘', '汤品', '副菜', '主菜', '主食', '菜肴', '饮品甜点', '小吃'],
         },
     },
-
     // 菜谱细节
     step_detail: {
         type: {
@@ -202,21 +204,18 @@ const recipeSchema = new Schema({
             reply_helpful: Number,
         }],
     }],
-
     hidden: {
         type: Boolean,
         default: false
     },
-
     meta: {
-        // 星级 - 仿Amazon
-        stars: Number,
+        stars: {
+            type: Number,
+        },// 星级 - 仿Amazon
         votes: Number,
         favs: Number,
-        // 浏览次数
-        viewed: {
+        viewed: {// 页面浏览次数
             type: Number,
-            min: 0,
             default: 0
         },
     },

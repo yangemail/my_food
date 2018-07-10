@@ -11,7 +11,10 @@ const userSchema = new Schema({
     // 密码
     password: String,
     // 昵称
-    nickname: String,
+    nickname: {
+        type: String,
+        index: true,
+    },
     // 性别
     gender: {
         type: String,

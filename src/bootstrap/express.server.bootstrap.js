@@ -41,11 +41,9 @@ module.exports = function () {
     // **** Routes ****
     require('../router/api.server.router')(app);
     require('../router/admin.server.router')(app);
-    // require('../app/routes/locale.server.routes')(app);
-    // require('../app/routes/auth.server.routes')(app);
-    // require('../app/routes/ue.server.routes')(app);
 
     if (process.env.NODE_ENV === 'development') {
+        console.log('**********')
         app.use(morgan('dev'));
         // 在开发过程中，需要取消模板缓存
         swig.setDefaults({cache: false});

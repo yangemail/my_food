@@ -79,7 +79,7 @@ async function test() {
             User.update({_id: users[3].id}, {$set: {recipes: [recipe.id]}}).exec();
         });
     }
-    
+
     console.log("------ Done -------");
 }
 

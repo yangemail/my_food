@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <meta name="renderer" content="webkit"/>
     <!--<title>{{controller.meta_title}} | {{config.setup.WEB_SITE_TITLE}}</title>-->
-    <meta name="keywords" content="小说"/>
+    <meta name="keywords" content="食谱"/>
     <meta name="description" content="小说"/>
     <meta name="Author" content=""/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
@@ -24,9 +24,30 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
           integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/assets/css/adminlte.css">
+
+    <!-- Plug-in-->
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/static/assets/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="/static/assets/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="/static/assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="/static/assets/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="/static/assets/plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="/static/assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
     <!-- THEME CSS -->
     <link rel="stylesheet" href="/static/assets/css/main.css">
-
     <!-- Page Styles -->
     {% block style %}
     {% endblock %}
@@ -34,12 +55,15 @@
 <body class="bg-light">
 <div id="wrapper">
     <!-- Top Bar -->
-
-    {% include './topbar.html' %}
+    <div id="topBar" class="bg-info">
+        {% include './topbar.html' %}
+    </div>
     <!-- /Top Bar -->
 
     <!-- Header -->
-    {% include './header.html' %}
+    <div id="header" class="bg-white border-bottom">
+        {% include './header.html' %}
+    </div>
     <!-- /Header -->
 
     <!-- Page Content -->

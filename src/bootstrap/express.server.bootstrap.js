@@ -1,29 +1,20 @@
 'use strict';
 
-const config = require('../config/config.server.config');
-
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-
-const morgan = require('morgan');
-
-// const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const compress = require('compression');
-
-const logger = require('../middleware/logger.server.middleware');
-// const i18n = require('./i18n');
-const passport = require('passport');
-const flash = require('connect-flash');
+const config = require('../config/config.server.config')
+    , express = require('express')
+    , path = require('path')
+    , favicon = require('serve-favicon')
+    , morgan = require('morgan')
+    , bodyParser = require('body-parser')
+    , compress = require('compression')
+    , logger = require('../middleware/logger.server.middleware')
+    , session = require('express-session')
+    , passport = require('passport')
+    , flash = require('connect-flash')
+    , swig = require('swig-templates')
+    , connect = require('connect')
+    , errorhandler = require('errorhandler');
 // const methodOverride = require('method-override');
-
-const swig = require('swig-templates');
-
-var connect = require('connect')
-var errorhandler = require('errorhandler')
-
 
 module.exports = function () {
     const app = express();
@@ -34,8 +25,9 @@ module.exports = function () {
     app.set('view engine', 'html');
     app.use(favicon(path.join('./www', 'favicon.ico')));
     app.use(session({
-        secret: config.sessionSecret, cookie: {maxAge: 24 * 60 * 60 * 1000},
-        resave: true, saveUninitialized: true
+        secret: config.sessionSecret,
+        cookie: {maxAge: 24 * 60 * 60 * 1000, secure: true},
+        resave: false, saveUninitialized: true,
     }));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({

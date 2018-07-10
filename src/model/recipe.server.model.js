@@ -25,7 +25,7 @@ const recipeSchema = new Schema({
     // 菜品细节
     cook_info: {
         // 功效
-        china_food_function: {
+        food_function: {
             type: [String],
             enum: ['疾病调理', '功能性调理', '脏腑调理', '人群膳食', '抵抗力', '防癌', '降血脂', '抗衰老', '减肥', '骨质疏松', '美容养颜'],
         },
@@ -61,9 +61,22 @@ const recipeSchema = new Schema({
             type: Number,
             min: 0
         },
-        nutrition_information: {
-            type: String
-        }
+    },
+    nutrition_information: {
+        serving_size: String,
+        nutrition_facts: [{
+            name: String,
+            contains: String,
+            percentage: Number,
+        }],
+        daily_value: [{
+            name: String,
+            contains: String,
+            percentage: Number,
+        }],
+        exchanges: String,
+        comments: String,
+        links: [String],
     },
     // 用料
     ingredient: {
@@ -71,11 +84,14 @@ const recipeSchema = new Schema({
         major: {
             type: [{
                 material_image_path: String,
-                name: String,
+                name: {
+                    type: String,
+                    index: true
+                },
                 num: Number,
-                unit: String
+                unit: String,
+                links: [String]
             }],
-            index: true,
         },
         // 用料 （辅料）
         sub: {
@@ -83,9 +99,9 @@ const recipeSchema = new Schema({
                 material_image_path: String,
                 name: String,
                 num: Number,
-                unit: String
+                unit: String,
+                links: [String]
             }],
-            index: true,
         }
     },
     food_style: {
@@ -213,7 +229,7 @@ const recipeSchema = new Schema({
             type: Number,
         },// 星级 - 仿Amazon
         votes: Number,
-        favs: Number,
+        bookmarked: Number,
         viewed: {// 页面浏览次数
             type: Number,
             default: 0

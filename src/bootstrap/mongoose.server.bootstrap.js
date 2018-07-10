@@ -13,7 +13,7 @@ module.exports = function () {
 
     db.once('open', function () {
         // we're connected!
-        console.log('Mongodb running at ' + config.database);
+        console.log('Mongodb running at ' + config.mongodb.url);
     });
 
     db.on('error', function (err) {

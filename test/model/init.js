@@ -13,168 +13,73 @@ const Recipe = require('../../src/model/recipe.server.model')
 async function test() {
     const db = configureMongoose();
 
-    let user1 = await new User({
-        username: '111@gmail.com',
-        password: '11',
-        nickname: '路人甲',
-        isAdmin: false,
-        register_date: Date.now(),
-        is_blocked: false,
-        hidden: false,
-    }).save();
-    let user2 = await new User({
-        username: '222@gmail.com',
-        password: '22',
-        nickname: '路人乙',
-        isAdmin: false,
-        register_date: Date.now(),
-        is_blocked: false,
-        hidden: false,
-    }).save();
-    let user3 = await new User({
-        username: '333@gmail.com',
-        password: '33',
-        nickname: '路人丙',
-        isAdmin: false,
-        register_date: Date.now(),
-        is_blocked: false,
-        hidden: false,
-        attention: [user1.id],
-        friends: [user1.id, user2.id]
-    }).save();
+    let users = [];
+    for (let i = 0; i < 10; i++) {
+        let user = await new User({
+            username: i + i + i + '@gmail.com',
+            password: i + i + i + '',
+            nickname: '路人' + i,
+            isAdmin: false,
+            register_date: Date.now(),
+            is_blocked: false,
+            hidden: false,
+        }).save();
+        users.push(user);
+    }
 
-    let recipe1 = await new Recipe({
-        author: user3.id,
-        title: '清炒蒜黄',
-        title_image_path: 'https://s1.st.meishij.net/r/231/00/2937731/s2937731_152801967846614.jpg',
-        // 菜品细节
-        cook_info: {
-            food_function: ['疾病调理', '人群膳食'],
-            craftwork: '煎',
-            flavor: '甜味',
-            difficulty: 5,
-        },
-        ingredient: {
-            // 主料
-            major: [{
-                material_image_path: 'http://images.meishij.net/p/20111019/af0aa683a0aa3bc1345eac465d56ee3c_60x60.jpg',
-                name: '蒜黄',
-                num: 400,
-                unit: '克',
+    await User.update({_id: users[3].id}, {
+        $set: {
+            attention: [users[1].id, users[2].id],
+            friends: [users[0].id, users[1].id, users[2].id]
+        }
+    }).exec();
+
+    for(let i = 0; i < 100; i++) {
+        let recipe = await new Recipe({
+            author: users[3].id,
+            title: '清炒蒜黄' + i + i,
+            title_image_path: 'https://s1.st.meishij.net/r/231/00/2937731/s2937731_152801967846614.jpg',
+            // 菜品细节
+            cook_info: {
+                food_function: ['疾病调理', '人群膳食'],
+                craftwork: '煎',
+                flavor: '甜味',
+                difficulty: 5,
             },
-                {
-                    material_image_path: 'http://images.meishij.net/p/20120221/73fb34f7b214dae7e9b7fa90f6bbec67_60x60.jpg',
-                    name: '蒜瓣',
-                    num: 4,
-                    unit: '个'
-                }],
-            // 辅料
-            sub: [{
-                material_image_path: "",
-                name: '盐',
-                num: 5,
-                unit: '克',
-                links: ['www.baidu.com']
-            }]
-        },
-        meta: {
-            stars: 3,
-            votes: 50,
-            bookmarked: 10,
-            viewed: 1,
-        },
-    }).save().then(function (recipe) {
-        User.update({_id: user3.id}, {$set: {recipes: [recipe.id]}});
-    });
-
-    let recipe2 = await new Recipe({
-        author: user3.id,
-        title: '清炒蒜黄2',
-        title_image_path: 'https://s1.st.meishij.net/r/231/00/2937731/s2937731_152801967846614.jpg',
-        // 菜品细节
-        cook_info: {
-            food_function: ['疾病调理', '人群膳食'],
-            craftwork: '煎',
-            flavor: '甜味',
-            difficulty: 5,
-        },
-        ingredient: {
-            // 主料
-            major: [{
-                material_image_path: 'http://images.meishij.net/p/20111019/af0aa683a0aa3bc1345eac465d56ee3c_60x60.jpg',
-                name: '蒜黄2',
-                num: 400,
-                unit: '克',
+            ingredient: {
+                // 主料
+                major: [{
+                    material_image_path: 'http://images.meishij.net/p/20111019/af0aa683a0aa3bc1345eac465d56ee3c_60x60.jpg',
+                    name: '蒜黄',
+                    num: 400,
+                    unit: '克',
+                },
+                    {
+                        material_image_path: 'http://images.meishij.net/p/20120221/73fb34f7b214dae7e9b7fa90f6bbec67_60x60.jpg',
+                        name: '蒜瓣',
+                        num: 4,
+                        unit: '个'
+                    }],
+                // 辅料
+                sub: [{
+                    material_image_path: "",
+                    name: '盐',
+                    num: 5,
+                    unit: '克',
+                    links: ['www.baidu.com']
+                }]
             },
-                {
-                    material_image_path: 'http://images.meishij.net/p/20120221/73fb34f7b214dae7e9b7fa90f6bbec67_60x60.jpg',
-                    name: '蒜瓣2',
-                    num: 4,
-                    unit: '个'
-                }],
-            // 辅料
-            sub: [{
-                material_image_path: "",
-                name: '盐',
-                num: 5,
-                unit: '克',
-                links: ['www.baidu.com']
-            }]
-        },
-        meta: {
-            stars: 3,
-            votes: 50,
-            bookmarked: 10,
-            viewed: 1,
-        },
-    }).save().then(function (recipe) {
-        User.update({_id: user3.id}, {$set: {recipes: [recipe.id]}});
-    });
-
-    let recipe3 = await new Recipe({
-        author: user3.id,
-        title: '清炒蒜黄3',
-        title_image_path: 'https://s1.st.meishij.net/r/231/00/2937731/s2937731_152801967846614.jpg',
-        // 菜品细节
-        cook_info: {
-            food_function: ['疾病调理', '人群膳食'],
-            craftwork: '煎',
-            flavor: '甜味',
-            difficulty: 5,
-        },
-        ingredient: {
-            // 主料
-            major: [{
-                material_image_path: 'http://images.meishij.net/p/20111019/af0aa683a0aa3bc1345eac465d56ee3c_60x60.jpg',
-                name: '蒜黄3',
-                num: 400,
-                unit: '克',
+            meta: {
+                stars: 3,
+                votes: 50,
+                bookmarked: 10,
+                viewed: 1,
             },
-                {
-                    material_image_path: 'http://images.meishij.net/p/20120221/73fb34f7b214dae7e9b7fa90f6bbec67_60x60.jpg',
-                    name: '蒜瓣3',
-                    num: 4,
-                    unit: '个'
-                }],
-            // 辅料
-            sub: [{
-                material_image_path: "",
-                name: '盐',
-                num: 5,
-                unit: '克',
-                links: ['www.baidu.com']
-            }]
-        },
-        meta: {
-            stars: 3,
-            votes: 50,
-            bookmarked: 10,
-            viewed: 1,
-        },
-    }).save().then(function (recipe) {
-        User.update({_id: user3.id}, {$set: {recipes: [recipe.id]}});
-    });
-
+        }).save().then(function (recipe) {
+            User.update({_id: users[3].id}, {$set: {recipes: [recipe.id]}}).exec();
+        });
+    }
+    
     console.log("------ Done -------");
 }
 

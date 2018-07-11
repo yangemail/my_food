@@ -1,172 +1,339 @@
 {% extends './inc/layout.html' %}
 
 {% block content %}
-<br/>
-<div class="row">
-    <div class="col" style="text-align: center">
-        <h4>今日早餐推荐</h4>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100 img-fluid" src="/static/assets/images/pic.jpg" alt="First slide"
-                         style="height: 15rem">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100 img-fluid" src="/static/assets/images/pic.jpg" alt="Second slide"
-                         style="height: 15rem">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100 img-fluid" src="/static/assets/images/pic.jpg" alt="Third slide"
-                         style="height: 15rem">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-    </div>
-</div>
-<br/>
-<div class="row">
-    <div class="col" style="text-align: center">
-        <h4>7月预防中暑，多补水。</h4>
-    </div>
-</div>
-<div class="row" id="suggestion">
-    <div class="col">
-        <div class="media">
-            <img class="mr-3" src="/static/assets/images/suggestion.jpg" alt="Generic placeholder image"
-                 class="rounded mx-auto d-block img-thumbnail" style="width: 10rem; height: 10rem;">
-            <div class="media-body">
-                <h6 class="mt-0">Media heading</h6>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="media">
-            <img class="mr-3" src="/static/assets/images/suggestion.jpg" alt="Generic placeholder image"
-                 class="img-thumbnail" style="width: 10rem; height: 10rem;">
-            <div class="media-body">
-                <h5 class="mt-0">Media heading</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-    </div>
-</div>
-<div></div>
-<div class="row">
-    <div class="col">
-        <div class="media">
-            <img class="mr-3" src="/static/assets/images/suggestion.jpg" alt="Generic placeholder image"
-                 class="img-thumbnail" style="width: 10rem; height: 10rem;">
-            <div class="media-body">
-                <h5 class="mt-0">Media heading</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="media">
-            <img class="mr-3" src="/static/assets/images/suggestion.jpg" alt="Generic placeholder image"
-                 class="img-thumbnail" style="width: 10rem; height: 10rem;">
-            <div class="media-body">
-                <h5 class="mt-0">Media heading</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                purus
-                odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate
-                fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-    </div>
-</div>
-<br/>
-<div class="row">
-    <div class="col" style="text-align: center">
-        <h4>最新菜谱</h4>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="card text-center">
-            <div class="card-header">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">水果</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">蔬菜</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">五谷</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">生鲜</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body">
-                <div class="card-group">
-                    <div class="card">
-                        <img class="card-img-top" src="/static/assets/images/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
-                            <p class="card-text">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="/static/assets/images/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img class="card-img-top" src="/static/assets/images/logo.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This card has even longer content than the first to show that equal
-                                height action.</p>
-                            <p class="card-text">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="container">
+    <!-- Main content -->
+    <section class="content">
 
+        <div class="box box-default">
+            <div class="box-header with-border" style="text-align: center">
+                <h2 class="box-title">现在是下午茶时间，舌尖赞为您推荐</h2>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class=""></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2" class="active"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item">
+                            <img src="/static/assets/img/samples/suggestions.png"
+                                 alt="First slide" style="width: 100%; height: 30rem;">
+
+                            <div class="carousel-caption">
+                                First Slide
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="/static/assets/img/samples/suggestions.png"
+                                 alt="Second slide" style="width: 100%; height: 30rem;">
+
+                            <div class="carousel-caption">
+                                Second Slide
+                            </div>
+                        </div>
+                        <div class="item active">
+                            <img src="/static/assets/img/samples/suggestions.png"
+                                 alt="Third slide" style="width: 100%; height: 30rem;">
+
+                            <div class="carousel-caption">
+                                Third Slide
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="fa fa-angle-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="fa fa-angle-right"></span>
+                    </a>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+
+
+        <div class="box box-default">
+            <div class="box-header with-border" style="text-align: center">
+                <h2 class="box-title">七月酷暑，为您推荐适合食材</h2>
+            </div>
+            <div class="box-body">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab">水果</a></li>
+                        <li><a href="#tab_2" data-toggle="tab">蔬菜</a></li>
+                        <li><a href="#tab_3" data-toggle="tab">五谷</a></li>
+                        <li><a href="#tab_4" data-toggle="tab">生鲜</a></li>
+                        <!--<li class="dropdown">-->
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
+                        <!--Dropdown <span class="caret"></span>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu">-->
+                        <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>-->
+                        <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>-->
+                        <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>-->
+                        <!--<li role="presentation" class="divider"></li>-->
+                        <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>-->
+                        <!--</ul>-->
+                        <!--</li>-->
+                        <!--<li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>-->
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+
+                            <div class="row">
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/youzi.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/youzi.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/youzi.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/youzi.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/youzi.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/youzi.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2">
+                            The European languages are members of the same family. Their separate existence is a myth.
+                            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+                            in their grammar, their pronunciation and their most common words. Everyone realizes why a
+                            new common language would be desirable: one could refuse to pay expensive translators. To
+                            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+                            words. If several languages coalesce, the grammar of the resulting language is more simple
+                            and regular than that of the individual languages.
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_3">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            It has survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of
+                            Letraset
+                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                            like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_4">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            It has survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of
+                            Letraset
+                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                            like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="box box-default">
+            <div class="box-header with-border" style="text-align: center;">
+                <h3 class="box-title">热门菜谱推荐</h3>
+            </div>
+            <div class="box-body">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_11" data-toggle="tab">最新</a></li>
+                        <li><a href="#tab_22" data-toggle="tab">最热</a></li>
+                        <li><a href="#tab_33" data-toggle="tab">今天</a></li>
+                        <li><a href="#tab_44" data-toggle="tab">一周</a></li>
+                        <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        更多美食推荐 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                        </ul>
+                        </li>
+                        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_11">
+
+                            <div class="row">
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/rou.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/rou.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/rou.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/rou.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/rou.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-md-2">
+                                    <div class="thumbnail">
+                                        <img data-src="holder.js/100%x200" alt="100%x200"
+                                             src="/static/assets/img/samples/rou.jpg" data-holder-rendered="true"
+                                             style="height: 150px; width: 100%; display: block;">
+                                        <div class="caption">
+                                            <h4>柚子</h4>
+                                            <p>功效：清热解毒</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_22">
+                            The European languages are members of the same family. Their separate existence is a myth.
+                            For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+                            in their grammar, their pronunciation and their most common words. Everyone realizes why a
+                            new common language would be desirable: one could refuse to pay expensive translators. To
+                            achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+                            words. If several languages coalesce, the grammar of the resulting language is more simple
+                            and regular than that of the individual languages.
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_33">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            It has survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of
+                            Letraset
+                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                            like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_44">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            It has survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of
+                            Letraset
+                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                            like Aldus PageMaker including versions of Lorem Ipsum.
+                        </div>
+                        <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.container -->
 {% endblock %}
 

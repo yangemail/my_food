@@ -2,7 +2,7 @@
   "name": "my_food",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "development.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +18,7 @@
   "homepage": "https://github.com/yangemail/my_food#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "bower": "^1.8.4",
     "compression": "^1.7.2",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",

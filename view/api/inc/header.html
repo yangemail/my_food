@@ -1,7 +1,7 @@
 <header class="main-header">
     <div class="row" style="background-color: floralwhite; margin: 0px">
         <div class="container">
-            <div class="row" >
+            <div class="row">
                 <div class="col-md-3">设为首页 | 加入收藏 | 繁体</div>
                 <div class="col-md-9">热搜：土豆炖牛肉 | 酸辣粉 | 剁椒鱼头 | 西湖醋鱼</div>
             </div>
@@ -43,10 +43,19 @@
                             <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
-
-                    <li class="active"><a href="#">食材大全 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">美食菜单</a></li>
-                    <li><a href="#">美食达人</a></li>
+                    <li><a href="#">食材大全 <span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">美食达人 <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">美食菜单</a></li>
+                            <li><a href="#">美食大咖</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
 
 
                 </ul>
@@ -54,7 +63,6 @@
                     <!--<div class="form-group">-->
                     <!--<input type="text" class="form-control" id="navbar-search-input" placeholder="搜索">-->
                     <!--</div>-->
-
                     <div class="input-group form-group">
                         <input type="text" class="form-control" id="navbar-search-input" placeholder="搜索">
                         <span class="input-group-btn">
@@ -65,9 +73,13 @@
                 </form>
             </div>
             <!-- /.navbar-collapse -->
+
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
+
+
                 <ul class="nav navbar-nav">
+
                     <!-- Messages: style can be found in dropdown.less-->
                     <li class="dropdown messages-menu">
                         <!-- Menu toggle button -->
@@ -129,43 +141,46 @@
                         </ul>
                     </li>
                     <!-- Tasks Menu -->
-                    <li class="dropdown tasks-menu">
-                        <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-flag-o"></i>
-                            <span class="label label-danger">9</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 9 tasks</li>
-                            <li>
-                                <!-- Inner menu: contains the tasks -->
-                                <ul class="menu">
-                                    <li><!-- Task item -->
-                                        <a href="#">
-                                            <!-- Task title and progress text -->
-                                            <h3>
-                                                Design some buttons
-                                                <small class="pull-right">20%</small>
-                                            </h3>
-                                            <!-- The progress bar -->
-                                            <div class="progress xs">
-                                                <!-- Change the css width attribute to simulate progress -->
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
-                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                                     aria-valuemax="100">
-                                                    <span class="sr-only">20% Complete</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- end task item -->
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="#">View all tasks</a>
-                            </li>
-                        </ul>
-                    </li>
+
+                    <!--<li class="dropdown tasks-menu">-->
+                    <!--&lt;!&ndash; Menu Toggle Button &ndash;&gt;-->
+                    <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+                    <!--<i class="fa fa-flag-o"></i>-->
+                    <!--<span class="label label-danger">9</span>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu">-->
+                    <!--<li class="header">You have 9 tasks</li>-->
+                    <!--<li>-->
+                    <!--&lt;!&ndash; Inner menu: contains the tasks &ndash;&gt;-->
+                    <!--<ul class="menu">-->
+                    <!--<li>&lt;!&ndash; Task item &ndash;&gt;-->
+                    <!--<a href="#">-->
+                    <!--&lt;!&ndash; Task title and progress text &ndash;&gt;-->
+                    <!--<h3>-->
+                    <!--Design some buttons-->
+                    <!--<small class="pull-right">20%</small>-->
+                    <!--</h3>-->
+                    <!--&lt;!&ndash; The progress bar &ndash;&gt;-->
+                    <!--<div class="progress xs">-->
+                    <!--&lt;!&ndash; Change the css width attribute to simulate progress &ndash;&gt;-->
+                    <!--<div class="progress-bar progress-bar-aqua" style="width: 20%"-->
+                    <!--role="progressbar" aria-valuenow="20" aria-valuemin="0"-->
+                    <!--aria-valuemax="100">-->
+                    <!--<span class="sr-only">20% Complete</span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</a>-->
+                    <!--</li>-->
+                    <!--&lt;!&ndash; end task item &ndash;&gt;-->
+                    <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li class="footer">-->
+                    <!--<a href="#">View all tasks</a>-->
+                    <!--</li>-->
+                    <!--</ul>-->
+                    <!--</li>-->
+
+
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
@@ -211,6 +226,20 @@
                             </li>
                         </ul>
                     </li>
+
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#">
+                            <!-- The user image in the navbar-->
+                            <i class="fa fa-camera"></i>
+                            <!--<img src="/static/assets/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">新建菜单</span>
+                        </a>
+                    </li>
+
+
                 </ul>
             </div>
             <!-- /.navbar-custom-menu -->

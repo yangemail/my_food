@@ -13,15 +13,21 @@ const recipeSchema = new Schema({
         trim: true,
         index: true,
     },
-    // 主图片
-    title_image_path: {
-        type: String,
-    },
     // 作者
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
+    //摘要
+    Summary: {type: String},
+    // 新媒体
+    new_media: {type: String},
+    // 主图片
+    title_image_path: {
+        type: String,
+    },
+    //来源
+    Source: {type: String},
     // 菜品细节
     cook_info: {
         // 功效
@@ -220,17 +226,22 @@ const recipeSchema = new Schema({
             reply_helpful: Number,
         }],
     }],
+    // 由于某些原因，暂时不显示
     hidden: {
         type: Boolean,
         default: false
     },
+    //是否草稿 - 草稿
+    IsDraft: {type: Boolean},
+    //是否有效 - 通过审核
+    IsActive: {type: Boolean, default: false}
     meta: {
         stars: {
             type: Number,
         },// 星级 - 仿Amazon
         votes: Number,
         bookmarked: Number,
-        viewed: {// 页面浏览次数
+        ViewCount: {// 页面浏览次数
             type: Number,
             default: 0
         },

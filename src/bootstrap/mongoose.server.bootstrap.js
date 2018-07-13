@@ -3,13 +3,16 @@
 const config = require('../config/config.server.config');
 
 // 加载数据库模块
-const mongooseServerBootstrap = require('mongoose');
+const mongoose = require('mongoose');
 
 module.exports = function () {
     // use custom mongodb url or localhost
-    mongooseServerBootstrap.connect(config.mongodb.url, config.mongodb.options);
+    mongoose.connect(config.mongodb.url, config.mongodb.options);
 
-    const db = mongooseServerBootstrap.connection;
+    const db = mongoose.connection;
+
+    // Add plugin
+    mongoose.plugin(require('../model/plugin/updatedAt.server.model.plugin'));
 
     db.once('open', function () {
         // we're connected!

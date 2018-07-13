@@ -240,11 +240,6 @@ const recipeSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    // 更新日期: updatedAt
-    updatedAt: {
-        type: Date,
-        default: Date.now()
-    }
 });
 
 recipeSchema.methods.findSimilarMaterials = function (cb) {

@@ -50,11 +50,6 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now()
     },
-    // 更新日期: updatedAt
-    updatedAt: {
-        type: Date,
-        default: Date.now()
-    },
     // 菜谱
     recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
     // 关注（发送新菜谱）

@@ -1,24 +1,45 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
-<div class="container-fluid back-img">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="error-block">
-                <h1>{{code}}</h1>
-                <div class="desc">{{message}}</div>
-                <a href="/" class="btn btn-green btn-lg">
-                    <i class="fa fa-home"></i> 跳转首页
-                </a>
-            </div>
+{% extends './../web/inc/layout.html' %}
+
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        {{code}} Error Page
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">{{code}} error</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="error-page">
+        <h2 class="headline text-yellow"> {{code}}</h2>
+
+        <div class="error-content">
+            <h3><i class="fa fa-warning text-yellow"></i> {{message}}</h3>
+
+            <p>
+                <a href="/web/">跳转首页</a>
+            </p>
+
+            <!--<form class="search-form">-->
+                <!--<div class="input-group">-->
+                    <!--<input type="text" name="search" class="form-control" placeholder="Search">-->
+
+                    <!--<div class="input-group-btn">-->
+                        <!--<button type="submit" name="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i>-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.input-group &ndash;&gt;-->
+            <!--</form>-->
         </div>
+        <!-- /.error-content -->
     </div>
-</div>
-</body>
-</html>
+    <!-- /.error-page -->
+</section>
+
+{% endblock %}
+

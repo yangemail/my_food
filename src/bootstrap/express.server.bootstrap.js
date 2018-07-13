@@ -39,7 +39,7 @@ module.exports = function () {
     // app.use(passport.session());
 
     // **** Routes ****
-    require('../router/api.server.router')(app);
+    require('../router/web.server.router')(app);
     require('../router/admin.server.router')(app);
 
     if (process.env.NODE_ENV === 'development') {

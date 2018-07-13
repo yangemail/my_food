@@ -10,3 +10,7 @@ exports.index = function (req, res, next) {
 exports.recipeId = function (req, res, next) {
     res.render('web/recipe_detail', {});
 };
+
+exports.renderAddRecipe = function (req, res, next) {
+    res.render('web/recipe_add', {});
+}

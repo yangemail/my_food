@@ -5,39 +5,315 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Top Navigation
-            <small>Example 2.0</small>
+            新菜谱
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Layout</a></li>
-            <li class="active">Top Navigation</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li><a href="#">用户</a></li>
+            <li class="active">菜谱</li>
         </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-        <div class="callout callout-info">
-            <h4>Tip!</h4>
-
-            <p>Add the layout-top-nav class to the body tag to get this layout. This feature can also be used with a
-                sidebar! So use this class if you want to remove the custom dropdown menus from the navbar and use
-                regular
-                links instead.</p>
-        </div>
-        <div class="callout callout-danger">
-            <h4>Warning!</h4>
-
-            <p>The construction of this layout differs from the normal one. In other words, the HTML markup of the
-                navbar
-                and the content will slightly differ than that of the normal layout.</p>
-        </div>
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">Blank Box</h3>
+                <h3 class="box-title">发布新菜谱</h3>
             </div>
             <div class="box-body">
-                The great content goes here
+
+
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="box-body">
+                        <div class="alert alert-warning alert-dismissible">
+                            <i class="icon fa fa-info"></i>菜谱发布并审核通过后，将被本站收录并展示。
+                        </div>
+                        <!-- 标题 -->
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">标题</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                           placeholder="请填写菜谱名称（10字以内）">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 自媒体 -->
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">自媒体信息 （本站将为您免费展示自媒体信息）</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1"
+                                           placeholder="请填写自媒体信息。例如：公众号：遇见小咪">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 属性 -->
+                        <div class="row">
+                            <div class="col-md-12">属性</div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-2">
+                                    <select class="form-control">
+                                        <option>选择工艺</option>
+                                        <option>煮</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control">
+                                        <option>选择口味</option>
+                                        <option>家常味</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control">
+                                        <option>选择难度</option>
+                                        <option>新手尝试</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control">
+                                        <option>准备时间</option>
+                                        <option>10分钟</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control">
+                                        <option>烹饪时间</option>
+                                        <option>小于10分钟</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control">
+                                        <option>选择人数</option>
+                                        <option>2人份</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <!-- 成品图 -->
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+
+                                    <p class="help-block">请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <textarea class="form-control" rows="3" placeholder="产品简介，说说这道菜的故事吧"></textarea>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="alert alert-warning alert-dismissible">
+                            <h4><i class="icon fa fa-info"></i> 小提示：</h4>
+                            1、输入食材后，下方会弹出相应食材可选择；如果没有弹出，可能是您输入的食材有误，或者没有当前食材（请联系小编）<br/>
+                            2、“适量、少许”尽量少用或者不用，用量精确对您的粉丝更有帮助
+                        </div>
+                        <!-- 主料 -->
+                        <div class="row">
+                            <div class="col-md-12">主料 <a class="btn"><i class="fa fa-plus"></i> 增加一项</a></div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6 form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail3"
+                                           placeholder="请填写主料名称">
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">@</span>
+                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword3"
+                                           placeholder="请填写用量">
+                                </div>
+                                <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
+                            </div>
+                            <div class="col-md-6 form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail33"
+                                           placeholder="请填写主料名称">
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">@</span>
+                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword33"
+                                           placeholder="请填写用量">
+                                </div>
+                                <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                        <br/>
+                        <!-- 辅料 -->
+                        <div class="row">
+                            <div class="col-md-12">辅料 <a class="btn"><i class="fa fa-plus"></i> 增加一项</a></div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-6 form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail3"
+                                           placeholder="请填写主料名称">
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">@</span>
+                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword3"
+                                           placeholder="请填写用量">
+                                </div>
+                                <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
+                            </div>
+                            <div class="col-md-6 form-inline">
+                                <div class="form-group">
+                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail33"
+                                           placeholder="请填写主料名称">
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">@</span>
+                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword33"
+                                           placeholder="请填写用量">
+                                </div>
+                                <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="alert alert-warning alert-dismissible">
+                            <h4><i class="icon fa fa-info"></i> 步骤：</h4>
+                            开始写步骤了！能否简单易学就看你怎么写了，加油！
+                        </div>
+                        <!-- 步骤1 -->
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <h4>步骤1</h4>
+                            </div>
+                            <div class="col-xs-5">
+                                <!--<img src="/static/assets/img/avatar.png" alt="..." class="img-rounded">-->
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+
+                                    <p class="help-block">请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <textarea class="form-control" rows="3" placeholder="请填写步骤描述"></textarea>
+                            </div>
+                        </div>
+                        <!-- 步骤2 -->
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <h4>步骤2</h4>
+                            </div>
+                            <div class="col-xs-5">
+                                <!--<img src="/static/assets/img/avatar.png" alt="..." class="img-rounded">-->
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+
+                                    <p class="help-block">请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <textarea class="form-control" rows="3" placeholder="请填写步骤描述"></textarea>
+                            </div>
+                        </div>
+                        <!-- 步骤3 -->
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <h4>步骤3</h4>
+                            </div>
+                            <div class="col-xs-5">
+                                <!--<img src="/static/assets/img/avatar.png" alt="..." class="img-rounded">-->
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+
+                                    <p class="help-block">请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <textarea class="form-control" rows="3" placeholder="请填写步骤描述"></textarea>
+                            </div>
+                        </div>
+                        <!-- 步骤4 -->
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <h4>步骤4</h4>
+                            </div>
+                            <div class="col-xs-5">
+                                <!--<img src="/static/assets/img/avatar.png" alt="..." class="img-rounded">-->
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+
+                                    <p class="help-block">请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <textarea class="form-control" rows="3" placeholder="请填写步骤描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">步骤 <a class="btn"><i class="fa fa-plus"></i> 增加一步</a></div>
+                        </div>
+
+                        <hr/>
+                        <div class="alert alert-warning alert-dismissible">
+                            <h4><i class="icon fa fa-info"></i> 最终效果图：</h4>
+                            请上传两张或以上不同角度成品图，宽度500-600像素之间，最好横图竖图、远景近景图都有
+                            <br/>
+                            请使用小于5MB的JPG、PNG、GIF格式图片
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="form-group">
+                                    <label for="exampleInputFile">点击添加成品图</label>
+                                    <input type="file" id="exampleInputFile">
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <!-- 小技巧 -->
+                        <div class="form-group">
+                            <label>烹饪小技巧</label>
+                            <textarea class="form-control" rows="3" placeholder="分享一下心得和小技巧吧"></textarea>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">保存草稿</button>
+                        <button type="submit" class="btn btn-primary">提交审核</button>
+                    </div>
+                </form>
             </div>
             <!-- /.box-body -->
         </div>

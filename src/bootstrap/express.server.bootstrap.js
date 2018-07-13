@@ -13,11 +13,31 @@ const config = require('../config/config.server.config')
     , flash = require('connect-flash')
     , swig = require('swig-templates')
     , connect = require('connect')
-    , errorhandler = require('errorhandler');
+    , errorhandler = require('errorhandler')
 // const methodOverride = require('method-override');
+    , multer = require('multer')
+    , upload = multer();
 
 module.exports = function () {
     const app = express();
+
+    app.post('/web/profile', upload.single('fileupload_complete_demo'), function (req, res, next) {
+        var file = req.file;
+
+        console.log('文件类型：%s', file.mimetype);
+        console.log('原始文件名：%s', file.originalname);
+        console.log('文件大小：%s', file.size);
+        console.log('文件保存路径：%s', file.path);
+
+        var json = {files: {name: '123456'}};
+
+        res.json(json);
+    });
+
+    app.post('/photos/upload', upload.array('photos', 12), function (req, res, next) {
+        // req.files is array of `photos` files
+        // req.body will contain the text fields, if there were any
+    })
 
     // ------ view engine setup ------
     app.engine('html', swig.renderFile);

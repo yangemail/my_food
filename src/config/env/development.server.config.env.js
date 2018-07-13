@@ -18,5 +18,8 @@ module.exports = {
         Active: false,
         Host: "127.0.0.1",
         Port: 6379
+    },
+    www: {
+        port: 8081
     }
 }

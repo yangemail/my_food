@@ -4,9 +4,9 @@
 const path = require('path');
 
 exports.index = function (req, res, next) {
-    res.render('api/index_index', {});
+    res.render('web/index_index', {});
 };
 
 exports.recipeId = function (req, res, next) {
-    res.render('api/recipe_detail', {});
+    res.render('web/recipe_detail', {});
 };

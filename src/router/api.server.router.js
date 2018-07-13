@@ -8,7 +8,7 @@ const asyncHandler = require('express-async-handler');
 module.exports = function (app) {
     const api = require('../controller/api.server.controller');
 
-    app.use('/', router);
+    app.use('/web', router);
 
     router.get('/', asyncHandler(api.index));
 

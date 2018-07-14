@@ -234,7 +234,7 @@ const recipeSchema = new Schema({
     //是否草稿 - 草稿
     IsDraft: {type: Boolean},
     //是否有效 - 通过审核
-    IsActive: {type: Boolean, default: false}
+    IsActive: {type: Boolean, default: false},
     meta: {
         stars: {
             type: Number,

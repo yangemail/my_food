@@ -10,9 +10,11 @@ module.exports = function (app) {
 
     app.use('/web', router);
 
+    // Recipe
     router.get('/', asyncHandler(api.index));
-
     router.get('/recipe/:id', asyncHandler(api.recipeId));
-
     router.get('/addrecipe', asyncHandler(api.renderAddRecipe));
+
+    // User
+    router.get('/user', asyncHandler(api.userIndex));
 };

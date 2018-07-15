@@ -14,3 +14,7 @@ exports.recipeId = function (req, res, next) {
 exports.renderAddRecipe = function (req, res, next) {
     res.render('web/recipe_add', {});
 }
+
+exports.userIndex = function (req, res, next) {
+    res.render('web/user_index', {});
+}

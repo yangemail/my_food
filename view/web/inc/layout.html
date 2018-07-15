@@ -88,9 +88,26 @@
 
     <!-- Page Scripts -->
     {% block script %} {% endblock %}
-
 </div>
 <!-- ./wrapper -->
 
+<script>
+
+    $(function () {
+        <!-- 返回到顶部 -->
+        $("a[href='#top']").click(function () {
+            $("html, body").animate({scrollTop: 0}, "slow");
+            return false;
+        });
+
+        <!-- 在文本或密码输入时禁止空格键 -->
+        $('input.nospace').keydown(function(e) {
+            if (e.keyCode == 32) {
+                return false;
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

@@ -1,5 +1,13 @@
 {% extends './inc/layout.html' %}
 
+
+<!-- Page Styles -->
+{% block style %}
+<!--  css & js -->
+<link rel="stylesheet" href="/libs/social-share.js/dist/css/share.min.css">
+<script src="/libs/social-share.js/dist/js/share.min.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <!-- Content Header (Page header) -->
@@ -59,18 +67,24 @@
                             </div>
                             <div class="col-md-7">
                                 <p> 分享给好友 | <i class="fa fa-save"></i> <a href="#">加入收藏</a></p>
-                                <a class="btn btn-app">
-                                    <i class="fa fa-wechat"></i> 微信
-                                </a>
-                                <a class="btn btn-app">
-                                    <i class="fa fa-weibo"></i> 微博
-                                </a>
-                                <a class="btn btn-app">
-                                    <i class="fa fa-renren"></i> 人人
-                                </a>
-                                <a class="btn btn-app">
-                                    <i class="fa fa-envelope"></i> 收藏
-                                </a>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="social-share" data-initialized="true">
+                                            <a href="#" class="social-share-icon icon-weibo" title="微博"></a>
+                                            <a href="#" class="social-share-icon icon-qq" title="QQ好友"></a>
+                                            <a href="#" class="social-share-icon icon-qzone" title="QQ空间"></a>
+                                            <a href="#" class="social-share-icon icon-wechat" title="微信"></a>
+                                            <a href="#" class="social-share-icon icon-tencent" title="腾讯微博"></a>
+                                            <a href="#" class="social-share-icon icon-douban" title="豆瓣"></a>
+                                            <a href="#" class="social-share-icon icon-diandian" title="点点"></a>
+                                            <a href="#" class="social-share-icon icon-facebook" title="Facebook"></a>
+                                            <a href="#" class="social-share-icon icon-twitter" title="Twitter"></a>
+                                            <a href="#" class="social-share-icon icon-linkedin" title="Linkedin"></a>
+                                            <a href="#" class="social-share-icon icon-google" title="Google+"></a>
+                                            <a href="javascript:;" class="social-share-icon icon-heart" title="收藏"></a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row callout callout-info">

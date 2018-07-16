@@ -46,7 +46,8 @@
     "jquery-ui": "1.11.4",
     "blueimp-file-upload": "^9.22.0",
     "jquery.iframe-transport": "^1.0.1",
-    "JSON-js": "*"
+    "JSON-js": "*",
+    "social-share.js": "^1.0.2"
   },
   "resolutions": {
     "jquery": "^3.2.1"

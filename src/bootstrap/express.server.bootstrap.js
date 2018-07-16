@@ -14,7 +14,7 @@ const config = require('../config/config.server.config')
     , swig = require('swig-templates')
     , connect = require('connect')
     , errorhandler = require('errorhandler')
-// const methodOverride = require('method-override');
+    // , methodOverride = require('method-override')
     , multer = require('multer')
     , upload = multer();
 
@@ -26,19 +26,22 @@ module.exports = function () {
     app.set('views', path.join('./view'));
     app.set('view engine', 'html');
     app.use(favicon(path.join('./www', 'favicon.ico')));
+    app.use(express.static(path.join('./www')));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+
+    // app.use(methodOverride());
     app.use(session({
         secret: config.sessionSecret,
         cookie: {maxAge: 24 * 60 * 60 * 1000, secure: true},
-        resave: false, saveUninitialized: true,
+        resave: true,
+        saveUninitialized: true,
     }));
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({
-        extended: false
-    }));
-    app.use(express.static(path.join('./www')));
     // app.use(flash());
-    // app.use(passport.initialize());
-    // app.use(passport.session());
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     // **** Routes ****
     require('../router/web.server.router')(app);

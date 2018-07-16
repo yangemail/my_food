@@ -1,20 +1,46 @@
 'use strict';
 
 const mongoose = require('mongoose')
-    , Schema = mongoose.Schema;
+    , Schema = mongoose.Schema
+    , crypto = require('crypto');
 
 // If set timestamps, mongoose assigns "createdAt" and "updatedAt" fields to your schema, the type assigned is Date.
 
-const userSchema = new Schema({
-    // 用户名 (电子邮箱）
-    username: String,
-    // 密码
-    password: String,
+const UserSchema = new Schema({
+    firstname: String,
+    lastname: String,
+    username: {
+        type: String,
+        unique: true,
+        require: 'Username is required.',
+        trim: true
+    },
+    // 电子邮箱
+    email: {
+        type: String,
+        match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
+    },
     // 昵称
     nickname: {
         type: String,
         index: true,
     },
+    // 密码
+    password: {
+        type: String,
+        validate: [(password) => {
+            return password && password.length > 6;
+        }, 'Password should be longer']
+    },
+    salt: {
+        type: String
+    },
+    provider: {
+        type: String,
+        required: 'Provider is required'
+    },
+    providerId: String,
+    providerData: {},
     // 性别
     gender: {
         type: String,
@@ -48,7 +74,7 @@ const userSchema = new Schema({
     // 创建日期: createdAt
     createdAt: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
     // 菜谱
     recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
@@ -58,4 +84,50 @@ const userSchema = new Schema({
     friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
 });
 
-module.exports = mongoose.model('User', userSchema);
+UserSchema.virtual('fullname').get(function () {
+    return this.firstname + this.lastname;
+}).set(function (fullname) {
+    const splitName = fullname.split(' ');
+    this.firstname = splitName[0] || '';
+    this.lastname = splitName[1] || '';
+});
+
+UserSchema.pre('save', function (next) {
+    if (this.password) {
+        this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+        this.password = this.hashPassword(this.password);
+    }
+    next();
+});
+
+UserSchema.method.hashPassword = function (password) {
+    return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+};
+
+UserSchema.methods.authenticate = function (password) {
+    return this.password === this.hashPassword(password);
+};
+
+UserSchema.statics.findUniqueUsername = function (username, suffix, callback) {
+    var possibleUsername = username + (suffix || '');
+    this.findOne({
+        username: possibleUsername
+    }, (err, user) => {
+        if (!err) {
+            if (!user) {
+                callback(possibleUsername);
+            } else {
+                return this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+            }
+        } else {
+            callback(null);
+        }
+    });
+};
+
+UserSchema.set('toJSON', {
+    getters: true,
+    virtual: true
+});
+
+module.exports = mongoose.model('User', UserSchema);

@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 // If set timestamps, mongoose assigns "createdAt" and "updatedAt" fields to your schema, the type assigned is Date.
 
-const recipeSchema = new Schema({
+const RecipeSchema = new Schema({
     // 清炒柳芽菜
     title: {
         type: String,
@@ -253,7 +253,7 @@ const recipeSchema = new Schema({
     },
 });
 
-recipeSchema.methods.findSimilarMaterials = function (cb) {
+RecipeSchema.methods.findSimilarMaterials = function (cb) {
     return this.model('Recipe').find({material: this.material}, cb);
 };
 
@@ -261,4 +261,4 @@ recipeSchema.methods.findSimilarMaterials = function (cb) {
 //     this.update({}, {$set: {updatedAt: new Date()}});
 // });
 
-module.exports = mongoose.model('Recipe', recipeSchema);
+module.exports = mongoose.model('Recipe', RecipeSchema);

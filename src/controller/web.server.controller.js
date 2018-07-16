@@ -4,7 +4,8 @@
 const path = require('path')
     , fs = require('fs')
     , util = require('util')
-    , json2 = require('json-js');
+    , json2 = require('json-js')
+    , {PROJECT_ROOT_PATH} = require('../config/constant.server.config');
 
 exports.index = function (req, res, next) {
     res.render('web/index_index', {});
@@ -29,7 +30,7 @@ exports.userRenderRegister = function (req, res, next) {
 };
 
 exports.userAgreement = async function (req, res, next) {
-    fs.readFile(path.join(path.dirname(require.main.filename), '/src/config/language/agreement_zh-CN.txt'), 'utf8', function (err, data) {
+    fs.readFile(path.join(PROJECT_ROOT_PATH, '/src/config/language/agreement_zh-CN.txt'), 'utf8', function (err, data) {
         if (err) {
             next(err);
         } else {

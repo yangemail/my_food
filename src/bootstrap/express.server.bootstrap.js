@@ -9,22 +9,20 @@ const config = require('../config/config.server.config')
     , compress = require('compression')
     , logger = require('../middleware/logger.server.middleware')
     , session = require('express-session')
-    , passport = require('passport')
     , flash = require('connect-flash')
+    , passport = require('passport')
     , swig = require('swig-templates')
     , connect = require('connect')
     , errorhandler = require('errorhandler')
     // , methodOverride = require('method-override')
     , multer = require('multer')
-    , upload = multer();
+    , upload = multer()
+    , sessionStore = new session.MemoryStore();
 
 module.exports = function () {
     const app = express();
 
-    // ------ view engine setup ------
-    app.engine('html', swig.renderFile);
-    app.set('views', path.join('./view'));
-    app.set('view engine', 'html');
+
     app.use(favicon(path.join('./www', 'favicon.ico')));
     app.use(express.static(path.join('./www')));
     app.use(bodyParser.json());
@@ -35,11 +33,16 @@ module.exports = function () {
     // app.use(methodOverride());
     app.use(session({
         secret: config.sessionSecret,
-        cookie: {maxAge: 24 * 60 * 60 * 1000, secure: true},
+        cookie: {maxAge: 60000, secure: false},
         resave: true,
         saveUninitialized: true,
+        store: sessionStore
     }));
-    // app.use(flash());
+    // ------ view engine setup ------
+    app.engine('html', swig.renderFile);
+    app.set('views', path.join('./view'));
+    app.set('view engine', 'html');
+    app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
 

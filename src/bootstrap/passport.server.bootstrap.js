@@ -18,4 +18,5 @@ module.exports = function () {
         });
     });
 
+    require('./../config/strategy/local.server.config.strategy')();
 };

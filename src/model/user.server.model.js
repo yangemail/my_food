@@ -12,8 +12,8 @@ const UserSchema = new Schema({
     username: {
         type: String,
         unique: true,
-        require: 'Username is required.',
-        trim: true
+        required: '用户名不能为空',
+        trim: true,
     },
     // 电子邮箱
     email: {
@@ -29,8 +29,8 @@ const UserSchema = new Schema({
     password: {
         type: String,
         validate: [(password) => {
-            return password && password.length > 6;
-        }, 'Password should be longer']
+            return password && password.length > 3;
+        }, '密码需要多于3位']
     },
     salt: {
         type: String
@@ -56,11 +56,6 @@ const UserSchema = new Schema({
         default: false,
         require: true
     },
-    // 注册日期
-    register_date: {
-        type: Date,
-        default: Date.now()
-    },
     // 禁用
     is_blocked: {
         type: Boolean,
@@ -72,6 +67,7 @@ const UserSchema = new Schema({
         default: false
     },
     // 创建日期: createdAt
+    // 注册日期
     createdAt: {
         type: Date,
         default: Date.now
@@ -92,6 +88,10 @@ UserSchema.virtual('fullname').get(function () {
     this.lastname = splitName[1] || '';
 });
 
+UserSchema.methods.hashPassword = function (password) {
+    return crypto.pbkdf2Sync(password, this.salt, 10000, 64, 'sha1').toString('base64');
+};
+
 UserSchema.pre('save', function (next) {
     if (this.password) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
@@ -99,10 +99,6 @@ UserSchema.pre('save', function (next) {
     }
     next();
 });
-
-UserSchema.method.hashPassword = function (password) {
-    return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
-};
 
 UserSchema.methods.authenticate = function (password) {
     return this.password === this.hashPassword(password);
@@ -130,4 +126,4 @@ UserSchema.set('toJSON', {
     virtual: true
 });
 
-module.exports = mongoose.model('User', UserSchema);
+mongoose.model('User', UserSchema);

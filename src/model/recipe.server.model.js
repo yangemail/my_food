@@ -261,4 +261,4 @@ RecipeSchema.methods.findSimilarMaterials = function (cb) {
 //     this.update({}, {$set: {updatedAt: new Date()}});
 // });
 
-module.exports = mongoose.model('Recipe', RecipeSchema);
+mongoose.model('Recipe', RecipeSchema);

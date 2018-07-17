@@ -25,7 +25,14 @@ exports.userIndex = function (req, res, next) {
 
 exports.userRenderRegister = function (req, res, next) {
     res.render('web/user_register', {
+        title: '注册',
         agreementUrl: '/web/user/agreement'
+    });
+};
+
+exports.userRenderLogin = function (req, res, next) {
+    res.render('web/user_login', {
+        title: '登陆',
     });
 };
 

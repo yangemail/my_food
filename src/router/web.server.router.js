@@ -17,6 +17,9 @@ module.exports = function (app) {
 
     // User
     router.get('/user', asyncHandler(web.userIndex));
+    router.get('/user/login', asyncHandler(web.userRenderLogin));
     router.get('/user/register', asyncHandler(web.userRenderRegister));
     router.get('/user/agreement', asyncHandler(web.userAgreement));
+
+
 };

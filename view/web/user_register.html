@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Registration Page</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <title>{{title}}</title>
+
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -16,7 +18,6 @@
     <link rel="stylesheet" href="/static/assets/css/AdminLTE.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="/static/assets/plugins/iCheck/square/blue.css">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,21 +32,20 @@
     <!-- THEME CSS -->
     <link rel="stylesheet" href="/static/assets/css/main.css">
 
-    <title>{{title}}</title>
-
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
         <a href="../../index2.html">注册<b>舌尖赞</b></a>
     </div>
-
-
     <div class="register-box-body">
-        <div>hello</div>
+
+        {% for i in messages %}
+        <div class="flash">{{message[i]}}</div>
+        {% endfor %}
 
         <p class="login-box-msg">邮箱注册</p>
-        <form action="../../index.html" method="post">
+        <form action="/web/signup" method="post">
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="请填写电子邮箱">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -85,14 +85,7 @@
             <a href="#" class="btn btn-block btn-social btn-twitter btn-flat"><i class="fa fa-qq"></i> 使用QQ账号登陆</a>
             <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-weibo"></i> 使用新浪微博账号登陆</a>
         </div>
-
-
-
-
-
-        已经有了账号？<a href="login.html" class="text-center">马上登陆</a>
-
-
+        已经有了账号？<a href="/web/user/login" class="text-center">马上登陆</a>
     </div>
     <!-- /.form-box -->
 </div>

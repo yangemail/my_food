@@ -22,7 +22,6 @@ const config = require('../config/config.server.config')
 module.exports = function () {
     const app = express();
 
-
     app.use(favicon(path.join('./www', 'favicon.ico')));
     app.use(express.static(path.join('./www')));
     app.use(bodyParser.json());
@@ -47,7 +46,7 @@ module.exports = function () {
     app.use(passport.session());
 
     // **** Routes ****
-    require('../router/web.server.router')(app);
+    require('../router/web/web.server.router')(app);
     require('../router/admin.server.router')(app);
 
     if (process.env.NODE_ENV === 'development') {

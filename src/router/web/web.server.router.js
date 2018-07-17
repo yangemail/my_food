@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const web = require('../controller/web.server.controller');
+const web = require('../../controller/web.server.controller');
 const passport = require('passport');
 
 const asyncHandler = require('express-async-handler');

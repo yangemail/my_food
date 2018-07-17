@@ -13,6 +13,11 @@ module.exports = {
             // bufferMaxEntries: 0
         },
     },
+    facebook: {
+        clientID: 'Application Id',
+        clientSecret: 'Appliation Secret',
+        callbackURL: 'http://localhost:8081/oauth/facebook/callback'
+    },
     sessionSecret: 'developmentSessionSecret',
     Redis: {
         Active: false,

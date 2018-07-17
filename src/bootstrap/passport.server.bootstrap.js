@@ -19,4 +19,5 @@ module.exports = function () {
     });
 
     require('./../config/strategy/local.server.config.strategy')();
+    require('./../config/strategy/facebook.server.config.strategy')();
 };

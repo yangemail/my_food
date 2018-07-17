@@ -2,7 +2,7 @@ const passport = require('passport');
 const url = require('url');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const config = require('../config.server.config');
-const users = require('../../controller/web.server.controller');
+const users = require('../../controller/user.server.controller');
 
 module.exports = function () {
     passport.use(new FacebookStrategy({

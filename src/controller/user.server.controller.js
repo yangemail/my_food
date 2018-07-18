@@ -30,6 +30,15 @@ function getErrorMessage(err) {
     return message;
 };
 
+exports.requiresLogin = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        return res.status(401).send({
+            message: 'User is not logged in'
+        });
+    }
+    next();
+};
+
 exports.userIndex = function (req, res, next) {
     res.render('web/user_index', {});
 };
@@ -56,6 +65,11 @@ exports.userRegister = function (req, res, next) {
                 req.flash('error', message);
                 return res.redirect('/web/user/register');
             }
+
+            // Remove sensitive data before login
+            user.password = undefined;
+            user.salt = undefined;
+
             req.login(user, (err) => {
                 if (err) {
                     return next(err);
@@ -82,6 +96,28 @@ exports.userRenderLogin = function (req, res, next) {
     } else {
         return res.redirect('/web/');
     }
+};
+
+exports.userLogin = function (req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
+        if (err || !user) {
+            req.flash('error', '错误');
+            return res.redirect('/web/user/login');
+        } else {
+            // Remove sensitive data before login
+            user.password = undefined;
+            user.salt = undefined;
+
+            req.login(user, function (err) {
+                if (err) {
+                    req.flash('error', '错误');
+                    return res.redirect('/web/user/login');
+                } else {
+                    return res.redirect('/web/');
+                }
+            });
+        }
+    })(req, res, next);
 };
 
 exports.userAgreement = async function (req, res, next) {
@@ -112,10 +148,18 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
             if (!user) {
                 const possibleUsername = profile.username ||
                     ((profile.email) ? profile.email.split('@')[0] : '');
+
                 User.findUniqueUsername(possibleUsername, null, (availableUsername) => {
                     const newUser = new User(profile);
                     newUser.username = availableUsername;
                     newUser.save((err) => {
+                        if (err) {
+                            const message = _this.getErrorMessage(err);
+
+                            req.flash('error', message);
+                            return res.redirect('/web/user/register')
+                        }
+
                         return done(err, newUser);
                     });
                 });

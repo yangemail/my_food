@@ -14,7 +14,7 @@ const config = require('../config/config.server.config')
     , swig = require('swig-templates')
     , connect = require('connect')
     , errorhandler = require('errorhandler')
-    // , methodOverride = require('method-override')
+    , methodOverride = require('method-override')
     , multer = require('multer')
     , upload = multer()
     , sessionStore = new session.MemoryStore();
@@ -24,12 +24,13 @@ module.exports = function () {
 
     app.use(favicon(path.join('./www', 'favicon.ico')));
     app.use(express.static(path.join('./www')));
-    app.use(bodyParser.json());
+
     app.use(bodyParser.urlencoded({
         extended: true
     }));
+    app.use(bodyParser.json());
+    app.use(methodOverride());
 
-    // app.use(methodOverride());
     app.use(session({
         secret: config.sessionSecret,
         cookie: {maxAge: 60000, secure: false},
@@ -37,10 +38,11 @@ module.exports = function () {
         saveUninitialized: true,
         store: sessionStore
     }));
-    // ------ view engine setup ------
+
     app.engine('html', swig.renderFile);
     app.set('views', path.join('./view'));
     app.set('view engine', 'html');
+
     app.use(flash());
     app.use(passport.initialize());
     app.use(passport.session());
@@ -52,7 +54,6 @@ module.exports = function () {
 
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));
-        // 在开发过程中，需要取消模板缓存
         swig.setDefaults({cache: false});
         swig.invalidateCache();
         // only use in development

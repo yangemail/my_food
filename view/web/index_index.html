@@ -647,3 +647,9 @@
 <!-- /.container -->
 {% endblock %}
 
+{% block script %}
+<script type="text/javascript">
+    window.user = '{{user || "null"}}';
+</script>
+{% endblock %}
+

@@ -7,8 +7,8 @@ const mongoose = require('mongoose')
 // If set timestamps, mongoose assigns "createdAt" and "updatedAt" fields to your schema, the type assigned is Date.
 
 const UserSchema = new Schema({
-    firstname: String,
-    lastname: String,
+    firstName: String,
+    lastName: String,
     username: {
         type: String,
         unique: true,

@@ -37,8 +37,8 @@
     <div class="login-box-body">
         <p class="login-box-msg">登陆</p>
 
-        {% for i in messages %}
-        <div class="flash">{{message[i]}}</div>
+        {% for msg in messages %}
+        <div class="flash">{{msg}}</div>
         {% endfor %}
 
         <form action="/web/user/login" method="post">
@@ -69,7 +69,7 @@
         <div class="social-auth-links text-center">
             <p>- 或者使用第三方登陆方式 -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> 使用 Facebook 登陆</a>
-            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> 使用 Google+ 登陆</a>
+            <a href="/web/oauth/google" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> 使用 Google+ 登陆</a>
             <a href="#" class="btn btn-block btn-social btn-twitter btn-flat"><i class="fa fa-qq"></i> 使用 QQ 账号登陆</a>
             <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-weibo"></i> 使用 新浪微博 账号登陆</a>
         </div>

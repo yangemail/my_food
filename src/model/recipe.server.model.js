@@ -9,7 +9,7 @@ const RecipeSchema = new Schema({
     // 清炒柳芽菜
     title: {
         type: String,
-        require: true,
+        require: '标题不能为空',
         trim: true,
         index: true,
     },
@@ -249,16 +249,12 @@ const RecipeSchema = new Schema({
     // 创建日期: createdAt
     createdAt: {
         type: Date,
-        default: Date.now()
+        default: Date.now
     },
 });
 
 RecipeSchema.methods.findSimilarMaterials = function (cb) {
     return this.model('Recipe').find({material: this.material}, cb);
 };
-
-// recipeSchema.pre('update', function () {
-//     this.update({}, {$set: {updatedAt: new Date()}});
-// });
 
 mongoose.model('Recipe', RecipeSchema);

@@ -147,8 +147,9 @@
                                 <div class="form-group">
                                     <label for="exampleInputFile">点击添加成品图</label>
                                     <img src="https://dummyimage.com/328x400"/>
-                                    <input type="file" id="fileupload_complete_demo" name="fileupload_complete_demo"
-                                           data-url="profile">
+                                    <input type="file" id="upfile" name="upfile"
+                                           data-url="/upload/controller?action=uploadimage">
+                                    <p id="here">here!!!</p>
                                     <p class="help-block">请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 </div>
                             </div>
@@ -379,7 +380,7 @@
 <script src="/libs/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script>
     $(function () {
-        $('#fileupload_complete_demo').fileupload({
+        $('#upfile').fileupload({
             dataType: 'json',
             done: function (e, data) {
                 $.each(data.result.files, function (index, file) {

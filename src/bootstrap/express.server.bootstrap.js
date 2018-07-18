@@ -16,8 +16,8 @@ const config = require('../config/config.server.config')
     , errorhandler = require('errorhandler')
     , methodOverride = require('method-override')
     , multer = require('multer')
-    , upload = multer()
-    , sessionStore = new session.MemoryStore();
+    , sessionStore = new session.MemoryStore()
+    , upload = require('../router/upload.server.router');
 
 module.exports = function () {
     const app = express();
@@ -30,7 +30,7 @@ module.exports = function () {
     }));
     app.use(bodyParser.json());
     // app.use(methodOverride());
-    app.use(methodOverride('_method'));
+    // app.use(methodOverride('_method'));
     // <form method="POST" action="/resource?_method=DELETE">
     //     <button type="submit">Delete resource</button>
     // </form>
@@ -55,6 +55,7 @@ module.exports = function () {
     require('../router/web/index.server.router.web')(app);
     require('../router/web/recipe.server.router.web')(app);
     require('../router/web/user.server.router.web')(app);
+    app.use('/upload/controller', upload);
 
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));

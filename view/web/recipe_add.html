@@ -328,25 +328,25 @@
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="exampleInputFile">点击添加成品图</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="exampleInputFile1">
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="exampleInputFile">点击添加成品图</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="exampleInputFile2">
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="exampleInputFile">点击添加成品图</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="exampleInputFile3">
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="exampleInputFile">点击添加成品图</label>
-                                    <input type="file" id="exampleInputFile">
+                                    <input type="file" id="exampleInputFile4">
                                 </div>
                             </div>
                         </div>
@@ -384,7 +384,7 @@
             dataType: 'json',
             done: function (e, data) {
                 $.each(data.result.files, function (index, file) {
-                    $('#here').text(file);
+                    $('#here').text('Completed');
                 });
             }
         });

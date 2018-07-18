@@ -29,7 +29,11 @@ module.exports = function () {
         extended: true
     }));
     app.use(bodyParser.json());
-    app.use(methodOverride());
+    // app.use(methodOverride());
+    app.use(methodOverride('_method'));
+    // <form method="POST" action="/resource?_method=DELETE">
+    //     <button type="submit">Delete resource</button>
+    // </form>
 
     app.use(session({
         secret: config.sessionSecret,

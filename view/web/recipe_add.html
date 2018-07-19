@@ -381,10 +381,15 @@
 {% endblock %}
 
 {% block script %}
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="/libs/jquery-ui/jquery-ui.js"></script>
-<script src="/libs/jquery.iframe-transport/jquery.iframe-transport.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="/libs/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
 <script src="/libs/blueimp-file-upload/js/jquery.fileupload.js"></script>
-<script>
+
+<script src="/libs/blueimp-load-image/js/load-image.all.min.js"></script>
+<script type="text/javascript">
     $(function () {
         $('#mainpic').fileupload({
             dataType: 'json',

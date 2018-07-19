@@ -69,7 +69,7 @@ const RecipeSchema = new Schema({
     },
     // end of --美食类型
 
-    // 菜品细节
+    // begin of 菜品细节
     cook_info: {
         // 功效
         food_function: {
@@ -109,6 +109,7 @@ const RecipeSchema = new Schema({
             min: 0
         },
     },
+    // end of 菜品细节
     nutrition_information: {
         serving_size: String,
         nutrition_facts: [{

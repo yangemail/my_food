@@ -12,4 +12,6 @@ module.exports = function (app) {
         .get(asyncHandler(recipeCtrl.recipeId));
     app.route('/web/recipe/add')
         .get(asyncHandler(recipeCtrl.renderAddRecipe));
+    app.route('/web/recipe/add/upload')
+        .post(recipeCtrl.upload, recipeCtrl.postUpload);
 };

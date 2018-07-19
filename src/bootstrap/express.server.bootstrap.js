@@ -29,8 +29,8 @@ module.exports = function () {
         extended: true
     }));
     app.use(bodyParser.json());
-    // app.use(methodOverride());
-    // app.use(methodOverride('_method'));
+    app.use(methodOverride());
+    app.use(methodOverride('_method'));
     // <form method="POST" action="/resource?_method=DELETE">
     //     <button type="submit">Delete resource</button>
     // </form>
@@ -55,7 +55,6 @@ module.exports = function () {
     require('../router/web/index.server.router.web')(app);
     require('../router/web/recipe.server.router.web')(app);
     require('../router/web/user.server.router.web')(app);
-    app.use('/upload/controller', upload);
 
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));

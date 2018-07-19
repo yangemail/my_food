@@ -10,10 +10,9 @@ const ROOT_PATH = require('../config/constant.server.config').PROJECT_ROOT_PATH;
 //图片上传配置
 var storageImg = multer.diskStorage({
     destination: function (req, file, cb) {
-
         req.query.uniqueId = req.query.uniqueId ? req.query.uniqueId : new Date().getTime() + '';
         if (req.query.uniqueId) {
-            var dirPathParent = path.join(ROOT_PATH, '/www/uploads/', req.query.uniqueId),
+            var dirPathParent = path.join(ROOT_PATH, '/www/uploads/recipe/', req.query.uniqueId),
                 dirPath = path.join(dirPathParent, '/img');//不能直接创建dirPath，因为父目录不存在会抛出异常
             fs.mkdir(dirPathParent, function (err) {
                 if (err && err.code !== 'EEXIST') {
@@ -33,7 +32,7 @@ var storageImg = multer.diskStorage({
         }
     },
     filename: function (req, file, cb) {
-        var fileName = shortid.generate();
+        var fileName = file.originalname.substring(0, file.originalname.lastIndexOf('.')) + '_' + shortid.generate();
         var ext = file.originalname.substr(file.originalname.lastIndexOf('.'));
         var fullName = fileName + ext;
         cb(null, fullName)
@@ -159,7 +158,6 @@ router.post('/', function (req, res, next) {
                 if (err) {
                     next(err);
                 } else {
-                    console.log('####Generating JSON response');
                     res.json({
                         state: "SUCCESS",
                         url: '/uploads/' + req.query.uniqueId + '/img/' + req.file.filename,//此处不能用path.join，因为path会使用'\'分隔符，而url地址必须是'/'分隔符
@@ -225,5 +223,14 @@ router.post('/', function (req, res, next) {
             break;
     }
 });
+
+// app.post('/rest/upload',
+//     upload.fields([{
+//         name: 'video', maxCount: 1
+//     }, {
+//         name: 'subtitles', maxCount: 1
+//     }]), function(req, res, next){
+//         // ...
+//     }
 
 module.exports = router;

@@ -144,17 +144,23 @@
                         <!-- 成品图 -->
                         <div class="row">
                             <div class="col-xs-4">
+                                <h4>成品图</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
                                 <div class="form-group">
-                                    <label for="exampleInputFile">点击添加成品图</label>
-                                    <img src="https://dummyimage.com/328x400"/>
-                                    <input type="file" id="upfile" name="upfile"
-                                           data-url="/upload/controller?action=uploadimage">
-                                    <p id="here">here!!!</p>
-                                    <p class="help-block">请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                    <img id="mainpic_img" class="mainpic" src="https://dummyimage.com/360x420"/>
                                 </div>
                             </div>
                             <div class="col-xs-8">
-                                <textarea class="form-control" rows="3" placeholder="产品简介，说说这道菜的故事吧"></textarea>
+                                <textarea class="form-control" rows="15" placeholder="产品简介，说说这道菜的故事吧"></textarea>
+                                <hr/>
+                                <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                <a href="javascript:;" class="file">选择文件
+                                    <input type="file" id="mainpic" name="mainpic"
+                                           data-url="/web/recipe/add/upload">
+                                </a>
                             </div>
                         </div>
                         <hr/>
@@ -380,12 +386,10 @@
 <script src="/libs/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script>
     $(function () {
-        $('#upfile').fileupload({
+        $('#mainpic').fileupload({
             dataType: 'json',
             done: function (e, data) {
-                $.each(data.result.files, function (index, file) {
-                    $('#here').text('Completed');
-                });
+                $("#mainpic_img").attr("src", data.result.url);
             }
         });
     });

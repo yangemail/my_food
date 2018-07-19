@@ -65,7 +65,7 @@ exports.upload = multer({
     storage: storageImg,
     limits: {
         filedNameSize: 50 * 1024,
-        fileSize: 5 * 1024 * 1024,
+        fileSize: 3 * 1024 * 1024,
     },
     fileFilter: function (req, file, cb) {
         if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
@@ -74,7 +74,7 @@ exports.upload = multer({
         cb(null, true);
     }
 }).fields([
-    {name: 'mainpic', maxCount: 1},
+    {name: 'title_image_upload', maxCount: 1},
     {name: 'step1pic', maxCount: 1},
     {name: 'step2pic', maxCount: 1},
     {name: 'step3pic', maxCount: 1},

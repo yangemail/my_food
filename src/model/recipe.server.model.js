@@ -19,7 +19,7 @@ const RecipeSchema = new Schema({
         ref: 'User',
     },
     //摘要
-    Summary: {type: String},
+    summary: {type: String},
     // 新媒体
     new_media: {type: String},
     // 主图片
@@ -27,7 +27,7 @@ const RecipeSchema = new Schema({
         type: String,
     },
     //来源
-    Source: {type: String},
+    source: {type: String},
     // 菜品细节
     cook_info: {
         // 功效
@@ -153,37 +153,21 @@ const RecipeSchema = new Schema({
             enum: ['头盘', '汤品', '副菜', '主菜', '主食', '菜肴', '饮品甜点', '小吃'],
         },
     },
-    // 菜谱细节
-    step_detail: {
-        type: {
-            // 食谱 (ref)
-            recipe: {
-                type: Schema.Types.ObjectId,
-                ref: 'Recipe'
-            },
-            // 解说
-            summary: String,
-            // 描述
-            description: String,
-            // 步骤
-            steps: {
-                type: [{
-                    // 步骤描述
-                    word: String,
-                    // 步骤图片
-                    image_path: String,
-                    // 步骤顺序
-                    sequence: Number
-                }]
-            },
-            // 成品图
-            complete_image_path: [String],
-            // 烹饪技巧
-            expert_tips: String,
-            // 总结
-            conclusion: String,
-        },
+
+    // begin of 菜谱细节
+    description:{
+        type:String
     },
+    steps: [{
+        image_path: String,
+        step_desc: String,
+        sequence: Number
+    }],
+    complete_pics:[String],
+    export_tips: String,
+    conclusion: String,
+    // end of 菜谱细节
+
     // 菜谱评论
     comments: [{
         // 评论人
@@ -232,16 +216,16 @@ const RecipeSchema = new Schema({
         default: false
     },
     //是否草稿 - 草稿
-    IsDraft: {type: Boolean},
+    is_draft: {type: Boolean},
     //是否有效 - 通过审核
-    IsActive: {type: Boolean, default: false},
+    is_active: {type: Boolean, default: false},
     meta: {
         stars: {
             type: Number,
         },// 星级 - 仿Amazon
         votes: Number,
         bookmarked: Number,
-        ViewCount: {// 页面浏览次数
+        view_count: {// 页面浏览次数
             type: Number,
             default: 0
         },

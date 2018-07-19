@@ -13,21 +13,62 @@ const RecipeSchema = new Schema({
         trim: true,
         index: true,
     },
+    // 新媒体
+    new_media: {type: String},
     // 作者
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User',
     },
-    //摘要
-    summary: {type: String},
-    // 新媒体
-    new_media: {type: String},
-    // 主图片
-    title_image_path: {
-        type: String,
-    },
     //来源
     source: {type: String},
+
+    // begin of --美食类型
+    food_style: {
+        // 国家
+        country: {
+            type: String,
+            enum: ['中国', '韩国料理', '日本料理', '西餐面点', '法国', '意大利', '德国', '美国', '东南亚菜', '墨西哥菜', '澳大利亚菜', '印度', '非洲', '其他国家'],
+            index: true,
+        },
+        // 适合中国菜谱
+        china_food_district: {
+            type: String,
+            enum: ['川菜', '湘菜', '粤菜', '东北菜', '鲁菜', '浙菜', '苏菜', '清真菜', '闽菜', '沪菜', '京菜', '湖北菜', '徽菜', '豫菜', '西北菜', '云贵菜', '江西菜', '山西菜', '广西菜', '港台菜', '小吃', '其它菜'],
+        },
+        // 中国各地小吃
+        china_local_snake: {
+            type: String,
+            enum: ['四川小吃', '广东小吃', '北京小吃', '陕西小吃', '山东小吃', '山西小吃', '湖南小吃', '河南小吃', '上海小吃', '江苏小吃', '湖北小吃', '重庆小吃', '天津小吃', '河北小吃', '浙江小吃', '新疆小吃', '江西小吃', '福建小吃', '广西小吃', '云南小吃', '辽宁小吃', '吉林小吃', '贵州小吃', '安徽小吃', '台湾小吃', '甘肃小吃', '香港小吃', '蒙古小吃', '宁夏小吃', '青海小吃', '海南小吃', '西藏小吃', '成都小吃', '黑龙江小吃', '其它地区小吃'],
+        },
+        // 中国菜谱类型
+        china_food_style2: {
+            type: String,
+            enum: ['家常菜', '私家菜', '凉菜', '海鲜', '热菜', '汤粥', '素食', '酱料蘸料', '微波炉', '火锅底料', '甜品点心', '糕点主食', '干果制作', '卤酱', '时尚饮品', '小吃', '烧烤',]
+        }
+        // 适合国外菜谱
+        foreign_food_order: {
+            type: String,
+            enum: ['头盘', '汤品', '副菜', '主菜', '主食', '饮品', '甜品'],
+        },
+        // 家常菜谱（中国，国外）
+        foreign_food_type: {
+            type: [String],
+            enum: ['家常菜', '私家菜', '凉菜', '海鲜', '热菜', '汤粥', '素食', '酱料蘸料', '微波炉', '甜品点心', '糕点主食', '干果制作', '时尚饮品', '小吃', '烧烤', '蛋糕面包', '饼干配方', '甜品点心']
+        },
+        // 每日三餐（中国，国外）
+        food_time: {
+            type: [String],
+            enum: ['早餐', '午餐', '晚餐', '午休', '下午茶', '夜宵'],
+        },
+        // 适合人群人群
+        food_comfort_people: {
+            type: [String],
+            enum: ['老年人', '产妇', '孕妇', '产后', '宝宝食谱', '婴儿食谱', '成人'],
+        },
+    },
+    // end of --美食类型
+
     // 菜品细节
     cook_info: {
         // 功效
@@ -110,60 +151,24 @@ const RecipeSchema = new Schema({
             }],
         }
     },
-    food_style: {
-        country: {
-            type: String,
-            enum: ['中国', '韩国料理', '日本料理', '西餐面点', '法国', '意大利', '德国', '美国', '东南亚菜', '墨西哥菜', '澳大利亚菜', '印度', '非洲', '其他国家'],
-            index: true,
-        },
-        // 中国
-        // 家常菜谱
-        china_food_type: {
-            type: [String],
-            enum: ['家常菜', '私家菜', '凉菜', '海鲜', '热菜', '汤粥', '素食', '酱料蘸料', '微波炉', '火锅底料', '甜品点心', '糕点主食', '干果制作', '卤酱', '时尚饮品', '减肥'],
-        },
-        // 每日三餐
-        china_food_time: {
-            type: [String],
-            enum: ['早餐', '午餐', '晚餐', '下午茶', '夜宵'],
-        },
-        // 人群
-        china_food_people: {
-            type: [String],
-            enum: ['老年人', '产妇', '孕妇', '宝宝食谱', '婴儿食谱'],
-        },
-        // 中华菜系
-        china_food_style: {
-            type: String,
-            enum: ['川菜', '湘菜', '粤菜', '东北菜', '鲁菜', '浙菜', '苏菜', '清真菜', '闽菜', '沪菜', '京菜', '湖北菜', '徽菜', '豫菜', '西北菜', '云贵菜', '江西菜', '山西菜', '广西菜', '港台菜', '其它菜'],
-        },
-        // 各地小吃
-        china_local_snake: {
-            type: String,
-            enum: ['四川小吃', '广东小吃', '北京小吃', '陕西小吃', '山东小吃', '山西小吃', '湖南小吃', '河南小吃', '上海小吃', '江苏小吃', '湖北小吃', '重庆小吃', '天津小吃', '河北小吃', '浙江小吃', '新疆小吃', '江西小吃', '福建小吃', '广西小吃', '云南小吃', '辽宁小吃', '吉林小吃', '贵州小吃', '安徽小吃', '台湾小吃', '甘肃小吃', '香港小吃', '蒙古小吃', '宁夏小吃', '青海小吃', '海南小吃', '西藏小吃', '成都小吃', '黑龙江小吃'],
-        },
-        // 烘焙
-        china_bake_style: {
-            type: String,
-            enum: ['蛋糕面包', '饼干配方', '甜品点心'],
-        },
-        // 上菜顺序
-        foreign_food_order: {
-            type: String,
-            enum: ['头盘', '汤品', '副菜', '主菜', '主食', '菜肴', '饮品甜点', '小吃'],
-        },
-    },
 
-    // begin of 菜谱细节
-    description:{
-        type:String
+
+    // begin of 菜谱细节 -----
+    // 主图片
+    title_image_path: {
+        type: String,
+    },
+    //摘要
+    summary: {type: String},
+    description: {
+        type: String
     },
     steps: [{
         image_path: String,
         step_desc: String,
         sequence: Number
     }],
-    complete_pics:[String],
+    complete_pics: [String],
     export_tips: String,
     conclusion: String,
     // end of 菜谱细节

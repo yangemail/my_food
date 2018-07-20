@@ -9,21 +9,30 @@ const mongoose = require('mongoose')
 const UserSchema = new Schema({
     firstName: String,
     lastName: String,
+    // 昵称
+    nickname: {
+        type: String,
+        index: true,
+    },
     username: {
         type: String,
         unique: true,
         required: '用户名不能为空',
         trim: true,
     },
+    score: Number,
+    avatar: String,
+    // 性别
+    gender: {
+        type: String,
+        enum: ['男', '女', '不想说']
+    },
+    // 生日
+    date_of_birth: Date,
     // 电子邮箱
     email: {
         type: String,
         match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
-    },
-    // 昵称
-    nickname: {
-        type: String,
-        index: true,
     },
     // 密码
     password: {
@@ -41,15 +50,6 @@ const UserSchema = new Schema({
     },
     providerId: String,
     providerData: {},
-    // 性别
-    gender: {
-        type: String,
-        enum: ['男', '女', '不想说']
-    },
-    // 生日
-    date_of_birth: {
-        type: Date,
-    },
     // 管理员
     isAdmin: {
         type: Boolean,
@@ -57,12 +57,7 @@ const UserSchema = new Schema({
         require: true
     },
     // 禁用
-    is_blocked: {
-        type: Boolean,
-        default: false
-    },
-    // 隐藏
-    hidden: {
+    isBlocked: {
         type: Boolean,
         default: false
     },

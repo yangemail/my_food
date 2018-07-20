@@ -269,20 +269,21 @@ const RecipeSchema = new Schema({
             reply_helpful: Number,
         }],
     }],
-    // 由于某些原因，暂时不显示
-    hidden: {
-        type: Boolean,
-        default: false
+    status: {
+        type: String,
+        enum: ['draft', 'active', 'archived', 'hidden']
     },
-    //是否草稿 - 草稿
-    is_draft: {type: Boolean},
-    //是否有效 - 通过审核
-    is_active: {type: Boolean, default: false},
     meta: {
         stars: {
             type: Number,
         },// 星级 - 仿Amazon
-        votes: Number,
+        voteUp: {
+            count: Number,
+            users: [{
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+            }]
+        },
         bookmarked: Number,
         view_count: {// 页面浏览次数
             type: Number,

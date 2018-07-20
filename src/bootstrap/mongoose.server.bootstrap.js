@@ -27,6 +27,7 @@ module.exports = function () {
     // Models
     require('../model/recipe.server.model');
     require('../model/user.server.model');
+    require('../model/ingredient.server.model');
 
     return db;
 };

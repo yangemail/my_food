@@ -436,6 +436,131 @@ function initIngredient() {
     ingredients.push(new Ingredient({category: '蔬菜水果', type: '水果', name: '橘子'}));
     ingredients.push(new Ingredient({category: '蔬菜水果', type: '水果', name: '金桔'}));
     ingredients.push(new Ingredient({category: '蔬菜水果', type: '水果', name: '杏'}));
+    //
+    // 根茎蔬菜
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '土豆'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '萝卜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '紫薯'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '红薯'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '胡萝卜'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '山药'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '藕'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '芋头'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '笋'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '茭白'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '马蹄'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '牛蒡'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '根茎蔬菜', name: '菱角'}));
+    //
+    // 叶类蔬菜
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '芹菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '白菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '韭菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '菠菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '西兰花'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '圆白菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '花椰菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '莴苣'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '青菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '娃娃菜'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '生菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '甘蓝'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '蒜薹'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '紫甘蓝'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '空心菜'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '油菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '荠菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '香椿'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '茼蒿'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '菜心'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '芥兰'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '黄花菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '韭黄'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '苋菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '紫苏'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '芥菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '油麦菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '豌豆苗'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '苦菊'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '青蒜'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '鱼腥草'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '马兰'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '蕨菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '西洋菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '水芹'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '儿菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '豌豆尖'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '芝麻菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '芦蒿'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '穿心莲'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '孢子甘蓝'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '萝卜苗'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '红菜苔'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '牛至'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '蒿子秆'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '包菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '莴笋'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '花菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '蒜苔'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '豆苗'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '叶类蔬菜', name: '披萨草'}));
+    //
+    // 菌菇类
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '香菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '杏鲍菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '银耳'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '木耳'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '金针菇'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '蘑菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '茶树菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '平菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '松茸'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '鸡腿菇'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '草菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '竹荪'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '蟹味菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '花菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '猴头菇'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '牛肝菌'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '灵芝'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '榛蘑'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '白玉菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '姬松茸'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '滑子菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '发菜'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '白灵菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '袖珍菇'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '双孢菇'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '菌菇类', name: '秀珍菇'}));
+    //
+    // 花朵植物类
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '茶叶'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '桂花'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '玫瑰'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '薄荷'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '菊花'}));
+    //
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '洛神花'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '茉莉花'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '槐花'}));
+    ingredients.push(new Ingredient({category: '蔬菜水果', type: '花朵植物类', name: '金银花'}));
 
     ingredients.forEach(function (item) {
         item.save(function (err) {

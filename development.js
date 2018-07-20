@@ -4,4 +4,4 @@ process.env.PORT = '8081';
 require('./bin/www.server.bin');
 
 // initial dataset
-// require('./src/bootstrap/init.server.bootstrap').initIngredient();
+require('./src/bootstrap/init.server.bootstrap').initIngredient();

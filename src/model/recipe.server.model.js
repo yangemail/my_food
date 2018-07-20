@@ -26,7 +26,7 @@ const RecipeSchema = new Schema({
         index: true,
     },
     // 新媒体
-    new_media: {type: String},
+    newMedia: {type: String},
     // 作者
     author: {
         type: Schema.Types.ObjectId,
@@ -35,7 +35,7 @@ const RecipeSchema = new Schema({
     //来源
     source: {type: String},
     // begin of -- 美食类型 -----
-    food_style: {
+    foodStyle: {
         // 国家
         country: {
             type: String,
@@ -123,9 +123,9 @@ const RecipeSchema = new Schema({
     // end of --美食类型
 
     // begin of 菜品细节
-    cook_info: {
+    cookInfo: {
         // 功效
-        food_function: {
+        foodFunction: {
             type: [String],
             enum: ['疾病调理', '功能性调理', '脏腑调理', '人群膳食', '抵抗力', '防癌', '降血脂', '抗衰老', '减肥', '骨质疏松', '美容养颜'],
         },
@@ -146,31 +146,31 @@ const RecipeSchema = new Schema({
             max: 10
         },
         // 人数
-        servings_of_people: {
+        servingsOfPeople: {
             type: Number,
             min: 0,
             max: 10
         },
         // 准备时间
-        prepare_time: {
+        prepareTime: {
             type: Number,
             min: 0
         },
         // 烹饪时间
-        cook_time: {
+        cookTime: {
             type: Number,
             min: 0
         },
     },
     // end of 菜品细节
-    nutrition_information: {
-        serving_size: String,
-        nutrition_facts: [{
+    nutritionInformation: {
+        servingSize: String,
+        nutritionFacts: [{
             name: String,
             contains: String,
             percentage: Number,
         }],
-        daily_value: [{
+        dailyValue: [{
             name: String,
             contains: String,
             percentage: Number,
@@ -184,23 +184,22 @@ const RecipeSchema = new Schema({
         // 用料（主料）
         major: {
             type: [{
-                material_image_path: String,
-                name: {
-                    type: String,
-                    index: true
-                },
+                imagePath: String,
+                name: String,
                 num: Number,
                 unit: String,
+                price: Number,
                 links: [String]
             }],
         },
         // 用料 （辅料）
         sub: {
             type: [{
-                material_image_path: String,
+                imagePath: String,
                 name: String,
                 num: Number,
                 unit: String,
+                price: Number,
                 links: [String]
             }],
         }
@@ -209,69 +208,69 @@ const RecipeSchema = new Schema({
 
     // begin of 菜谱细节 -----
     // 主图片
-    title_image_path: {
+    titleImagePath: {
         type: String,
     },
     //摘要
     summary: {type: String},
+    // 简介
     description: {
         type: String
     },
     steps: [{
-        image_path: String,
-        step_desc: String,
+        imagePath: String,
+        stepDesc: String,
         sequence: Number
     }],
-    complete_pics: [String],
-    export_tips: String,
+    completePics: [String],
+    exportTips: String,
     conclusion: String,
     // end of 菜谱细节
 
     // 菜谱评论
     comments: [{
         // 评论人
-        post_author: {
+        commentAuthor: {
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
         // 星级
-        post_stars: Number,
+        commentStars: Number,
         // 评论类型
-        post_type: {
+        commentType: {
             type: String,
-            require: true,
-            enum: ['随意说说', '问题求解'],
-            default: '随意说说'
+            enum: ['闲聊', '提问', '动感', '赞'],
         },
         // 评论
-        post_body: String,
+        commentContent: String,
         // 评论日期
-        post_date: Date,
+        commentCreatedAt: {
+            type: Date,
+            default: Date.now
+        },
         // 评论图片
-        post_completed_sample_image_path: [String],
+        commentImagePath: [String],
         // 评论赞同
-        post_helpful: Number,
+        commentVoteUp: Number,
 
-        // 回复
-        reply: [{
-            // 回复作者
-            reply_author: {
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            },
-            // 回复内容
-            reply_body: String,
-            // 回复日期
-            reply_date: Date,
-            // 回复图片
-            post_completed_sample_image_path: [String],
-            // 回复赞同
-            reply_helpful: Number,
-        }],
+        // 回复作者
+        replyAuthor: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        // 回复内容
+        replyContent: String,
+        // 回复日期
+        replyCreatedAt: {
+            type: Date,
+            default: Date.now
+        },
+        // 回复赞同
+        replyVoteUp: Number,
     }],
     status: {
         type: String,
-        enum: ['draft', 'active', 'archived', 'hidden']
+        enum: ['draft', 'active', 'archived', 'deleted']
     },
     meta: {
         stars: {
@@ -284,17 +283,16 @@ const RecipeSchema = new Schema({
                 ref: 'User',
             }]
         },
-        bookmarked: Number,
-        view_count: {// 页面浏览次数
-            type: Number,
-            default: 0
+        voteDown: {
+            count: Number,
+            users: [{
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }]
         },
-    },
-    // 创建日期: createdAt
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
+        bookmarkCount: Number, // 加入菜单
+        viewCount: Number// 页面浏览次数
+    }
 });
 
 RecipeSchema.methods.findSimilarMaterials = function (cb) {

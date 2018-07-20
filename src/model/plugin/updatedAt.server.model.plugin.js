@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = exports = function lastModifiedPlugin(schema, options) {
+module.exports = exports = function updatedAtPlugin(schema, options) {
     schema.add({updatedAt: Date});
 
     schema.pre('save', function (next) {

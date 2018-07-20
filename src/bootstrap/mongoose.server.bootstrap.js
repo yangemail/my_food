@@ -13,6 +13,7 @@ module.exports = function () {
 
     // Add plugin
     mongoose.plugin(require('../model/plugin/updatedAt.server.model.plugin'));
+    mongoose.plugin(require('../model/plugin/createdAt.server.model.plugin'));
 
     db.once('open', function () {
         // we're connected!

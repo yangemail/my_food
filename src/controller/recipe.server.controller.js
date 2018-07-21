@@ -7,7 +7,8 @@ const path = require('path')
     , Recipe = require('mongoose').model('Recipe')
     , {PROJECT_ROOT_PATH} = require('../config/constant.server.config')
     , multer = require('multer')
-    , shortid = require('shortid');
+    , shortid = require('shortid')
+    , constant = require('../config/constant.server.config');
 
 function getErrorMessage(err) {
     if (err.errors) {
@@ -23,7 +24,23 @@ function getErrorMessage(err) {
 
 // Use "recipeId" to determine whether is a Create / Edit
 exports.renderCreateOrUpdate = function (req, res) {
-    res.render('web/recipe_add', {});
+    res.render('web/recipe_add', {
+        // 区域
+        countryOptions: constant.DATASET_COUNTRY,
+        chinaLocalCuisineOptions: constant.DATASET_CHINA_LOCAL_CUISINE,
+        chinaLocalSnakeOptions: constant.DATASET_CHINA_LOCAL_SNAKE,
+        chinaFoodStyleOptions: constant.DATASET_CHINA_FOOD_STYLE,
+        foreignFoodOrderOptions: constant.DATASET_FOREIGN_FOOD_ORDER,
+        // 类型
+        serveTypeOptions: constant.DATASET_SERVE_TYPE,
+        foodTimeOptions: constant.DATASET_FOOD_TIME,
+        foodSpecialEventChinaOptions: constant.DATASET_FOOD_SPECIAL_EVENT_CHINA,
+        foodSpecialEventWesternCountryOptions: constant.DATASET_FOOD_SPECIAL_EVENT_WESTERN_COUNTRY,
+        foodComfortPeopleOptions: constant.DATASET_FOOD_CONFORT_PEOPLE,
+        // 属性
+        craftworkOptions: constant.DATASET_CRAFTWORK,
+        flavorOptions: constant.DATASET_FLAVOR,
+    });
 };
 
 exports.create = function (req, res) {

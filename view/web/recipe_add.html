@@ -33,8 +33,8 @@
                             <div class="col-xs-4">
                                 <div class="form-group">
                                     <label for="title">标题</label>
-                                    <input type="text" class="form-control" id="title" name="title"
-                                           placeholder="请填写菜谱名称（10字以内）">
+                                    <input type="text" class="form-control" id="title" name="title" maxlength="20"
+                                           placeholder="请填写菜谱名称（20字以内）">
                                 </div>
                             </div>
                         </div>
@@ -42,57 +42,114 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <label for="new_media">自媒体信息 （本站将为您免费展示自媒体信息）</label>
-                                    <input type="text" class="form-control" id="new_media" name="new_media"
+                                    <label for="newMedia">自媒体信息 （本站将为您免费展示自媒体信息）</label>
+                                    <input type="text" class="form-control" id="newMedia" name="newMedia" maxlength="20"
                                            placeholder="请填写自媒体信息。例如：公众号：遇见小咪">
                                 </div>
                             </div>
                         </div>
-                        <hr/>
                         <div class="alert alert-warning alert-dismissible">
-                            <i class="icon fa fa-info"></i>小提示：不需要每个都选择，但是请尽量详细。
+                            <i class="icon fa fa-info"></i>小提示：不需要每个都选择，但是请尽量详细，增加搜索精确度。国家为必选项。
                         </div>
-                        <!-- 类型 -->
+                        <!-- 区域 -->
+                        <div class="row">
+                            <div class="col-md-12">区域文化</div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-xs-2">
+                                    <select class="form-control" id="country" name="country">
+                                        <option value="" disabled selected>国家</option>
+                                        {% for item in countryOptions %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control" id="chinaLocalCuisine" name="chinaLocalCuisine">
+                                        <option value="" disabled selected>中国菜系</option>
+                                        {% for item in chinaLocalCuisineOptions %}
+                                        <option value="{{item}}">{{item}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control" id="chinaLocalSnake" name="chinaLocalSnake">
+                                        <option value="" disabled selected>中国各地小吃</option>
+                                        {% for item in chinaLocalSnakeOptions %}
+                                        <option value="{{item}}">{{item}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control" id="chinaFoodStyle" name="chinaFoodStyle">
+                                        <option value="" selected disabled>所属类别</option>
+                                        {% for item in chinaFoodStyleOptions %}
+                                        <option value="{{item}}">{{item}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                    <select class="form-control" id="foreignFoodOrder" name="foreignFoodOrder">
+                                        <option>上菜顺序</option>
+                                        {% for item in foreignFoodOrderOptions %}
+                                        <option value="{{item}}">{{item}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-xs-2">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 区域文化 -->
                         <div class="row">
                             <div class="col-md-12">类型</div>
                         </div>
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>国家</option>
-                                        <option>中国</option>
+                                    <select class="form-control" id="serveType" name="serveType">
+                                        <option value="" disabled selected>美食类别</option>
+                                        {% for item in serveTypeOptions %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>菜系</option>
-                                        <option>家常味</option>
+                                    <select class="form-control" id="foodTime" name="foodTime">
+                                        <option value="" disabled selected>美食时间</option>
+                                        {% for item in foodTimeOptions %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>时间</option>
-                                        <option>早餐</option>
+                                    <select class="form-control" id="foodSpecialEvent" name="foodSpecialEvent">
+                                        <option value="" disabled selected>节日特色</option>
+                                        <optgroup label="中华">
+                                            {% for item in foodSpecialEventChinaOptions %}
+                                            <option value="{{ item }}">{{ item }}</option>
+                                            {% endfor %}
+                                        </optgroup>
+                                        <optgroup label="西方">
+                                            {% for item in foodSpecialEventWesternCountryOptions %}
+                                            <option value="{{ item }}">{{ item }}</option>
+                                            {% endfor %}
+                                        </optgroup>
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>准备时间</option>
-                                        <option>10分钟</option>
+                                    <select class="form-control" id="foodComfortPeople" name="foodComfortPeople">
+                                        <option value="" disabled selected>适合人群</option>
+                                        {% for item in foodComfortPeopleOptions %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>烹饪时间</option>
-                                        <option>小于10分钟</option>
-                                    </select>
+
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>选择人数</option>
-                                        <option>2人份</option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -103,15 +160,19 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>选择工艺</option>
-                                        <option>煮</option>
+                                    <select class="form-control" id="craftwork" name="craftwork">
+                                        <option disabled selected>选择工艺</option>
+                                        {% for item in craftworkOptions %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
+                                    <select class="form-control" id="flavor" name="flavor">
                                         <option>选择口味</option>
-                                        <option>家常味</option>
+                                        {% for item in flavorOptions %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
@@ -431,6 +492,19 @@
                 $(this).next(":hidden").val(data.result.url);
             }
         });
+        $("#country").on('change', function () {
+            if (this.value !== '中国') {
+                $("#chinaLocalCuisine").prop("disabled", "disabled");
+                $("#chinaLocalSnake").prop("disabled", "disabled");
+                $("#chinaFoodStyle").prop("disabled", "disabled");
+                $("#foreignFoodOrder").prop("disabled", false);
+            } else {
+                $("#chinaLocalCuisine").prop("disabled", false);
+                $("#chinaLocalSnake").prop("disabled", false);
+                $("#chinaFoodStyle").prop("disabled", false);
+                $("#foreignFoodOrder").prop("disabled", "disabled");
+            }
+        })
     });
 </script>
 {% endblock %}

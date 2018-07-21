@@ -13,6 +13,8 @@ const mongoose = require('mongoose')
     , DATASET_CHINA_FOOD_STYLE
     , DATASET_FOREIGN_FOOD_ORDER
     , DATASET_SERVE_TYPE
+    , DATASET_CRAFTWORK
+    , DATASET_FLAVOR
 } = require('../config/constant.server.config');
 
 // If set timestamps, mongoose assigns "createdAt" and "updatedAt" fields to your schema, the type assigned is Date.
@@ -82,6 +84,7 @@ const RecipeSchema = new Schema({
                 }, message: '{VALUE}不在列表中'
             }
         },
+        // 类型
         // 食物类型（中国，国外）
         serveType: {
             type: String,
@@ -127,17 +130,23 @@ const RecipeSchema = new Schema({
         // 功效
         foodFunction: {
             type: [String],
-            enum: ['疾病调理', '功能性调理', '脏腑调理', '人群膳食', '抵抗力', '防癌', '降血脂', '抗衰老', '减肥', '骨质疏松', '美容养颜'],
+            // Value 从食物中取得
         },
         // 工艺
         craftwork: {
             type: String,
-            enum: ['煎', '蒸', '煮', '炖', '红烧', '炸', '卤', '干锅', '火锅', '泡', '烤', '免烤', '炒'],
+            validate: {
+                validator: function (v) {
+                    return DATASET_CRAFTWORK.includes(v);
+                }, message: '{VALUE}不在列表中'
+            }
         },
         // 口味
         flavor: {
             type: String,
-            enum: ['咸鲜', '甜', '酱香', '奶香', '甜', '家常', '辣', '咖喱', '糖醋', '蒜香', '酸甜', '孜然', '鱼香', '五香', '清淡'],
+            validator: function (v) {
+                return DATASET_FLAVOR.includes(v);
+            }, message: '{VALUE}不在列表中'
         },
         // 难度
         difficulty: {

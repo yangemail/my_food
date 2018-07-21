@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path')
     , foodStyle = require('./prop/foodStyle');
 
@@ -14,4 +16,6 @@ module.exports = {
     DATASET_CHINA_FOOD_STYLE: foodStyle.chinaFoodStyle,
     DATASET_FOREIGN_FOOD_ORDER: foodStyle.foreignFoodOrder,
     DATASET_SERVE_TYPE:foodStyle.serveType,
+    DATASET_CRAFTWORK: foodStyle.craftwork,
+    DATASET_FLAVOR: foodStyle.flavor,
 };

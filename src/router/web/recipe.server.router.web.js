@@ -5,13 +5,21 @@ const router = express.Router();
 const recipeCtrl = require('../../controller/recipe.server.controller');
 const passport = require('passport');
 
-const asyncHandler = require('express-async-handler');
-
 module.exports = function (app) {
-    app.route('/web/recipe/get')
-        .get(asyncHandler(recipeCtrl.recipeId));
-    app.route('/web/recipe/add')
-        .get(asyncHandler(recipeCtrl.renderAddRecipe));
-    app.route('/web/recipe/add/upload')
-        .post(recipeCtrl.upload, recipeCtrl.postUpload);
+    app.route('/web/recipes/upload')
+        .post(recipeCtrl.multerConfig, recipeCtrl.upload);
+
+    app.route('/web/recipes/render')
+        .get(recipeCtrl.renderCreateOrUpdate);
+
+    app.route('/web/recipes')
+        .get(recipeCtrl.list)
+        .post(recipeCtrl.create);
+
+    app.route('/web/recipes/:recipeId')
+        .get(recipeCtrl.read)
+        .put(recipeCtrl.update)
+        .delete(recipeCtrl.delete);
+
+    app.param('recipeId', recipeCtrl.recipeByID);
 };

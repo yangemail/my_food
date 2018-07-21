@@ -21,12 +21,91 @@ function getErrorMessage(err) {
     }
 }
 
-exports.recipeId = function (req, res, next) {
-    res.render('web/recipe_detail', {});
+// Use "recipeId" to determine whether is a Create / Edit
+exports.renderCreateOrUpdate = function (req, res) {
+    res.render('web/recipe_add', {});
 };
 
-exports.renderAddRecipe = function (req, res, next) {
-    res.render('web/recipe_add', {});
+exports.create = function (req, res) {
+    const recipe = new Recipe(req.body);
+    recipe.author = req.user;
+
+    recipe.save((err) => {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.status(200).json(recipe);
+        }
+    });
+};
+
+exports.list = function (req, res) {
+    Recipe.find().sort('-createdAt').populate('author', 'firstName lastName fullName').exec((err, recipes) => {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            // If param is a need Json, then send Json, otherwise, render list recipes page.
+            // res.status(200).json(recipes);
+            res.render('', {});
+        }
+    });
+};
+
+exports.recipeByID = function (req, res, next, id) {
+    Recipe.findById(id).populate('author', 'firstName lastName fullName').exec((err, recipe) => {
+        if (err) {
+            return next(err);
+        }
+        if (!recipe) {
+            return next(new Error('Failed to load recipe' + id));
+        }
+
+        req.recipe = recipe;
+        next();
+    });
+};
+
+exports.read = function (req, res) {
+    // If json is require, send json
+    // res.status(200).json(req.recipe);
+    res.render('web/recipe_detail', {
+        recipe: req.recipe
+    });
+};
+
+exports.update = function (req, res) {
+    const recipe = req.recipe;
+
+    recipe.title = req.body.title;
+    recipe.content = req.body.content;
+
+    recipe.save((err) => {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.status(200).json(recipe);
+        }
+    });
+};
+
+exports.delete = function (req, res) {
+    const recipe = req.recipe;
+
+    recipe.remove((err) => {
+        if (err) {
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        } else {
+            res.status(200).json(recipe);
+        }
+    })
 };
 
 //图片上传配置
@@ -61,7 +140,7 @@ var storageImg = multer.diskStorage({
     }
 });
 
-exports.upload = multer({
+exports.multerConfig = multer({
     storage: storageImg,
     limits: {
         filedNameSize: 50 * 1024,
@@ -96,7 +175,7 @@ exports.upload = multer({
     {name: 'done4pic', maxCount: 1},
 ]);
 
-exports.postUpload = function (req, res, next) {
+exports.upload = function (req, res, next) {
     let file;
     for (var k in req.files) {
         file = req.files[k][0];

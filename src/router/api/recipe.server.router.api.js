@@ -22,4 +22,4 @@ module.exports = function (app) {
         .delete(userCtrl.requiresLogin, recipeCtrl.hasAuthorization, recipeCtrl.delete);
 
     app.param('recipeId', recipeCtrl.recipeByID);
-}
+};

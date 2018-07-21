@@ -149,7 +149,7 @@ const RecipeSchema = new Schema({
         servingsOfPeople: {
             type: Number,
             min: 0,
-            max: 10
+            max: 20
         },
         // 准备时间
         prepareTime: {
@@ -163,22 +163,7 @@ const RecipeSchema = new Schema({
         },
     },
     // end of 菜品细节
-    nutritionInformation: {
-        servingSize: String,
-        nutritionFacts: [{
-            name: String,
-            contains: String,
-            percentage: Number,
-        }],
-        dailyValue: [{
-            name: String,
-            contains: String,
-            percentage: Number,
-        }],
-        exchanges: String,
-        comments: String,
-        links: [String],
-    },
+
     // 用料
     ingredient: {
         // 用料（主料）
@@ -205,7 +190,6 @@ const RecipeSchema = new Schema({
         }
     },
 
-
     // begin of 菜谱细节 -----
     // 主图片
     titleImagePath: {
@@ -226,6 +210,23 @@ const RecipeSchema = new Schema({
     exportTips: String,
     conclusion: String,
     // end of 菜谱细节
+
+    nutritionInformation: {
+        servingSize: String,
+        nutritionFacts: [{
+            name: String,
+            contains: String,
+            percentage: Number,
+        }],
+        dailyValue: [{
+            name: String,
+            contains: String,
+            percentage: Number,
+        }],
+        exchanges: String,
+        comments: String,
+        links: [String],
+    },
 
     // 菜谱评论
     comments: [{

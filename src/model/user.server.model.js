@@ -20,15 +20,15 @@ const UserSchema = new Schema({
         required: '用户名不能为空',
         trim: true,
     },
-    score: Number,
     avatar: String,
+    score: Number,
     // 性别
     gender: {
         type: String,
         enum: ['男', '女', '不想说']
     },
     // 生日
-    date_of_birth: Date,
+    dateOfBirth: Date,
     // 电子邮箱
     email: {
         type: String,
@@ -61,18 +61,27 @@ const UserSchema = new Schema({
         type: Boolean,
         default: false
     },
-    // 创建日期: createdAt
-    // 注册日期
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
     // 菜谱
     recipes: [{type: Schema.Types.ObjectId, ref: 'Recipe'}],
     // 关注（发送新菜谱）
     attention: [{type: Schema.Types.ObjectId, ref: 'User'}],
     // 好友（增加的好友）
     friends: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    // 菜单
+    bookmark: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Bookmark'
+    }],
+    // 美食成品
+    work: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Work'
+    }],
+    // 积分/动作/历史
+    timeline: {
+        type: Schema.Types.ObjectId,
+        ref: 'Timeline'
+    }
 });
 
 UserSchema.virtual('fullname').get(function () {

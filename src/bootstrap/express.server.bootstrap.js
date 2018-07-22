@@ -16,8 +16,7 @@ const config = require('../config/config.server.config')
     , errorhandler = require('errorhandler')
     , methodOverride = require('method-override')
     , multer = require('multer')
-    , sessionStore = new session.MemoryStore()
-    , upload = require('../router/upload.server.router');
+    , sessionStore = new session.MemoryStore();
 
 module.exports = function () {
     const app = express();

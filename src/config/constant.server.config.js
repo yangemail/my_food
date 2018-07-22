@@ -18,4 +18,5 @@ module.exports = {
     DATASET_SERVE_TYPE:foodStyle.serveType,
     DATASET_CRAFTWORK: foodStyle.craftwork,
     DATASET_FLAVOR: foodStyle.flavor,
+    DATASET_DIFFICULTY: foodStyle.difficulty,
 };

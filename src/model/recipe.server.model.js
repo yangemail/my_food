@@ -144,15 +144,42 @@ const RecipeSchema = new Schema({
         // 口味
         flavor: {
             type: String,
-            validator: function (v) {
-                return DATASET_FLAVOR.includes(v);
-            }, message: '{VALUE}不在列表中'
+            validate: {
+                validator: function (v) {
+                    return DATASET_FLAVOR.includes(v);
+                }, message: '{VALUE}不在列表中'
+            }
         },
         // 难度
         difficulty: {
-            type: Number,
-            min: 0,
-            max: 10
+            type: String,
+            validate: {
+                validator: function (v) {
+                    return DATASET_DIFFICULTY.includes(v);
+                }, message: '{VALUE}不在列表中'
+            }
+        },
+        // 准备时间
+        preparation: {
+            time: {
+                type: Number,
+                min: 0
+            },
+            unit: {
+                type: String,
+                enum: ['分钟', '小时', '天']
+            }
+        },
+        // 烹饪时间
+        cook: {
+            time: {
+                type: Number,
+                min: 0
+            },
+            unit: {
+                type: String,
+                enum: ['分钟', '小时', '天']
+            }
         },
         // 人数
         servingsOfPeople: {
@@ -160,46 +187,10 @@ const RecipeSchema = new Schema({
             min: 0,
             max: 20
         },
-        // 准备时间
-        prepareTime: {
-            type: Number,
-            min: 0
-        },
-        // 烹饪时间
-        cookTime: {
-            type: Number,
-            min: 0
-        },
     },
     // end of 菜品细节
 
-    // 用料
-    ingredient: {
-        // 用料（主料）
-        major: {
-            type: [{
-                imagePath: String,
-                name: String,
-                num: Number,
-                unit: String,
-                price: Number,
-                links: [String]
-            }],
-        },
-        // 用料 （辅料）
-        sub: {
-            type: [{
-                imagePath: String,
-                name: String,
-                num: Number,
-                unit: String,
-                price: Number,
-                links: [String]
-            }],
-        }
-    },
-
-    // begin of 菜谱细节 -----
+    // begin of 成品图 ---
     // 主图片
     titleImagePath: {
         type: String,
@@ -210,6 +201,25 @@ const RecipeSchema = new Schema({
     description: {
         type: String
     },
+    // end of 成品图 ---
+
+    // 用料
+    ingredient: {
+        major: [{ // 用料（主料）
+            ingredient:{
+                type: Schema.Types.ObjectId,
+                ref: 'Ingredient'
+            },
+            consumption: String // 用量
+        }],
+        sub: { // 用料（辅料）
+            ingredient:{
+                type: Schema.Types.ObjectId,
+                ref: 'Ingredient'
+            },
+            consumption: String // 用量
+        }
+    },
     steps: [{
         imagePath: String,
         stepDesc: String,
@@ -219,7 +229,10 @@ const RecipeSchema = new Schema({
     exportTips: String,
     conclusion: String,
     // end of 菜谱细节
-
+    specialEquipment: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Equipment'
+    }],
     nutritionInformation: {
         servingSize: String,
         nutritionFacts: [{

@@ -169,34 +169,59 @@
                                 </div>
                                 <div class="col-xs-2">
                                     <select class="form-control" id="flavor" name="flavor">
-                                        <option>选择口味</option>
+                                        <option value="" selected disabled>选择口味</option>
                                         {% for item in flavorOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>选择难度</option>
-                                        <option>新手尝试</option>
+                                    <select class="form-control" id="difficulty" name="difficulty">
+                                        <option value="" selected disabled>选择难度</option>
+                                        {% for item in difficultyOptions %}
+                                        <option value="{{ item }}">{{ item }}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>准备时间</option>
-                                        <option>10分钟</option>
-                                    </select>
+                                    <div class="input-group input-group-sm">
+                                        <input id="preparation_time" name="preparation_time" type="text"
+                                               class="form-control" placeholder="准备时间">
+                                        <span id="preparation_unit" name="preparation_unit" class="input-group-btn">
+                                            <select class="">
+                                                <option>分钟</option>
+                                                <option>小时</option>
+                                                <option>天</option>
+                                            </select>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>烹饪时间</option>
-                                        <option>小于10分钟</option>
-                                    </select>
+                                    <div class="input-group input-group-sm">
+                                        <input id="cook_time" name="cook_time" type="text"
+                                               class="form-control" placeholder="烹饪时间">
+                                        <span id="cook_unit" name="cook_unit" class="input-group-btn">
+                                            <select class="">
+                                                <option>分钟</option>
+                                                <option>小时</option>
+                                                <option>天</option>
+                                            </select>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control">
-                                        <option>选择人数</option>
-                                        <option>2人份</option>
+                                    <select class="form-control" id="servingsOfPeople" name="servingsOfPeople">
+                                        <option value="" selected disabled>选择人数</option>
+                                        <option value="1">1人份</option>
+                                        <option value="2">2人份</option>
+                                        <option value="3">3人份</option>
+                                        <option value="4">4人份</option>
+                                        <option value="5">5人份</option>
+                                        <option value="6">6人份</option>
+                                        <option value="7">7人份</option>
+                                        <option value="8">8人份</option>
+                                        <option value="9">9人份</option>
+                                        <option value="10">大于10人</option>
                                     </select>
                                 </div>
                             </div>
@@ -211,7 +236,7 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <img id="title_image" class="title_image" src="https://dummyimage.com/360x420"/>
+                                    <img id="titleImage" src="https://dummyimage.com/360x420" style="height: 420px; width: 360px"/>
                                 </div>
                             </div>
                             <div class="col-xs-8">
@@ -219,9 +244,9 @@
                                 <hr/>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="title_image_upload" name="title_image_upload"
-                                           data-url="/web/recipe/add/upload">
-                                    <input id="title_image_path" type="hidden" name="title_image_path"/>
+                                    <input type="file" id="titleImageUpload" name="titleImageUpload"
+                                           data-url="/web/recipes/upload">
+                                    <input id="titleImagePath" type="hidden" name="titleImagePath"/>
                                 </a>
                             </div>
                         </div>
@@ -241,13 +266,13 @@
                                 <div class="form-group">
                                     <label class="sr-only" for="exampleInputEmail3">Email address</label>
                                     <input type="text" class="form-control" id="exampleInputEmail3"
-                                           placeholder="请填写主料名称">
+                                           placeholder="主料名称，例如：龙虾">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon">@</span>
                                     <label class="sr-only" for="exampleInputPassword3">Password</label>
                                     <input type="text" class="form-control" id="exampleInputPassword3"
-                                           placeholder="请填写用量">
+                                           placeholder="填写用量，例如：500克">
                                 </div>
                                 <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
                             </div>
@@ -485,10 +510,10 @@
 <script src="/libs/blueimp-load-image/js/load-image.all.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $('#title_image_upload').fileupload({
+        $('#titleImageUpload').fileupload({
             dataType: 'json',
             done: function (e, data) {
-                $("#title_image").attr("src", data.result.url);
+                $("#titleImage").attr("src", data.result.url);
                 $(this).next(":hidden").val(data.result.url);
             }
         });

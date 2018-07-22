@@ -40,6 +40,7 @@ exports.renderCreateOrUpdate = function (req, res) {
         // 属性
         craftworkOptions: constant.DATASET_CRAFTWORK,
         flavorOptions: constant.DATASET_FLAVOR,
+        difficultyOptions: constant.DATASET_DIFFICULTY,
     });
 };
 

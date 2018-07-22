@@ -13,11 +13,6 @@ body, button, input, select, textarea {
     height: 100px;
 }
 
-.title_image {
-    width: 360px;
-    height: 420px;
-}
-
 .file {
     position: relative;
     display: inline-block;

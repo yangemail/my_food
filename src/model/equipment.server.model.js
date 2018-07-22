@@ -3,12 +3,11 @@
 const mongoose = require('mongoose')
     , Schema = mongoose.Schema;
 
-const IngredientSchema = new Schema({
+const EquipmentSchema = new Schema({
     category: String,
     type: String,
     name: String,
     imagePath: String,
-    medicalEffect: [String], // 功效
     description: String,
     sequence: Number,
     sellerInfo: [
@@ -21,5 +20,4 @@ const IngredientSchema = new Schema({
     ],
 });
 
-mongoose.model('Ingredient', IngredientSchema);
-
+mongoose.model('Equipment', EquipmentSchema);

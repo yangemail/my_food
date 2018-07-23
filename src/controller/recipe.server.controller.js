@@ -29,7 +29,6 @@ exports.renderCreateOrUpdate = function (req, res) {
         countryOptions: constant.DATASET_COUNTRY,
         chinaLocalCuisineOptions: constant.DATASET_CHINA_LOCAL_CUISINE,
         chinaLocalSnakeOptions: constant.DATASET_CHINA_LOCAL_SNAKE,
-        chinaFoodStyleOptions: constant.DATASET_CHINA_FOOD_STYLE,
         foreignFoodOrderOptions: constant.DATASET_FOREIGN_FOOD_ORDER,
         // 类型
         serveTypeOptions: constant.DATASET_SERVE_TYPE,
@@ -46,7 +45,31 @@ exports.renderCreateOrUpdate = function (req, res) {
 
 exports.create = function (req, res) {
     const recipe = new Recipe(req.body);
+
+    // CookInfo
+    const cookInfo = recipe.cookInfo;
+    cookInfo['country'] = req.body['cookInfoCountry'];
+    cookInfo['chinaLocalCuisine'] = req.body['cookInfoChinaLocalCuisine'];
+    cookInfo['chinaLocalSnake'] = req.body['cookInfoChinaLocalSnake'];
+    cookInfo['foreignFoodOrder'] = req.body['cookInfoForeignFoodOrder'];
+    cookInfo['serveType'] = req.body['cookInfoServeType'];
+    cookInfo['foodTime'] = req.body['cookInfoFoodTime'];
+    cookInfo['foodSpecialEvent'] = req.body['cookInfoFoodSpecialEvent'];
+    cookInfo['foodComfortPeople'] = req.body['cookInfoFoodComfortPeople'];
+    cookInfo['craftwork'] = req.body['cookInfoCraftwork'];
+    cookInfo['flavor'] = req.body['cookInfoFlavor'];
+    cookInfo['difficulty'] = req.body['cookInfoDifficulty'];
+    cookInfo.preparation['time'] = req.body['cookInfoPreparationTime'];
+    cookInfo.preparation['unit'] = req.body['cookInfoPreparationUnit'];
+    cookInfo.cooking['time'] = req.body['cookInfoCookingTime'];
+    cookInfo.cooking['unit'] = req.body['cookInfoCookingUnit'];
+    cookInfo['servingsOfPeople'] = req.body['cookInfoServingsOfPeople'];
+
     recipe.author = req.user;
+
+    console.log('user -> ' + req.user);
+    console.log("recipe -> " + recipe);
+
 
     recipe.save((err) => {
         if (err) {
@@ -171,26 +194,26 @@ exports.multerConfig = multer({
         cb(null, true);
     }
 }).fields([
-    {name: 'title_image_upload', maxCount: 1},
-    {name: 'step1pic', maxCount: 1},
-    {name: 'step2pic', maxCount: 1},
-    {name: 'step3pic', maxCount: 1},
-    {name: 'step4pic', maxCount: 1},
-    {name: 'step5pic', maxCount: 1},
-    {name: 'step6pic', maxCount: 1},
-    {name: 'step7pic', maxCount: 1},
-    {name: 'step8pic', maxCount: 1},
-    {name: 'step9pic', maxCount: 1},
-    {name: 'step10pic', maxCount: 1},
-    {name: 'step11pic', maxCount: 1},
-    {name: 'step12pic', maxCount: 1},
-    {name: 'step13pic', maxCount: 1},
-    {name: 'step14pic', maxCount: 1},
-    {name: 'step15pic', maxCount: 1},
-    {name: 'done1pic', maxCount: 1},
-    {name: 'done2pic', maxCount: 1},
-    {name: 'done3pic', maxCount: 1},
-    {name: 'done4pic', maxCount: 1},
+    {name: 'titleImageUpload', maxCount: 1},
+    {name: 'stepImageUpload1', maxCount: 1},
+    {name: 'stepImageUpload2', maxCount: 1},
+    {name: 'stepImageUpload3', maxCount: 1},
+    {name: 'stepImageUpload4', maxCount: 1},
+    {name: 'stepImageUpload5', maxCount: 1},
+    {name: 'stepImageUpload6', maxCount: 1},
+    {name: 'stepImageUpload7', maxCount: 1},
+    {name: 'stepImageUpload8', maxCount: 1},
+    {name: 'stepImageUpload9', maxCount: 1},
+    {name: 'stepImageUpload10', maxCount: 1},
+    {name: 'stepImageUpload11', maxCount: 1},
+    {name: 'stepImageUpload12', maxCount: 1},
+    {name: 'stepImageUpload13', maxCount: 1},
+    {name: 'stepImageUpload14', maxCount: 1},
+    {name: 'stepImageUpload15', maxCount: 1},
+    {name: 'completePicsImageUpload1', maxCount: 1},
+    {name: 'completePicsImageUpload2', maxCount: 1},
+    {name: 'completePicsImageUpload3', maxCount: 1},
+    {name: 'completePicsImageUpload4', maxCount: 1},
 ]);
 
 exports.upload = function (req, res, next) {

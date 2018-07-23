@@ -10,11 +10,11 @@ const mongoose = require('mongoose')
     , DATASET_FOOD_CONFORT_PEOPLE
     , DATASET_FOOD_SPECIAL_EVENT_WESTERN_COUNTRY
     , DATASET_FOOD_SPECIAL_EVENT_CHINA
-    , DATASET_CHINA_FOOD_STYLE
     , DATASET_FOREIGN_FOOD_ORDER
     , DATASET_SERVE_TYPE
     , DATASET_CRAFTWORK
     , DATASET_FLAVOR
+    , DATASET_DIFFICULTY
 } = require('../config/constant.server.config');
 
 // If set timestamps, mongoose assigns "createdAt" and "updatedAt" fields to your schema, the type assigned is Date.
@@ -36,8 +36,8 @@ const RecipeSchema = new Schema({
     },
     //来源
     source: {type: String},
-    // begin of -- 美食类型 -----
-    foodStyle: {
+    // begin of 菜品细节
+    cookInfo: {
         // 国家
         country: {
             type: String,
@@ -45,7 +45,7 @@ const RecipeSchema = new Schema({
             validate: {
                 validator: function (v) {
                     return DATASET_COUNTRY.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在国家列表中'
             }
         },
         // 适合中国菜谱
@@ -54,7 +54,7 @@ const RecipeSchema = new Schema({
             validate: {
                 validator: function (v) {
                     return DATASET_CHINA_LOCAL_CUISINE.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在中国菜系列表中'
             }
         },
         // 中国各地小吃
@@ -63,16 +63,7 @@ const RecipeSchema = new Schema({
             validate: {
                 validator: function (v) {
                     return DATASET_CHINA_LOCAL_SNAKE.includes(v);
-                }, message: '{VALUE}不在列表中'
-            }
-        },
-        // 中国菜谱类型
-        chinaFoodStyle: {
-            type: String,
-            validate: {
-                validator: function (v) {
-                    return DATASET_CHINA_FOOD_STYLE.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在各地小吃列表中'
             }
         },
         // 适合国外菜谱
@@ -81,56 +72,60 @@ const RecipeSchema = new Schema({
             validate: {
                 validator: function (v) {
                     return DATASET_FOREIGN_FOOD_ORDER.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在上菜顺序列表中'
             }
         },
-        // 类型
+        /////// 类型 //////
         // 食物类型（中国，国外）
         serveType: {
             type: String,
             validate: {
                 validator: function (v) {
                     return DATASET_SERVE_TYPE.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在美食类别列表中'
             }
         },
         // 每日三餐（中国，国外）
         foodTime: {
             type: [String],
-            validate: {
-                validator: function (v) {
-                    return DATASET_FOOD_TIME.includes(v);
-                }, message: '{VALUE}不在列表中'
-            }
+            required: false,
+            // validate: {
+            //     validator: function (v) {
+            //         if (Array.isArray(v)) {
+            //             for(let i in v) {
+            //                 console.log('-----' + v[i]);
+            //             }
+            //         }
+            //
+            //     }, message: '{VALUE}不在美食时间列表中'
+            // }
         },
         // 节日（中国，国外）
         foodSpecialEvent: {
             type: String,
+            required: false,
             validate: {
                 validator: function (v) {
                     return DATASET_FOOD_SPECIAL_EVENT_WESTERN_COUNTRY.includes(v)
                         || DATASET_FOOD_SPECIAL_EVENT_CHINA.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在节日特色列表中'
             }
         },
         // 适合人群人群（中国，国外）
         foodComfortPeople: {
             type: [String],
-            validate: {
-                validator: function (v) {
-                    return DATASET_FOOD_CONFORT_PEOPLE.includes(v);
-                }, message: '{VALUE}不在列表中'
-            }
+            required: false,
+            // validate: {
+            //     validator: function (v) {
+            //         return DATASET_FOOD_CONFORT_PEOPLE.includes(v);
+            //     }, message: '{VALUE}不在适合人群列表中'
+            // }
         },
-    },
-    // end of --美食类型
-
-    // begin of 菜品细节
-    cookInfo: {
         // 功效
         foodFunction: {
             type: [String],
-            // Value 从食物中取得
+            required: false,
+            // **** Value 从食物中取得
         },
         // 工艺
         craftwork: {
@@ -138,7 +133,7 @@ const RecipeSchema = new Schema({
             validate: {
                 validator: function (v) {
                     return DATASET_CRAFTWORK.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在工艺列表中'
             }
         },
         // 口味
@@ -147,7 +142,7 @@ const RecipeSchema = new Schema({
             validate: {
                 validator: function (v) {
                     return DATASET_FLAVOR.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在口味列表中'
             }
         },
         // 难度
@@ -156,14 +151,15 @@ const RecipeSchema = new Schema({
             validate: {
                 validator: function (v) {
                     return DATASET_DIFFICULTY.includes(v);
-                }, message: '{VALUE}不在列表中'
+                }, message: '{VALUE}不在难度列表中'
             }
         },
         // 准备时间
         preparation: {
             time: {
                 type: Number,
-                min: 0
+                min: 0,
+                required: false
             },
             unit: {
                 type: String,
@@ -171,10 +167,11 @@ const RecipeSchema = new Schema({
             }
         },
         // 烹饪时间
-        cook: {
+        cooking: {
             time: {
                 type: Number,
-                min: 0
+                min: 0,
+                required: false
             },
             unit: {
                 type: String,
@@ -185,7 +182,7 @@ const RecipeSchema = new Schema({
         servingsOfPeople: {
             type: Number,
             min: 0,
-            max: 20
+            max: 10
         },
     },
     // end of 菜品细节
@@ -204,28 +201,31 @@ const RecipeSchema = new Schema({
     // end of 成品图 ---
 
     // 用料
-    ingredient: {
+    ingredients: {
         major: [{ // 用料（主料）
-            ingredient:{
+            ingredient: {
                 type: Schema.Types.ObjectId,
                 ref: 'Ingredient'
             },
             consumption: String // 用量
         }],
-        sub: { // 用料（辅料）
-            ingredient:{
+        sub: [{ // 用料（辅料）
+            ingredient: {
                 type: Schema.Types.ObjectId,
                 ref: 'Ingredient'
             },
             consumption: String // 用量
-        }
+        }]
     },
     steps: [{
         imagePath: String,
-        stepDesc: String,
+        description: String,
         sequence: Number
     }],
-    completePics: [String],
+    completePics: {
+        imagePath: String,
+        sequence: Number
+    },
     exportTips: String,
     conclusion: String,
     // end of 菜谱细节
@@ -314,7 +314,7 @@ const RecipeSchema = new Schema({
             }]
         },
         bookmarkCount: Number, // 加入菜单
-        viewCount: Number// 页面浏览次数
+        viewedCount: Number// 页面浏览次数
     }
 });
 

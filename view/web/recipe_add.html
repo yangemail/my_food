@@ -23,7 +23,7 @@
             <div class="box-body">
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" action="/web/recipes" method="post">
                     <div class="box-body">
                         <div class="alert alert-warning alert-dismissible">
                             <i class="icon fa fa-info"></i>小提示：菜谱发布并审核通过后，将被本站收录并展示。
@@ -33,8 +33,8 @@
                             <div class="col-xs-4">
                                 <div class="form-group">
                                     <label for="title">标题</label>
-                                    <input type="text" class="form-control" id="title" name="title" maxlength="20"
-                                           placeholder="请填写菜谱名称（20字以内）">
+                                    <input type="text" class="form-control" id="title" name="title" maxlength="15"
+                                           placeholder="请填写菜谱名称（15字以内）">
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="country" name="country">
+                                    <select class="form-control" id="cookInfoCountry" name="cookInfoCountry">
                                         <option value="" disabled selected>国家</option>
                                         {% for item in countryOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -66,7 +66,8 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="chinaLocalCuisine" name="chinaLocalCuisine">
+                                    <select class="form-control" id="cookInfoChinaLocalCuisine"
+                                            name="cookInfoChinaLocalCuisine">
                                         <option value="" disabled selected>中国菜系</option>
                                         {% for item in chinaLocalCuisineOptions %}
                                         <option value="{{item}}">{{item}}</option>
@@ -74,7 +75,8 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="chinaLocalSnake" name="chinaLocalSnake">
+                                    <select class="form-control" id="cookInfoChinaLocalSnake"
+                                            name="cookInfoChinaLocalSnake">
                                         <option value="" disabled selected>中国各地小吃</option>
                                         {% for item in chinaLocalSnakeOptions %}
                                         <option value="{{item}}">{{item}}</option>
@@ -82,16 +84,9 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="chinaFoodStyle" name="chinaFoodStyle">
-                                        <option value="" selected disabled>所属类别</option>
-                                        {% for item in chinaFoodStyleOptions %}
-                                        <option value="{{item}}">{{item}}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                                <div class="col-xs-2">
-                                    <select class="form-control" id="foreignFoodOrder" name="foreignFoodOrder">
-                                        <option>上菜顺序</option>
+                                    <select class="form-control" id="cookInfoForeignFoodOrder"
+                                            name="cookInfoForeignFoodOrder">
+                                        <option value="" disabled selected>上菜顺序</option>
                                         {% for item in foreignFoodOrderOptions %}
                                         <option value="{{item}}">{{item}}</option>
                                         {% endfor %}
@@ -108,7 +103,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="serveType" name="serveType">
+                                    <select class="form-control" id="cookInfoServeType" name="cookInfoServeType">
                                         <option value="" disabled selected>美食类别</option>
                                         {% for item in serveTypeOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -116,7 +111,7 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="foodTime" name="foodTime">
+                                    <select class="form-control" id="cookInfoFoodTime" name="cookInfoFoodTime">
                                         <option value="" disabled selected>美食时间</option>
                                         {% for item in foodTimeOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -124,7 +119,8 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="foodSpecialEvent" name="foodSpecialEvent">
+                                    <select class="form-control" id="cookInfoFoodSpecialEvent"
+                                            name="cookInfoFoodSpecialEvent">
                                         <option value="" disabled selected>节日特色</option>
                                         <optgroup label="中华">
                                             {% for item in foodSpecialEventChinaOptions %}
@@ -139,7 +135,8 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="foodComfortPeople" name="foodComfortPeople">
+                                    <select class="form-control" id="cookInfoFoodComfortPeople"
+                                            name="cookInfoFoodComfortPeople">
                                         <option value="" disabled selected>适合人群</option>
                                         {% for item in foodComfortPeopleOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -147,7 +144,6 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-
                                 </div>
                                 <div class="col-xs-2">
                                 </div>
@@ -160,7 +156,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="craftwork" name="craftwork">
+                                    <select class="form-control" id="cookInfoCraftwork" name="cookInfoCraftwork">
                                         <option disabled selected>选择工艺</option>
                                         {% for item in craftworkOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -168,7 +164,7 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="flavor" name="flavor">
+                                    <select class="form-control" id="cookInfoFlavor" name="cookInfoFlavor">
                                         <option value="" selected disabled>选择口味</option>
                                         {% for item in flavorOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -176,7 +172,7 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="difficulty" name="difficulty">
+                                    <select class="form-control" id="cookInfoDifficulty" name="cookInfoDifficulty">
                                         <option value="" selected disabled>选择难度</option>
                                         {% for item in difficultyOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -185,32 +181,36 @@
                                 </div>
                                 <div class="col-xs-2">
                                     <div class="input-group input-group-sm">
-                                        <input id="preparation_time" name="preparation_time" type="text"
+                                        <input id="cookInfoPreparationTime" name="cookInfoPreparationTime" type="text"
                                                class="form-control" placeholder="准备时间">
-                                        <span id="preparation_unit" name="preparation_unit" class="input-group-btn">
-                                            <select class="">
-                                                <option>分钟</option>
-                                                <option>小时</option>
-                                                <option>天</option>
+                                        <span class="input-group-btn">
+                                            <select id="cookInfoPreparationUnit" name="cookInfoPreparationUnit"
+                                                    class="">
+                                                <option value="" disabled selected>单位</option>
+                                                <option value="分钟">分钟</option>
+                                                <option value="小时">小时</option>
+                                                <option value="天">天</option>
                                             </select>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-2">
                                     <div class="input-group input-group-sm">
-                                        <input id="cook_time" name="cook_time" type="text"
+                                        <input id="cookInfoCookingTime" name="cookInfoCookingTime" type="text"
                                                class="form-control" placeholder="烹饪时间">
-                                        <span id="cook_unit" name="cook_unit" class="input-group-btn">
-                                            <select class="">
-                                                <option>分钟</option>
-                                                <option>小时</option>
-                                                <option>天</option>
+                                        <span class="input-group-btn">
+                                            <select class="" id="cookInfoCookingUnit" name="cookInfoCookingUnit">
+                                                <option value="" disabled selected>单位</option>
+                                                <option value="分钟">分钟</option>
+                                                <option value="小时">小时</option>
+                                                <option value="天">天</option>
                                             </select>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="servingsOfPeople" name="servingsOfPeople">
+                                    <select class="form-control" id="cookInfoServingsOfPeople"
+                                            name="cookInfoServingsOfPeople">
                                         <option value="" selected disabled>选择人数</option>
                                         <option value="1">1人份</option>
                                         <option value="2">2人份</option>
@@ -236,7 +236,8 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <img id="titleImage" src="https://dummyimage.com/360x420" style="height: 420px; width: 360px"/>
+                                    <img id="titleImage" src="https://dummyimage.com/360x420"
+                                         style="height: 420px; width: 360px"/>
                                 </div>
                             </div>
                             <div class="col-xs-8">
@@ -246,7 +247,7 @@
                                 <a href="javascript:;" class="file">选择文件
                                     <input type="file" id="titleImageUpload" name="titleImageUpload"
                                            data-url="/web/recipes/upload">
-                                    <input id="titleImagePath" type="hidden" name="titleImagePath"/>
+                                    <input id="titleImagePath" type="hidden" name="titleImagePath" value=""/>
                                 </a>
                             </div>
                         </div>
@@ -264,31 +265,37 @@
                         <div class="row">
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail3"
+                                    <label class="sr-only" for="ingredientsMajorIngredient1"></label>
+                                    <input type="text" class="form-control" id="ingredientsMajorIngredient1"
+                                           name="ingredientsMajorIngredient1"
                                            placeholder="主料名称，例如：龙虾">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon">@</span>
-                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword3"
+                                    <label class="sr-only" for="ingredientsMajorConsumption1"></label>
+                                    <input type="text" class="form-control" id="ingredientsMajorConsumption1"
+                                           name="ingredientsMajorConsumption1"
                                            placeholder="填写用量，例如：500克">
                                 </div>
-                                <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
+                                <button id="ingredients_major_btn_1" type="button" class="btn btn-box-tool"><i
+                                        class="fa fa-remove"></i></button>
                             </div>
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail33"
+                                    <label class="sr-only" for="ingredientsMajorIngredient2"></label>
+                                    <input type="text" class="form-control" id="ingredientsMajorIngredient2"
+                                           name="ingredientsMajorIngredient2"
                                            placeholder="请填写主料名称">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon">@</span>
-                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword33"
+                                    <label class="sr-only" for="ingredientsMajorConsumption2"></label>
+                                    <input type="text" class="form-control" id="ingredientsMajorConsumption2"
+                                           name="ingredientsMajorConsumption2"
                                            placeholder="请填写用量">
                                 </div>
-                                <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
+                                <button id="ingredients_major_btn_2" type="button" class="btn btn-box-tool"><i
+                                        class="fa fa-remove"></i></button>
                             </div>
                         </div>
                         <br/>
@@ -300,28 +307,32 @@
                         <div class="row">
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail3"
+                                    <label class="sr-only" for="ingredientsSubIngredient1"></label>
+                                    <input type="text" class="form-control" id="ingredientsSubIngredient1"
+                                           name="ingredientsSubIngredient1"
                                            placeholder="请填写主料名称">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon">@</span>
-                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword3"
+                                    <label class="sr-only" for="ingredientsSubConsumption1"></label>
+                                    <input type="text" class="form-control" id="ingredientsSubConsumption1"
+                                           name="ingredientsSubConsumption1"
                                            placeholder="请填写用量">
                                 </div>
                                 <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
                             </div>
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
-                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail33"
+                                    <label class="sr-only" for="ingredientsSubIngredient2"></label>
+                                    <input type="text" class="form-control" id="ingredientsSubIngredient2"
+                                           name="ingredientsSubIngredient2"
                                            placeholder="请填写主料名称">
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon">@</span>
-                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword33"
+                                    <label class="sr-only" for="ingredientsSubConsumption2"></label>
+                                    <input type="text" class="form-control" id="ingredientsSubConsumption2"
+                                           name="ingredientsSubConsumption2"
                                            placeholder="请填写用量">
                                 </div>
                                 <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
@@ -340,16 +351,18 @@
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img src="https://dummyimage.com/350x300" id="stepsImage1"
+                                         style="width: 350px; height: 300px;">
                                 </div>
                             </div>
                             <div class="col-xs-7">
-                                <textarea class="form-control" rows="11" placeholder="请填写步骤描述"></textarea>
+                                <textarea id="stepsDescription1" name="stepsDescription1" class="form-control" rows="11"
+                                          placeholder="请填写步骤描述"></textarea>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="" name="title_image_upload"
-                                           data-url="/web/recipe/add/upload">
-                                    <input id="" type="hidden" name="title_image_path"/>
+                                    <input type="file" id="stepsImageUpload1" data-url="/web/recipes/upload">
+                                    <input id="stepsImagePath1" type="hidden" name="stepsImagePath1" value=""/>
+                                    <input id="stepsSequence1" name="stepsSequence1" value="1" type="hidden"/>
                                 </a>
                             </div>
                         </div>
@@ -360,16 +373,19 @@
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img src="https://dummyimage.com/350x300" id="stepsImage2"
+                                         style="width: 350px; height: 300px;">
                                 </div>
                             </div>
                             <div class="col-xs-7">
-                                <textarea class="form-control" rows="11" placeholder="请填写步骤描述"></textarea>
+                                <textarea id="stepsDescription2" name="stepsDescription2" class="form-control" rows="11"
+                                          placeholder="请填写步骤描述"></textarea>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="" name="title_image_upload"
-                                           data-url="/web/recipe/add/upload">
-                                    <input id="" type="hidden" name="title_image_path"/>
+                                    <input type="file" id="stepsImageUpload2" name="stepsImageUpload2"
+                                           data-url="/web/recipes/upload">
+                                    <input id="stepsImagePath2" type="hidden" name="stepsImagePath2" value=""/>
+                                    <input id="stepsSequence2" name="stepsSequence2" value="2" type="hidden"/>
                                 </a>
                             </div>
                         </div>
@@ -380,16 +396,19 @@
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img src="https://dummyimage.com/350x300" id="stepImage3"
+                                         style="width: 350px; height: 300px;">
                                 </div>
                             </div>
                             <div class="col-xs-7">
-                                <textarea class="form-control" rows="11" placeholder="请填写步骤描述"></textarea>
+                                <textarea id="stepsDescription3" name="stepsDescription3" class="form-control" rows="11"
+                                          placeholder="请填写步骤描述"></textarea>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="" name="title_image_upload"
-                                           data-url="/web/recipe/add/upload">
-                                    <input id="" type="hidden" name="title_image_path"/>
+                                    <input type="file" id="stepsImageUpload3" name="stepsImageUpload3"
+                                           data-url="/web/recipes/upload">
+                                    <input id="stepsImagePath3" type="hidden" name="stepsImagePath3" value=""/>
+                                    <input id="stepsSequence3" name="stepsSequence3" value="3" type="hidden"/>
                                 </a>
                             </div>
                         </div>
@@ -400,28 +419,31 @@
                             </div>
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img src="https://dummyimage.com/350x300" id="stepsImage4"
+                                         style="width: 350px; height: 300px;">
                                 </div>
                             </div>
                             <div class="col-xs-7">
-                                <textarea class="form-control" rows="11" placeholder="请填写步骤描述"></textarea>
+                                <textarea id="stepsDescription4" name="stepsDescription4" class="form-control" rows="11"
+                                          placeholder="请填写步骤描述"></textarea>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="" name="title_image_upload"
-                                           data-url="/web/recipe/add/upload">
-                                    <input id="" type="hidden" name="title_image_path"/>
+                                    <input type="file" id="stepImageUpload4" name="stepImageUpload4"
+                                           data-url="/web/recipes/upload">
+                                    <input id="stepsImagePath4" type="hidden" name="stepsImagePath4" value=""/>
+                                    <input id="stepsSequence4" name="stepsSequence4" value="1" type="hidden"/>
                                 </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">步骤 <a class="btn"><i class="fa fa-plus"></i> 增加一步</a></div>
                         </div>
-
                         <hr/>
+                        <!-- 成品图 -->
                         <div class="alert alert-warning alert-dismissible">
                             <i class="icon fa fa-info"></i> 最终效果图：<br/>
                             <ol>
-                                <li>请上传两张或以上不同角度成品图，宽度500-600像素之间，最好横图竖图、远景近景图都有</li>
+                                <li>请上传两张或以上，最多4张不同角度成品图，最好横图竖图、远景近景图都有</li>
                                 <li>请使用小于5MB的JPG、PNG、GIF格式图片</li>
                             </ol>
                         </div>
@@ -429,23 +451,29 @@
                             <div class="col-xs-1"></div>
                             <div class="col-xs-5">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img id="completePicsImage1" src="https://dummyimage.com/350x300"
+                                         style="width: 350px; height: 300px;">
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
-                                        <input type="file" id="" name="title_image_upload"
-                                               data-url="/web/recipe/add/upload">
-                                        <input id="" type="hidden" name="title_image_path"/>
+                                        <input type="file" id="completePicsImageUpload1" name="completePicsImageUpload1"
+                                               data-url="/web/recipes/upload">
+                                        <input id="completePicsImagePath1" type="hidden" name="completePicsImagePath1"/>
+                                        <input id="completePicsSequence1" type="hidden" name="completePicsSequence1"
+                                               value="1"/>
                                     </a>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img id="completePicsImage2" src="https://dummyimage.com/350x300"
+                                         style="width: 350px; height: 300px;">
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
-                                        <input type="file" id="" name="title_image_upload"
-                                               data-url="/web/recipe/add/upload">
-                                        <input id="" type="hidden" name="title_image_path"/>
+                                        <input type="file" id="completePicsImageUpload2" name="completePicsImageUpload2"
+                                               data-url="/web/recipes/upload">
+                                        <input id="completePicsImagePath2" type="hidden" name="completePicsImagePath2"/>
+                                        <input id="completePicsSequence2" type="hidden" name="completePicsSequence2"
+                                               value="2"/>
                                     </a>
                                 </div>
                             </div>
@@ -454,23 +482,29 @@
                             <div class="col-xs-1"></div>
                             <div class="col-xs-5">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img id="completePicsImage3" src="https://dummyimage.com/350x300"
+                                         style="width: 350px; height: 300px;">
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
-                                        <input type="file" id="" name="title_image_upload"
-                                               data-url="/web/recipe/add/upload">
-                                        <input id="" type="hidden" name="title_image_path"/>
+                                        <input type="file" id="completePicsImageUpload3" name="completePicsImageUpload3"
+                                               data-url="/web/recipes/upload">
+                                        <input id="completePicsImagePath3" type="hidden" name="completePicsImagePath3"/>
+                                        <input id="completePicsSequence3" type="hidden" name="completePicsSequence3"
+                                               value="3"/>
                                     </a>
                                 </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300">
+                                    <img id="completePicsImage4" src="https://dummyimage.com/350x300"
+                                         style="width: 350px; height: 300px;">
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
-                                        <input type="file" id="" name="title_image_upload"
-                                               data-url="/web/recipe/add/upload">
-                                        <input id="" type="hidden" name="title_image_path"/>
+                                        <input type="file" id="completePicsImageUpload4" name="completePicsImageUpload4"
+                                               data-url="/web/recipes/upload">
+                                        <input id="completePicsImagePath4" type="hidden" name="completePicsImagePath4"/>
+                                        <input id="completePicsSequence4" type="hidden" name="completePicsSequence4"
+                                               value="4"/>
                                     </a>
                                 </div>
                             </div>
@@ -479,7 +513,8 @@
                         <!-- 小技巧 -->
                         <div class="form-group">
                             <label>烹饪小技巧</label>
-                            <textarea class="form-control" rows="5" placeholder="分享一下心得和小技巧吧"></textarea>
+                            <textarea id="exportTips" name="exportTips" class="form-control" rows="5"
+                                      placeholder="分享一下心得和小技巧吧"></textarea>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -517,17 +552,15 @@
                 $(this).next(":hidden").val(data.result.url);
             }
         });
-        $("#country").on('change', function () {
+        $("#cookInfoCountry").on('change', function () {
             if (this.value !== '中国') {
-                $("#chinaLocalCuisine").prop("disabled", "disabled");
-                $("#chinaLocalSnake").prop("disabled", "disabled");
-                $("#chinaFoodStyle").prop("disabled", "disabled");
-                $("#foreignFoodOrder").prop("disabled", false);
+                $("#cookInfoChinaLocalCuisine").prop("disabled", "disabled");
+                $("#cookInfoChinaLocalSnake").prop("disabled", "disabled");
+                $("#cookInfoForeignFoodOrder").prop("disabled", false);
             } else {
-                $("#chinaLocalCuisine").prop("disabled", false);
-                $("#chinaLocalSnake").prop("disabled", false);
-                $("#chinaFoodStyle").prop("disabled", false);
-                $("#foreignFoodOrder").prop("disabled", "disabled");
+                $("#cookInfoChinaLocalCuisine").prop("disabled", false);
+                $("#cookInfoChinaLocalSnake").prop("disabled", false);
+                $("#cookInfoForeignFoodOrder").prop("disabled", "disabled");
             }
         })
     });

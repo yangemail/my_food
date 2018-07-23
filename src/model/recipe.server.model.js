@@ -293,7 +293,12 @@ const RecipeSchema = new Schema({
     }],
     status: {
         type: String,
-        enum: ['draft', 'active', 'archived', 'deleted']
+        // draft: 草稿
+        // review: 待审核
+        // active: 展示
+        // archived: 归档，不再展示
+        // deleted: 逻辑删除
+        enum: ['draft', 'review', 'active', 'archived', 'deleted']
     },
     meta: {
         stars: {

@@ -562,7 +562,34 @@
                 $("#cookInfoChinaLocalSnake").prop("disabled", false);
                 $("#cookInfoForeignFoodOrder").prop("disabled", "disabled");
             }
-        })
+        });
+        var availableTags = [
+            "ActionScript",
+            "AppleScript",
+            "Asp",
+            "BASIC",
+            "C",
+            "C++",
+            "Clojure",
+            "COBOL",
+            "ColdFusion",
+            "Erlang",
+            "Fortran",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Lisp",
+            "Perl",
+            "PHP",
+            "Python",
+            "Ruby",
+            "Scala",
+            "Scheme"
+        ];
+        $("#ingredientsMajorIngredient1").autocomplete({
+            source: availableTags
+        });
     });
 </script>
 {% endblock %}

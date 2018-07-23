@@ -64,6 +64,10 @@ exports.create = function (req, res) {
     cookInfo.cooking['time'] = req.body['cookInfoCookingTime'];
     cookInfo.cooking['unit'] = req.body['cookInfoCookingUnit'];
     cookInfo['servingsOfPeople'] = req.body['cookInfoServingsOfPeople'];
+    // 原料
+    const ingredients = recipe.ingredients;
+    let major = [];
+    req.body['ingredientsMajorIngredient1'];
 
     recipe.author = req.user;
 

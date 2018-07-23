@@ -38,8 +38,25 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
+    <!-- JQuery UI -->
+    <link href="/libs/jquery-ui/themes/base/jquery-ui.css"/>
     <!-- THEME CSS -->
     <link rel="stylesheet" href="/static/assets/css/main.css">
+
+    <style>
+        #topcontrol {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background: url(/static/assets/img/customize/top.jpg);
+            margin-right: 14px;
+            margin-bottom: 5px;
+        }
+
+        #topcontrol:hover {
+            background: url(/static/assets/img/customize/top.jpg) 0px 50px;
+        }
+    </style>
 
     <!-- Page Styles -->
     {% block style %} {% endblock %}
@@ -83,25 +100,30 @@
          Both of these plugins are recommended to enhance the
          user experience. -->
 
+    <!-- JQuery UI -->
+    <script src="/libs/jquery-ui/jquery-ui.js"></script>
+
     <!-- Customized JS -->
     <script src="/static/assets/js/index.js"></script>
+
 
     <!-- Page Scripts -->
     {% block script %} {% endblock %}
 </div>
 <!-- ./wrapper -->
 
+
 <script>
 
     $(function () {
         <!-- 返回到顶部 -->
-        $("a[href='#top']").click(function () {
+        $("div#topcontrol").click(function () {
             $("html, body").animate({scrollTop: 0}, "slow");
             return false;
         });
 
         <!-- 在文本或密码输入时禁止空格键 -->
-        $('input.nospace').keydown(function(e) {
+        $('input.nospace').keydown(function (e) {
             if (e.keyCode == 32) {
                 return false;
             }
@@ -109,5 +131,40 @@
     });
 
 </script>
+
+<script>
+    var IO = document.getElementById('scolls'), Y = IO, H = 0, IE6;
+    IE6 = window.ActiveXObject && !window.XMLHttpRequest;
+    while (Y) {
+        H += Y.offsetTop;
+        Y = Y.offsetParent
+    }
+    ;
+    if (IE6)
+        IO.style.cssText = "position:absolute;top:expression(this.fix?(document" +
+            ".documentElement.scrollTop-(this.javascript||" + H + ")):0)";
+    window.onscroll = function () {
+        var d = document, s = Math.max(d.documentElement.scrollTop, document.body.scrollTop);
+        if (s > H && IO.fix || s <= H && !IO.fix) return;
+        if (!IE6) IO.style.position = IO.fix ? "" : "fixed";
+        IO.fix = !IO.fix;
+    };
+    try {
+        document.execCommand("BackgroundImageCache", false, true)
+    } catch (e) {
+    }
+    ;
+    //]]>
+</script>
+<div id="topcontrol" title="点击回到顶部！"
+     style="position: fixed; bottom: 5px; right: 5px; opacity: 1; cursor: pointer;"></div>
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140" preserveAspectRatio="none"
+     style="visibility: hidden; position: absolute; top: -100%; left: -100%;">
+    <defs></defs>
+    <text x="0" y="10"
+          style="font-weight:bold;font-size:10pt;font-family:Arial, Helvetica, Open Sans, sans-serif;dominant-baseline:middle">
+        140x140
+    </text>
+</svg>
 </body>
 </html>

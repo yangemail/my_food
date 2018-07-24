@@ -29,7 +29,6 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="/web/recipes" method="post">
-                    <input id="uniqueId" value="{{uniqueId}}" type="hidden">
                     <div class="box-body">
                         <div class="alert alert-warning alert-dismissible">
                             <i class="icon fa fa-info"></i>小提示：菜谱发布并审核通过后，将被本站收录并展示。
@@ -122,7 +121,7 @@
                                         <label for="cookInfoFoodTime"
                                                class="col-sm-4 control-label"><span>美食时间</span></label>
                                         <div class="col-sm-8">
-                                            <select class="js-example-basic-multiple form-control select2"
+                                            <select class="basic-multiple form-control select2"
                                                     id="cookInfoFoodTime" name="cookInfoFoodTime"
                                                     multiple="multiple">
                                                 {% for item in foodTimeOptions %}
@@ -153,7 +152,7 @@
                                         <label for="cookInfoFoodComfortPeople"
                                                class="col-sm-4 control-label"><span>适合人群</span></label>
                                         <div class="col-sm-8">
-                                            <select class="js-example-basic-multiple form-control select2"
+                                            <select class="basic-multiple form-control select2"
                                                     id="cookInfoFoodComfortPeople" name="cookInfoFoodComfortPeople"
                                                     multiple="multiple">
                                                 <!--<option value="" disabled>适合人群</option>-->
@@ -449,9 +448,9 @@
                         </div>
                     </div>
                     <!-- /.box-body -->
-
+                    <input id="uniqueId" name="uniqueId" value="{{uniqueId}}" type="hidden">
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">保存草稿</button>
+                        <!--<button type="submit" class="btn btn-primary">保存草稿</button>-->
                         <button type="submit" class="btn btn-primary">提交审核</button>
                     </div>
                 </form>
@@ -493,6 +492,8 @@
         imageUpload($("#titleImageUpload"), $("#titleImage"));
         imageUpload($("#completePicsImageUpload1"), $("#completePicsImage1"));
         imageUpload($("#completePicsImageUpload2"), $("#completePicsImage2"));
+        imageUpload($("#completePicsImageUpload3"), $("#completePicsImage3"));
+        imageUpload($("#completePicsImageUpload4"), $("#completePicsImage4"));
 
         // -- End of Upload
         $("#cookInfoCountry").on('change', function () {
@@ -512,6 +513,10 @@
             } else {
                 $("#cookInfoChinaLocalSnake").prop("disabled", false);
             }
+        });
+
+        $(document).ready(function() {
+            $('.basic-multiple').select2();
         });
 
         var availableTags = [

@@ -224,10 +224,10 @@ const RecipeSchema = new Schema({
         sequence: Number
     }],
     // 成品图
-    completePics: {
+    completePics: [{
         imagePath: String,
         sequence: Number
-    },
+    }],
     // 小技巧
     exportTips: String,
     conclusion: String,
@@ -301,7 +301,7 @@ const RecipeSchema = new Schema({
         // active: 展示
         // archived: 归档，不再展示
         // deleted: 逻辑删除
-        enum: ['draft', 'review', 'active', 'archived', 'deleted']
+        enum: ['draft', 'review', 'reject', 'active', 'archived', 'deleted']
     },
     meta: {
         stars: {

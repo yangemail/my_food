@@ -92,15 +92,29 @@ exports.create = function (req, res) {
     const stepsCount = req.body['stepsCount'];
     const steps =recipe.steps;
     for(let i = 1; i <= stepsCount; i++) {
-        let _description = req.body['stepsDescription'+i];
+        let _description = req.body[`stepsDescription${i}`];
         if (_description) {
             steps.push({
-                imagePath: req.body['stepsImagePath'+i],
+                imagePath: req.body[`stepsImagePath${i}`],
                 description: _description,
-                sequence: req.body['stepsSequence'+i]
+                sequence: req.body[`stepsSequence${i}`]
             });
         }
     }
+
+    // 成品图
+    const completePics = recipe.completePics;
+    for(let i = 1; i <= 4; i++) {
+        let _imagePath = req.body[`completePicsImagePath${i}`];
+        if (_imagePath) {
+            completePics.push({
+                imagePath: _imagePath,
+                sequence: req.body[`completePicsSequence${i}`]
+            });
+        }
+    }
+
+    // 小技巧
 
 
     console.log("recipe -> " + recipe);

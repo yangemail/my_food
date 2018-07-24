@@ -1,5 +1,10 @@
 {% extends './inc/layout.html' %}
 
+<!-- Page Styles -->
+{% block style %}
+
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <!-- Content Header (Page header) -->
@@ -53,7 +58,7 @@
                         </div>
                         <!-- 区域 -->
                         <div class="row">
-                            <div class="col-md-12">区域文化</div>
+                            <div class="col-md-12"><label class="control-label">区域文化</label></div>
                         </div>
                         <div class="row">
                             <div class="form-group">
@@ -96,9 +101,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 区域文化 -->
+                        <br/>
                         <div class="row">
-                            <div class="col-md-12">类型</div>
+                            <!-- 类型 -->
+                            <div class="col-md-12"><label class="control-label">类型</label></div>
                         </div>
                         <div class="row">
                             <div class="form-group">
@@ -110,13 +116,20 @@
                                         {% endfor %}
                                     </select>
                                 </div>
-                                <div class="col-xs-2">
-                                    <select class="form-control" id="cookInfoFoodTime" name="cookInfoFoodTime">
-                                        <option value="" disabled selected>美食时间</option>
-                                        {% for item in foodTimeOptions %}
-                                        <option value="{{ item }}">{{ item }}</option>
-                                        {% endfor %}
-                                    </select>
+                                <div class="col-xs-4">
+                                    <div class="form-group form-horizontal">
+                                        <label for="cookInfoFoodTime"
+                                               class="col-sm-4 control-label"><span>美食时间</span></label>
+                                        <div class="col-sm-8">
+                                            <select class="js-example-basic-multiple form-control select2"
+                                                    id="cookInfoFoodTime" name="cookInfoFoodTime"
+                                                    multiple="multiple">
+                                                {% for item in foodTimeOptions %}
+                                                <option value="{{ item }}">{{ item }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-xs-2">
                                     <select class="form-control" id="cookInfoFoodSpecialEvent"
@@ -134,24 +147,32 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div class="col-xs-2">
-                                    <select class="form-control" id="cookInfoFoodComfortPeople"
-                                            name="cookInfoFoodComfortPeople">
-                                        <option value="" disabled selected>适合人群</option>
-                                        {% for item in foodComfortPeopleOptions %}
-                                        <option value="{{ item }}">{{ item }}</option>
-                                        {% endfor %}
-                                    </select>
+                                <div class="col-xs-4">
+                                    <div class="form-group form-horizontal">
+                                        <label for="cookInfoFoodComfortPeople"
+                                               class="col-sm-4 control-label"><span>适合人群</span></label>
+                                        <div class="col-sm-8">
+                                            <select class="js-example-basic-multiple form-control select2"
+                                                    id="cookInfoFoodComfortPeople" name="cookInfoFoodComfortPeople"
+                                                    multiple="multiple">
+                                                <!--<option value="" disabled>适合人群</option>-->
+                                                {% for item in foodComfortPeopleOptions %}
+                                                <option value="{{ item }}">{{ item }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-xs-2">
-                                </div>
-                                <div class="col-xs-2">
-                                </div>
+                                <!--<div class="col-xs-2">-->
+                                <!--</div>-->
+                                <!--<div class="col-xs-2">-->
+                                <!--</div>-->
                             </div>
                         </div>
                         <!-- 属性 -->
+                        <br/>
                         <div class="row">
-                            <div class="col-md-12">属性</div>
+                            <div class="col-md-12"><label class="control-label">属性</label></div>
                         </div>
                         <div class="row">
                             <div class="form-group">
@@ -535,6 +556,8 @@
 {% endblock %}
 
 {% block script %}
+
+
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="/libs/jquery-ui/jquery-ui.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
@@ -554,15 +577,23 @@
         });
         $("#cookInfoCountry").on('change', function () {
             if (this.value !== '中国') {
-                $("#cookInfoChinaLocalCuisine").prop("disabled", "disabled");
-                $("#cookInfoChinaLocalSnake").prop("disabled", "disabled");
+                $("#cookInfoChinaLocalCuisine").val("").prop("disabled", "disabled");
+                $("#cookInfoChinaLocalSnake").val("").prop("disabled", "disabled");
                 $("#cookInfoForeignFoodOrder").prop("disabled", false);
             } else {
                 $("#cookInfoChinaLocalCuisine").prop("disabled", false);
                 $("#cookInfoChinaLocalSnake").prop("disabled", false);
-                $("#cookInfoForeignFoodOrder").prop("disabled", "disabled");
+                $("#cookInfoForeignFoodOrder").val("").prop("disabled", "disabled");
             }
         });
+        $("#cookInfoChinaLocalCuisine").on('change', function () {
+            if (this.value !== '小吃') {
+                $("#cookInfoChinaLocalSnake").val("").prop("disabled", "disabled");
+            } else {
+                $("#cookInfoChinaLocalSnake").prop("disabled", false);
+            }
+        });
+
         var availableTags = [
             "ActionScript",
             "AppleScript",
@@ -590,6 +621,10 @@
         $("#ingredientsMajorIngredient1").autocomplete({
             source: availableTags
         });
+    });
+
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2();
     });
 </script>
 {% endblock %}

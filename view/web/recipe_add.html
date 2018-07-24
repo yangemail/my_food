@@ -29,6 +29,7 @@
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="/web/recipes" method="post">
+                    <input id="uniqueId" value="{{uniqueId}}" type="hidden">
                     <div class="box-body">
                         <div class="alert alert-warning alert-dismissible">
                             <i class="icon fa fa-info"></i>小提示：菜谱发布并审核通过后，将被本站收录并展示。
@@ -163,10 +164,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--<div class="col-xs-2">-->
-                                <!--</div>-->
-                                <!--<div class="col-xs-2">-->
-                                <!--</div>-->
                             </div>
                         </div>
                         <!-- 属性 -->
@@ -262,12 +259,13 @@
                                 </div>
                             </div>
                             <div class="col-xs-8">
-                                <textarea class="form-control" rows="15" placeholder="产品简介，说说这道菜的故事吧"></textarea>
+                                <textarea id="description" name="description" class="form-control" rows="15"
+                                          placeholder="产品简介，说说这道菜的故事吧"></textarea>
                                 <hr/>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
                                     <input type="file" id="titleImageUpload" name="titleImageUpload"
-                                           data-url="/web/recipes/upload">
+                                           data-url="/web/recipes/upload?uniqueId={{uniqueId}}">
                                     <input id="titleImagePath" type="hidden" name="titleImagePath" value=""/>
                                 </a>
                             </div>
@@ -366,98 +364,102 @@
                             2、每个步骤只用一段话描述，请勿在步骤中再细分“1.2.3.
                         </div>
                         <!-- 步骤1 -->
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <h4>步骤1</h4>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300" id="stepsImage1"
-                                         style="width: 350px; height: 300px;">
-                                </div>
-                            </div>
-                            <div class="col-xs-7">
-                                <textarea id="stepsDescription1" name="stepsDescription1" class="form-control" rows="11"
-                                          placeholder="请填写步骤描述"></textarea>
-                                <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
-                                <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="stepsImageUpload1" data-url="/web/recipes/upload">
-                                    <input id="stepsImagePath1" type="hidden" name="stepsImagePath1" value=""/>
-                                    <input id="stepsSequence1" name="stepsSequence1" value="1" type="hidden"/>
-                                </a>
-                            </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-1">-->
+                                <!--<h4>步骤1</h4>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-4">-->
+                                <!--<div class="form-group">-->
+                                    <!--<img src="https://dummyimage.com/350x300" id="stepsImage1"-->
+                                         <!--style="width: 350px; height: 300px;">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-7">-->
+                                <!--<textarea id="stepsDescription1" name="stepsDescription1" class="form-control" rows="11"-->
+                                          <!--placeholder="请填写步骤描述"></textarea>-->
+                                <!--<p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>-->
+                                <!--<a href="javascript:;" class="file">选择文件-->
+                                    <!--<input type="file" id="stepsImageUpload1" name="stepsImageUpload1"-->
+                                           <!--data-url="/web/recipes/upload?uniqueId={{uniqueId}}">-->
+                                    <!--<input id="stepsImagePath1" type="hidden" name="stepsImagePath1" value=""/>-->
+                                    <!--<input id="stepsSequence1" name="stepsSequence1" value="1" type="hidden"/>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <!-- 步骤2 -->
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <h4>步骤2</h4>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300" id="stepsImage2"
-                                         style="width: 350px; height: 300px;">
-                                </div>
-                            </div>
-                            <div class="col-xs-7">
-                                <textarea id="stepsDescription2" name="stepsDescription2" class="form-control" rows="11"
-                                          placeholder="请填写步骤描述"></textarea>
-                                <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
-                                <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="stepsImageUpload2" name="stepsImageUpload2"
-                                           data-url="/web/recipes/upload">
-                                    <input id="stepsImagePath2" type="hidden" name="stepsImagePath2" value=""/>
-                                    <input id="stepsSequence2" name="stepsSequence2" value="2" type="hidden"/>
-                                </a>
-                            </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-1">-->
+                                <!--<h4>步骤2</h4>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-4">-->
+                                <!--<div class="form-group">-->
+                                    <!--<img src="https://dummyimage.com/350x300" id="stepsImage2"-->
+                                         <!--style="width: 350px; height: 300px;">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-7">-->
+                                <!--<textarea id="stepsDescription2" name="stepsDescription2" class="form-control" rows="11"-->
+                                          <!--placeholder="请填写步骤描述"></textarea>-->
+                                <!--<p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>-->
+                                <!--<a href="javascript:;" class="file">选择文件-->
+                                    <!--<input type="file" id="stepsImageUpload2" name="stepsImageUpload2"-->
+                                           <!--data-url="/web/recipes/upload?uniqueId={{uniqueId}}">-->
+                                    <!--<input id="stepsImagePath2" type="hidden" name="stepsImagePath2" value=""/>-->
+                                    <!--<input id="stepsSequence2" name="stepsSequence2" value="2" type="hidden"/>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <!-- 步骤3 -->
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <h4>步骤3</h4>
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300" id="stepImage3"
-                                         style="width: 350px; height: 300px;">
-                                </div>
-                            </div>
-                            <div class="col-xs-7">
-                                <textarea id="stepsDescription3" name="stepsDescription3" class="form-control" rows="11"
-                                          placeholder="请填写步骤描述"></textarea>
-                                <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
-                                <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="stepsImageUpload3" name="stepsImageUpload3"
-                                           data-url="/web/recipes/upload">
-                                    <input id="stepsImagePath3" type="hidden" name="stepsImagePath3" value=""/>
-                                    <input id="stepsSequence3" name="stepsSequence3" value="3" type="hidden"/>
-                                </a>
-                            </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-1">-->
+                                <!--<h4>步骤3</h4>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-4">-->
+                                <!--<div class="form-group">-->
+                                    <!--<img src="https://dummyimage.com/350x300" id="stepsImage3"-->
+                                         <!--style="width: 350px; height: 300px;">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-7">-->
+                                <!--<textarea id="stepsDescription3" name="stepsDescription3" class="form-control" rows="11"-->
+                                          <!--placeholder="请填写步骤描述"></textarea>-->
+                                <!--<p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>-->
+                                <!--<a href="javascript:;" class="file">选择文件-->
+                                    <!--<input type="file" id="stepsImageUpload3" name="stepsImageUpload3"-->
+                                           <!--data-url="/web/recipes/upload?uniqueId={{uniqueId}}">-->
+                                    <!--<input id="stepsImagePath3" type="hidden" name="stepsImagePath3" value=""/>-->
+                                    <!--<input id="stepsSequence3" name="stepsSequence3" value="3" type="hidden"/>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <!-- 步骤4 -->
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <h4>步骤4</h4>
+                        <!--<div class="row">-->
+                            <!--<div class="col-xs-1">-->
+                                <!--<h4>步骤4</h4>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-4">-->
+                                <!--<div class="form-group">-->
+                                    <!--<img src="https://dummyimage.com/350x300" id="stepsImage4"-->
+                                         <!--style="width: 350px; height: 300px;">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="col-xs-7">-->
+                                <!--<textarea id="stepsDescription4" name="stepsDescription4" class="form-control" rows="11"-->
+                                          <!--placeholder="请填写步骤描述"></textarea>-->
+                                <!--<p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>-->
+                                <!--<a href="javascript:;" class="file">选择文件-->
+                                    <!--<input type="file" id="stepsImageUpload4"-->
+                                           <!--name="stepsImageUpload4"-->
+                                           <!--data-url="/web/recipes/upload?uniqueId={{uniqueId}}">-->
+                                    <!--<input id="stepsImagePath4" type="hidden" name="stepsImagePath4" value=""/>-->
+                                    <!--<input id="stepsSequence4" name="stepsSequence4" value="4" type="hidden"/>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <input id="stepsCount" name="stepsCount" type="hidden" value="0"/>
+                        <div id="stepsEndRow" class="row">
+                            <div class="col-md-12">步骤 <a id="stepsAdd" class="btn"><i class="fa fa-plus"></i> 增加一步</a>
                             </div>
-                            <div class="col-xs-4">
-                                <div class="form-group">
-                                    <img src="https://dummyimage.com/350x300" id="stepsImage4"
-                                         style="width: 350px; height: 300px;">
-                                </div>
-                            </div>
-                            <div class="col-xs-7">
-                                <textarea id="stepsDescription4" name="stepsDescription4" class="form-control" rows="11"
-                                          placeholder="请填写步骤描述"></textarea>
-                                <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
-                                <a href="javascript:;" class="file">选择文件
-                                    <input type="file" id="stepImageUpload4" name="stepImageUpload4"
-                                           data-url="/web/recipes/upload">
-                                    <input id="stepsImagePath4" type="hidden" name="stepsImagePath4" value=""/>
-                                    <input id="stepsSequence4" name="stepsSequence4" value="1" type="hidden"/>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">步骤 <a class="btn"><i class="fa fa-plus"></i> 增加一步</a></div>
                         </div>
                         <hr/>
                         <!-- 成品图 -->
@@ -477,7 +479,7 @@
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
                                         <input type="file" id="completePicsImageUpload1" name="completePicsImageUpload1"
-                                               data-url="/web/recipes/upload">
+                                               data-url="/web/recipes/upload?uniqueId={{uniqueId}}">
                                         <input id="completePicsImagePath1" type="hidden" name="completePicsImagePath1"/>
                                         <input id="completePicsSequence1" type="hidden" name="completePicsSequence1"
                                                value="1"/>
@@ -491,7 +493,7 @@
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
                                         <input type="file" id="completePicsImageUpload2" name="completePicsImageUpload2"
-                                               data-url="/web/recipes/upload">
+                                               data-url="/web/recipes/upload?uniqueId={{uniqueId}}">
                                         <input id="completePicsImagePath2" type="hidden" name="completePicsImagePath2"/>
                                         <input id="completePicsSequence2" type="hidden" name="completePicsSequence2"
                                                value="2"/>
@@ -508,7 +510,7 @@
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
                                         <input type="file" id="completePicsImageUpload3" name="completePicsImageUpload3"
-                                               data-url="/web/recipes/upload">
+                                               data-url="/web/recipes/upload?uniqueId={{uniqueId}}">
                                         <input id="completePicsImagePath3" type="hidden" name="completePicsImagePath3"/>
                                         <input id="completePicsSequence3" type="hidden" name="completePicsSequence3"
                                                value="3"/>
@@ -522,7 +524,7 @@
                                     <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                     <a href="javascript:;" class="file">选择文件
                                         <input type="file" id="completePicsImageUpload4" name="completePicsImageUpload4"
-                                               data-url="/web/recipes/upload">
+                                               data-url="/web/recipes/upload?uniqueId={{uniqueId}}">
                                         <input id="completePicsImagePath4" type="hidden" name="completePicsImagePath4"/>
                                         <input id="completePicsSequence4" type="hidden" name="completePicsSequence4"
                                                value="4"/>
@@ -553,6 +555,7 @@
     <!-- /.content -->
 </div>
 <!-- /.container -->
+
 {% endblock %}
 
 {% block script %}
@@ -567,14 +570,27 @@
 
 <script src="/libs/blueimp-load-image/js/load-image.all.min.js"></script>
 <script type="text/javascript">
-    $(function () {
-        $('#titleImageUpload').fileupload({
+    function imageUpload(uploadElement, imageElement) {
+        uploadElement.fileupload({
             dataType: 'json',
             done: function (e, data) {
-                $("#titleImage").attr("src", data.result.url);
+                imageElement.attr("src", data.result.url);
                 $(this).next(":hidden").val(data.result.url);
             }
         });
+    }
+
+    $(function () {
+        // -- Begin of Upload
+        imageUpload($("#titleImageUpload"), $("#titleImage"));
+        // imageUpload($("#stepsImageUpload1"), $("#stepsImage1"));
+        // imageUpload($("#stepsImageUpload2"), $("#stepsImage2"));
+        // imageUpload($("#stepsImageUpload3"), $("#stepsImage3"));
+        // imageUpload($("#stepsImageUpload4"), $("#stepsImage4"));
+        imageUpload($("#completePicsImageUpload1"), $("#completePicsImage1"));
+        imageUpload($("#completePicsImageUpload2"), $("#completePicsImage2"));
+
+        // -- End of Upload
         $("#cookInfoCountry").on('change', function () {
             if (this.value !== '中国') {
                 $("#cookInfoChinaLocalCuisine").val("").prop("disabled", "disabled");
@@ -621,10 +637,52 @@
         $("#ingredientsMajorIngredient1").autocomplete({
             source: availableTags
         });
+
+        $("#stepsAdd").click(function () {
+            var current = parseInt($("#stepsCount").val()) + 1;
+            $("#stepsCount").val(current);
+            var title = "步骤" + current;
+            var stepsImage = "stepsImage" + current;
+            var stepsDescription = "stepsDescription" + current;
+            var stepsImageUpload = "stepsImageUpload" + current;
+            var stepsImagePath = "stepsImagePath" + current;
+            var stepsSequence = "stepsSequence" + current;
+
+            var element = `
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <h4>${title}</h4>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <img src="https://dummyimage.com/350x300" id="${stepsImage}"
+                                         style="width: 350px; height: 300px;">
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <textarea id="${stepsDescription}" name="${stepsDescription}" class="form-control" rows="11"
+                                          placeholder="请填写步骤描述"></textarea>
+                                <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
+                                <a href="javascript:;" class="file">选择文件
+                                    <input type="file" id="${stepsImageUpload}"
+                                           name="${stepsImageUpload}"
+                                           data-url="/web/recipes/upload?uniqueId={{uniqueId}}">
+                                    <input id="${stepsImagePath}" type="hidden" name="${stepsImagePath}" value=""/>
+                                    <input id="${stepsSequence}" name="${stepsSequence}" value="4" type="hidden"/>
+                                </a>
+                            </div>
+                        </div>
+            `;
+            $("#stepsEndRow").before(element);
+            // Add image upload function
+            imageUpload($("#" + stepsImageUpload), $("#" + stepsImage));
+        });
+        // Add steps
+        for(var i = 0; i < 4; i++) {
+            $("#stepsAdd").trigger("click");
+        }
     });
 
-    $(document).ready(function () {
-        $('.js-example-basic-multiple').select2();
-    });
+
 </script>
 {% endblock %}

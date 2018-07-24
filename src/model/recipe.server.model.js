@@ -217,15 +217,18 @@ const RecipeSchema = new Schema({
             consumption: String // 用量
         }]
     },
+    // 步骤
     steps: [{
         imagePath: String,
         description: String,
         sequence: Number
     }],
+    // 成品图
     completePics: {
         imagePath: String,
         sequence: Number
     },
+    // 小技巧
     exportTips: String,
     conclusion: String,
     // end of 菜谱细节

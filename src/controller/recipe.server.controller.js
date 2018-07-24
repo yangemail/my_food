@@ -8,7 +8,8 @@ const path = require('path')
     , {PROJECT_ROOT_PATH} = require('../config/constant.server.config')
     , multer = require('multer')
     , shortid = require('shortid')
-    , constant = require('../config/constant.server.config');
+    , constant = require('../config/constant.server.config')
+    , mongoose = require('mongoose');
 
 function getErrorMessage(err) {
     if (err.errors) {
@@ -24,7 +25,19 @@ function getErrorMessage(err) {
 
 // Use "recipeId" to determine whether is a Create / Edit
 exports.renderCreateOrUpdate = function (req, res) {
+    let objectId;
+    // Sent by Add / Edit recipe page.
+    // const uniqueId = req.flash('uniqueId');
+    // console.log(uniqueId);
+    // if(!uniqueId) {
+    objectId = mongoose.Types.ObjectId();
+    console.log('objectId = ' + objectId);
+    // } else{
+    //     objectId = uniqueId;
+    // }
+
     res.render('web/recipe_add', {
+        uniqueId: objectId.toString(),
         // 区域
         countryOptions: constant.DATASET_COUNTRY,
         chinaLocalCuisineOptions: constant.DATASET_CHINA_LOCAL_CUISINE,
@@ -46,6 +59,10 @@ exports.renderCreateOrUpdate = function (req, res) {
 exports.create = function (req, res) {
     const recipe = new Recipe(req.body);
 
+    recipe._id = req.body['uniqueId'];
+    recipe.author = req.user;
+    console.log('user -> ' + req.user);
+
     // CookInfo
     const cookInfo = recipe.cookInfo;
     cookInfo['country'] = req.body['cookInfoCountry'];
@@ -64,16 +81,29 @@ exports.create = function (req, res) {
     cookInfo.cooking['time'] = req.body['cookInfoCookingTime'];
     cookInfo.cooking['unit'] = req.body['cookInfoCookingUnit'];
     cookInfo['servingsOfPeople'] = req.body['cookInfoServingsOfPeople'];
+
     // 原料
-    const ingredients = recipe.ingredients;
-    let major = [];
-    req.body['ingredientsMajorIngredient1'];
+    // const major = recipe.ingredients;
+    // major.push({
+    //     ingredient:
+    // });
 
-    recipe.author = req.user;
+    // 步骤
+    const stepsCount = req.body['stepsCount'];
+    const steps =recipe.steps;
+    for(let i = 1; i <= stepsCount; i++) {
+        let _description = req.body['stepsDescription'+i];
+        if (_description) {
+            steps.push({
+                imagePath: req.body['stepsImagePath'+i],
+                description: _description,
+                sequence: req.body['stepsSequence'+i]
+            });
+        }
+    }
 
-    console.log('user -> ' + req.user);
+
     console.log("recipe -> " + recipe);
-
 
     recipe.save((err) => {
         if (err) {
@@ -189,7 +219,7 @@ exports.multerConfig = multer({
     storage: storageImg,
     limits: {
         filedNameSize: 50 * 1024,
-        fileSize: 3 * 1024 * 1024,
+        fileSize: 5 * 1024 * 1024,
     },
     fileFilter: function (req, file, cb) {
         if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
@@ -199,21 +229,21 @@ exports.multerConfig = multer({
     }
 }).fields([
     {name: 'titleImageUpload', maxCount: 1},
-    {name: 'stepImageUpload1', maxCount: 1},
-    {name: 'stepImageUpload2', maxCount: 1},
-    {name: 'stepImageUpload3', maxCount: 1},
-    {name: 'stepImageUpload4', maxCount: 1},
-    {name: 'stepImageUpload5', maxCount: 1},
-    {name: 'stepImageUpload6', maxCount: 1},
-    {name: 'stepImageUpload7', maxCount: 1},
-    {name: 'stepImageUpload8', maxCount: 1},
-    {name: 'stepImageUpload9', maxCount: 1},
-    {name: 'stepImageUpload10', maxCount: 1},
-    {name: 'stepImageUpload11', maxCount: 1},
-    {name: 'stepImageUpload12', maxCount: 1},
-    {name: 'stepImageUpload13', maxCount: 1},
-    {name: 'stepImageUpload14', maxCount: 1},
-    {name: 'stepImageUpload15', maxCount: 1},
+    {name: 'stepsImageUpload1', maxCount: 1},
+    {name: 'stepsImageUpload2', maxCount: 1},
+    {name: 'stepsImageUpload3', maxCount: 1},
+    {name: 'stepsImageUpload4', maxCount: 1},
+    {name: 'stepsImageUpload5', maxCount: 1},
+    {name: 'stepsImageUpload6', maxCount: 1},
+    {name: 'stepsImageUpload7', maxCount: 1},
+    {name: 'stepsImageUpload8', maxCount: 1},
+    {name: 'stepsImageUpload9', maxCount: 1},
+    {name: 'stepsImageUpload10', maxCount: 1},
+    {name: 'stepsImageUpload11', maxCount: 1},
+    {name: 'stepsImageUpload12', maxCount: 1},
+    {name: 'stepsImageUpload13', maxCount: 1},
+    {name: 'stepsImageUpload14', maxCount: 1},
+    {name: 'stepsImageUpload15', maxCount: 1},
     {name: 'completePicsImageUpload1', maxCount: 1},
     {name: 'completePicsImageUpload2', maxCount: 1},
     {name: 'completePicsImageUpload3', maxCount: 1},

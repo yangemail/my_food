@@ -25,19 +25,25 @@ function getErrorMessage(err) {
 
 // Use "recipeId" to determine whether is a Create / Edit
 exports.renderCreateOrUpdate = function (req, res) {
-    let objectId;
-    // Sent by Add / Edit recipe page.
-    // const uniqueId = req.flash('uniqueId');
-    // console.log(uniqueId);
-    // if(!uniqueId) {
-    objectId = mongoose.Types.ObjectId();
-    console.log('objectId = ' + objectId);
-    // } else{
-    //     objectId = uniqueId;
-    // }
+    let queryRecipeId = req.query.recipeId;
+    let isNewMode = !(queryRecipeId);
 
-    res.render('web/recipe_add', {
-        uniqueId: objectId.toString(),
+    let objectIdStr;
+    // Sent by Add / Edit recipe page.
+    if(isNewMode){
+        objectIdStr = mongoose.Types.ObjectId().toString();
+        console.log("New objectId = " + objectIdStr);
+    } else {
+        objectIdStr = queryRecipeId;
+        console.log("Existing objectId = " + objectIdStr);
+    }
+
+    res.render('web/recipe_add_edit', {
+        title: isNewMode ? '新菜谱' : '编辑菜谱',
+        pageHeader: isNewMode ? '新菜谱' : '编辑菜谱',
+        breadcrumb: ['首页', '用户', '菜谱'],
+
+        uniqueId: objectIdStr.toString(),
         // 区域
         countryOptions: constant.DATASET_COUNTRY,
         chinaLocalCuisineOptions: constant.DATASET_CHINA_LOCAL_CUISINE,

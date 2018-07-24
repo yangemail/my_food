@@ -8,22 +8,13 @@
 {% block content %}
 <div class="container">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            新菜谱
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
-            <li><a href="#">用户</a></li>
-            <li class="active">菜谱</li>
-        </ol>
-    </section>
+    {% include './inc/content_header.html' %}
 
     <!-- Main content -->
     <section class="content">
         <div class="box box-default">
             <div class="box-header with-border">
-                <h3 class="box-title">发布新菜谱</h3>
+                <h3 class="box-title">发布菜谱</h3>
             </div>
             <div class="box-body">
                 <!-- /.box-header -->

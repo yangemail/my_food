@@ -1,0 +1,39 @@
+{% extends './../web/inc/layout.html' %}
+
+{% block content %}
+<div class="container">
+    <!-- Content Header (Page header) -->
+    {% include './../web/inc/content_header.html' %}
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">成功</h3>
+            </div>
+            <div class="box-body">
+                <ol class="breadcrumb">
+                    <li><a href="/">管理首页</a></li>
+                    <li><span>成功提示</span></li>
+                </ol>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">成功提示</h3>
+                    </div>
+                    <div class="panel-body">{{message}}</div>
+                    <div class="panel-footer">
+                        <a href="{{url}}">点击这里跳转</a>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.container -->
+{% endblock %}
+

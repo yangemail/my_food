@@ -30,7 +30,7 @@ exports.renderCreateOrUpdate = function (req, res) {
 
     let objectIdStr;
     // Sent by Add / Edit recipe page.
-    if(isNewMode){
+    if (isNewMode) {
         objectIdStr = mongoose.Types.ObjectId().toString();
         console.log("New objectId = " + objectIdStr);
     } else {
@@ -102,8 +102,8 @@ exports.create = function (req, res) {
 
     // 步骤
     const stepsCount = req.body['stepsCount'];
-    const steps =recipe.steps;
-    for(let i = 1; i <= stepsCount; i++) {
+    const steps = recipe.steps;
+    for (let i = 1; i <= stepsCount; i++) {
         let _description = req.body[`stepsDescription${i}`];
         if (_description) {
             steps.push({
@@ -116,7 +116,7 @@ exports.create = function (req, res) {
 
     // 成品图
     const completePics = recipe.completePics;
-    for(let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 4; i++) {
         let _imagePath = req.body[`completePicsImagePath${i}`];
         if (_imagePath) {
             completePics.push({
@@ -126,15 +126,21 @@ exports.create = function (req, res) {
         }
     }
 
-    console.log("recipe -> " + recipe);
-
     recipe.save((err) => {
         if (err) {
             return res.status(400).send({
                 message: getErrorMessage(err)
             });
         } else {
-            res.status(200).json(recipe);
+            // res.status(200).json(recipe);
+            res.render('share/success', {
+                title: '存储成功',
+                pageHeader: '成功页面',
+                breadcrumb: ['首页', '菜谱', '成功'],
+
+                message: '食谱保存成功，请等待审核。',
+                url: '/web/'
+            })
         }
     });
 };

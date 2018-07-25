@@ -19,7 +19,7 @@
             <div class="box-body">
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" action="/web/recipes" method="post">
+                <form id="recipeForm" role="form" action="/web/recipes" method="post">
                     <div class="box-body">
                         <div class="alert alert-warning alert-dismissible">
                             <i class="icon fa fa-info"></i>小提示：菜谱发布并审核通过后，将被本站收录并展示。
@@ -30,7 +30,8 @@
                                 <div class="form-group">
                                     <label for="title">标题</label>
                                     <input type="text" class="form-control" id="title" name="title" maxlength="15"
-                                           placeholder="请填写菜谱名称（15字以内）">
+                                           minlength="2" required
+                                           placeholder="请填写菜谱名称（15字以内)">
                                 </div>
                             </div>
                         </div>
@@ -54,7 +55,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-xs-2">
-                                    <select class="form-control" id="cookInfoCountry" name="cookInfoCountry">
+                                    <select class="form-control" id="cookInfoCountry" name="cookInfoCountry" required>
                                         <option value="" disabled selected>国家</option>
                                         {% for item in countryOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
@@ -462,7 +463,31 @@
 <script src="/libs/blueimp-file-upload/js/jquery.fileupload.js"></script>
 
 <script src="/libs/blueimp-load-image/js/load-image.all.min.js"></script>
+<!-- jquery-validation -->
+<script src="/libs/jquery-validation/dist/jquery.validate.js"></script>
+<script src="/libs/jquery-validation/src/localization/messages_zh.js"></script>
+
 <script type="text/javascript">
+    $.validator.setDefaults({
+        debug: true,
+        errorClass: "has-error",
+        submitHandler: function (form) {
+            alert("提交事件!");
+            form.submit();
+        }
+    });
+    $("#recipeForm").validate({
+        rules: {
+            // title: "required",
+            // cookInfoCountry: "required",
+        },
+        messages: {
+            title: "请输入标题，长度为2-15个字符",
+            cookInfoCountry: "请选择国家"
+        },
+
+    });
+
     function imageUpload(uploadElement, imageElement) {
         uploadElement.fileupload({
             dataType: 'json',
@@ -515,7 +540,7 @@
                 },
                 processResults: function (data) {
                     const result = [];
-                    for(let i = 0; i < data.length; i++) {
+                    for (let i = 0; i < data.length; i++) {
                         result.push({
                             id: data[i]._id,
                             text: data[i].name

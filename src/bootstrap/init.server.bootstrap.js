@@ -5,7 +5,7 @@
 const mongoose = require('mongoose');
 const Ingredient = mongoose.model('Ingredient');
 
-function initIngredient() {
+function initDataIngredient() {
 // Drop collection
     Ingredient.remove({}, function (err) {
         console.log('-- collection removed --');
@@ -572,4 +572,4 @@ function initIngredient() {
     });
 }
 
-module.exports = {initIngredient,};
+module.exports = {initDataIngredient,};

@@ -267,24 +267,20 @@
                             2. “适量、少许”尽量少用或者不用，用量精确对您的粉丝更有帮助
                         </div>
                         <!-- 主料 -->
-                        <div class="row">
-                            <div class="col-md-12">主料 <a class="btn"><i class="fa fa-plus"></i> 增加一项</a></div>
-                        </div>
                         <br/>
                         <div class="row">
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
                                     <label class="sr-only" for="ingredientsMajorIngredient1"></label>
-                                    <input type="text" class="form-control" id="ingredientsMajorIngredient1"
-                                           name="ingredientsMajorIngredient1"
-                                           placeholder="主料名称，例如：龙虾">
+                                    <select id="ingredientsMajorIngredient1" name="ingredientsMajorIngredient1"
+                                            class="ingredient-data-ajax" style="width: 250px"></select>
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
                                     <label class="sr-only" for="ingredientsMajorConsumption1"></label>
                                     <input type="text" class="form-control" id="ingredientsMajorConsumption1"
                                            name="ingredientsMajorConsumption1"
-                                           placeholder="填写用量，例如：500克">
+                                           placeholder="请填写用量">
                                 </div>
                                 <button id="ingredients_major_btn_1" type="button" class="btn btn-box-tool"><i
                                         class="fa fa-remove"></i></button>
@@ -292,9 +288,8 @@
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
                                     <label class="sr-only" for="ingredientsMajorIngredient2"></label>
-                                    <input type="text" class="form-control" id="ingredientsMajorIngredient2"
-                                           name="ingredientsMajorIngredient2"
-                                           placeholder="请填写主料名称">
+                                    <select id="ingredientsMajorIngredient2" name="ingredientsMajorIngredient2"
+                                            class="ingredient-data-ajax" style="width: 250px"></select>
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
@@ -307,19 +302,17 @@
                                         class="fa fa-remove"></i></button>
                             </div>
                         </div>
-                        <br/>
-                        <!-- 辅料 -->
                         <div class="row">
-                            <div class="col-md-12">辅料 <a class="btn"><i class="fa fa-plus"></i> 增加一项</a></div>
+                            <div class="col-md-12">主料 <a class="btn"><i class="fa fa-plus"></i> 增加一项</a></div>
                         </div>
                         <br/>
+                        <!-- 辅料 -->
                         <div class="row">
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
                                     <label class="sr-only" for="ingredientsSubIngredient1"></label>
-                                    <input type="text" class="form-control" id="ingredientsSubIngredient1"
-                                           name="ingredientsSubIngredient1"
-                                           placeholder="请填写主料名称">
+                                    <select id="ingredientsSubIngredient1" name="ingredientsSubIngredient1"
+                                            class="ingredient-data-ajax" style="width: 250px"></select>
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
@@ -333,9 +326,8 @@
                             <div class="col-md-6 form-inline">
                                 <div class="form-group">
                                     <label class="sr-only" for="ingredientsSubIngredient2"></label>
-                                    <input type="text" class="form-control" id="ingredientsSubIngredient2"
-                                           name="ingredientsSubIngredient2"
-                                           placeholder="请填写主料名称">
+                                    <select id="ingredientsSubIngredient2" name="ingredientsSubIngredient2"
+                                            class="ingredient-data-ajax" style="width: 250px"></select>
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
@@ -347,7 +339,10 @@
                                 <button type="button" class="btn btn-box-tool"><i class="fa fa-remove"></i></button>
                             </div>
                         </div>
-                        <hr/>
+                        <div class="row">
+                            <div class="col-md-12">辅料 <a class="btn"><i class="fa fa-plus"></i> 增加一项</a></div>
+                        </div>
+                        <br/>
                         <!-- 步骤 -->
                         <div class="alert alert-warning alert-dismissible">
                             <i class="icon fa fa-info"></i> 步骤： 开始写步骤了！能否简单易学就看你怎么写了，加油！<br/>
@@ -506,36 +501,34 @@
             }
         });
 
-        $(document).ready(function() {
-            $('.basic-multiple').select2();
-        });
+        $('.basic-multiple').select2();
 
-        var availableTags = [
-            "ActionScript",
-            "AppleScript",
-            "Asp",
-            "BASIC",
-            "C",
-            "C++",
-            "Clojure",
-            "COBOL",
-            "ColdFusion",
-            "Erlang",
-            "Fortran",
-            "Groovy",
-            "Haskell",
-            "Java",
-            "JavaScript",
-            "Lisp",
-            "Perl",
-            "PHP",
-            "Python",
-            "Ruby",
-            "Scala",
-            "Scheme"
-        ];
-        $("#ingredientsMajorIngredient1").autocomplete({
-            source: availableTags
+        $(".ingredient-data-ajax").select2({
+            ajax: {
+                url: "/web/search/names",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term, // search term
+                    };
+                },
+                processResults: function (data) {
+                    const result = [];
+                    for(let i = 0; i < data.length; i++) {
+                        result.push({
+                            id: data[i]._id,
+                            text: data[i].name
+                        })
+                    }
+                    return {
+                        results: result
+                    };
+                },
+                cache: false
+            },
+            placeholder: '请选择食材名称',
+            language: 'zh-CN',
         });
 
         $("#stepsAdd").click(function () {

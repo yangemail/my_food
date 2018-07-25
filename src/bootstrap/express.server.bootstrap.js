@@ -54,6 +54,7 @@ module.exports = function () {
     require('../router/web/index.server.router.web')(app);
     require('../router/web/recipe.server.router.web')(app);
     require('../router/web/user.server.router.web')(app);
+    require('../router/web/ingredient.server.router.web')(app);
 
     if (process.env.NODE_ENV === 'development') {
         app.use(morgan('dev'));

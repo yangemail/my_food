@@ -89,10 +89,16 @@ exports.create = function (req, res) {
     cookInfo['servingsOfPeople'] = req.body['cookInfoServingsOfPeople'];
 
     // 原料
-    // const major = recipe.ingredients;
-    // major.push({
-    //     ingredient:
-    // });
+    const major = recipe.ingredients.major;
+    major.push({
+        ingredient: req.body['ingredientsMajorIngredient1'],
+        consumption: req.body['ingredientsMajorConsumption1']
+    });
+    const sub = recipe.ingredients.sub;
+    sub.push({
+        ingredient: req.body['ingredientsSubIngredient1'],
+        consumption: req.body['ingredientsSubConsumption1']
+    });
 
     // 步骤
     const stepsCount = req.body['stepsCount'];
@@ -119,9 +125,6 @@ exports.create = function (req, res) {
             });
         }
     }
-
-    // 小技巧
-
 
     console.log("recipe -> " + recipe);
 

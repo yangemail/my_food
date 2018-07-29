@@ -35,7 +35,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -47,18 +47,6 @@
     <link rel="stylesheet" href="/static/assets/css/main.css">
 
     <style>
-        #topcontrol {
-            display: block;
-            width: 50px;
-            height: 50px;
-            background: url(/static/assets/img/customize/top.jpg);
-            margin-right: 14px;
-            margin-bottom: 5px;
-        }
-
-        #topcontrol:hover {
-            background: url(/static/assets/img/customize/top.jpg) 0px 50px;
-        }
     </style>
 
     <!-- Page Styles -->
@@ -85,6 +73,7 @@
     <!-- Main Footer -->
     {% include './footer.html' %}
     <!-- /Footer -->
+
 
 
     <!-- Add the sidebar's background. This div must be placed
@@ -118,55 +107,15 @@
     <!-- Customized JS -->
     <script src="/static/assets/js/index.js"></script>
 
-
+    <![endif]-->
+    <script src="/static/assets/js/main.js"></script>
     <!-- Page Scripts -->
     {% block script %} {% endblock %}
 </div>
 <!-- ./wrapper -->
 
-
 <script>
 
-    $(function () {
-        <!-- 返回到顶部 -->
-        $("div#topcontrol").click(function () {
-            $("html, body").animate({scrollTop: 0}, "slow");
-            return false;
-        });
-
-        <!-- 在文本或密码输入时禁止空格键 -->
-        $('input.nospace').keydown(function (e) {
-            if (e.keyCode == 32) {
-                return false;
-            }
-        });
-
-
-    });
-
-    //加入收藏
-    function AddFavorite(sURL, sTitle) {
-        sURL = encodeURI(sURL);
-        try {
-            window.external.addFavorite(sURL, sTitle);
-        } catch (e) {
-            try {
-                window.sidebar.addPanel(sTitle, sURL, "");
-            } catch (e) {
-                alert("加入收藏失败，请使用Ctrl+D进行添加,或手动在浏览器里进行设置.");
-            }
-        }
-    }
-
-    //设为首页
-    function SetHome(url) {
-        if (document.all) {
-            document.body.style.behavior = 'url(#default#homepage)';
-            document.body.setHomePage(url);
-        } else {
-            alert("您好,您的浏览器不支持自动设置页面为首页功能,请您手动在浏览器里设置该页面为首页!");
-        }
-    }
 </script>
 
 <div id="topcontrol" title="点击回到顶部！"

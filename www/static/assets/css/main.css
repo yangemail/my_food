@@ -1,11 +1,17 @@
 body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
-    font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+    /*font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;*/
+    font-family: "SF Pro Display",Roboto,Noto,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
     /*font-style: normal;*/
+    /*font-size: 14px;*/
+    color: #333;
+
 }
 
 body, button, input, select, textarea {
     font-style: normal;
     font-size: 14px;
+
+    line-height: 1.57142857;
 }
 
 .widget-user .widget-user-header {
@@ -42,3 +48,15 @@ body, button, input, select, textarea {
     text-decoration: none;
 }
 
+#topcontrol {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: url(/static/assets/img/customize/top.jpg);
+    margin-right: 14px;
+    margin-bottom: 5px;
+}
+
+#topcontrol:hover {
+    background: url(/static/assets/img/customize/top.jpg) 0px 50px;
+}

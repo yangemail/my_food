@@ -48,7 +48,8 @@
     "jquery.iframe-transport": "^1.0.1",
     "JSON-js": "*",
     "social-share.js": "^1.0.2",
-    "jquery-validation": "^1.17.0"
+    "jquery-validation": "^1.17.0",
+    "sweetalert": "^2.1.0"
   },
   "resolutions": {
     "jquery": "^3.2.1"

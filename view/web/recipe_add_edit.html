@@ -28,7 +28,7 @@
                         <div class="row">
                             <div class="col-xs-4">
                                 <div class="form-group">
-                                    <label for="title">标题</label>
+                                    <label for="title">标题（必填）</label>
                                     <input type="text" class="form-control" id="title" name="title" maxlength="15"
                                            minlength="2" required
                                            placeholder="请填写菜谱名称（15字以内)">
@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <div class="col-xs-2 form-group">
                                     <select class="form-control" id="cookInfoCountry" name="cookInfoCountry" required>
-                                        <option value="" disabled selected>国家</option>
+                                        <option value="" disabled selected>国家（必选）</option>
                                         {% for item in countryOptions %}
                                         <option value="{{ item }}">{{ item }}</option>
                                         {% endfor %}
@@ -248,8 +248,11 @@
                                 </div>
                             </div>
                             <div class="col-xs-8">
+                                <div class="form-group">
                                 <textarea id="description" name="description" class="form-control" rows="15"
-                                          placeholder="产品简介，说说这道菜的故事吧"></textarea>
+                                          placeholder="产品简介，说说这道菜的故事吧（必填字段）" required minlength="1"
+                                          maxlength="1000"></textarea>
+                                </div>
                                 <hr/>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
@@ -272,7 +275,7 @@
                                 <div class="form-group">
                                     <label class="sr-only" for="ingredientsMajorIngredient1"></label>
                                     <select id="ingredientsMajorIngredient1" name="ingredientsMajorIngredient1"
-                                            class="ingredient-data-ajax" style="width: 250px"></select>
+                                            class="ingredient-data-ajax" style="width: 250px" required></select>
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
@@ -311,7 +314,7 @@
                                 <div class="form-group">
                                     <label class="sr-only" for="ingredientsSubIngredient1"></label>
                                     <select id="ingredientsSubIngredient1" name="ingredientsSubIngredient1"
-                                            class="ingredient-data-ajax" style="width: 250px"></select>
+                                            class="ingredient-data-ajax" style="width: 250px" required></select>
                                 </div>
                                 <div class="form-group input-group">
                                     <span class="input-group-addon"><i class="fa fa-balance-scale"></i></span>
@@ -467,7 +470,7 @@
 
 <script type="text/javascript">
     $.validator.setDefaults({
-        debug: true,
+        // debug: true,
         submitHandler: function (form) {
             alert("提交事件!");
             form.submit();
@@ -482,8 +485,8 @@
             // cookInfoCountry: "required",
         },
         messages: {
-            title: "请输入标题，长度为2-15个字符",
-            cookInfoCountry: "请选择国家"
+            // title: "请输入标题，长度为2-15个字符",
+            // cookInfoCountry: "请选择国家"
         },
         highlight: function (element) {
             $(element).closest('.form-group').addClass('has-error');
@@ -600,8 +603,10 @@
                                 </div>
                             </div>
                             <div class="col-xs-7">
-                                <textarea id="${stepsDescription}" name="${stepsDescription}" class="form-control" rows="11"
-                                          placeholder="请填写步骤描述"></textarea>
+                                <div class="form-group">
+                                    <textarea id="${stepsDescription}" name="${stepsDescription}" class="form-control" rows="11"
+                                              placeholder="请填写步骤描述（必填）" required maxlength="500"></textarea>
+                                 </div>
                                 <p class="help-block">点击添加成品图，请使用小于5MB的JPG、PNG、GIF格式图片</p>
                                 <a href="javascript:;" class="file">选择文件
                                     <input type="file" id="${stepsImageUpload}"
@@ -620,7 +625,7 @@
             $("#stepsCount").val(current);
         });
         // Add steps
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 3; i++) {
             $("#stepsAdd").trigger("click");
         }
     });
